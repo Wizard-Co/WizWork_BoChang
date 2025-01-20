@@ -1,0 +1,17 @@
+[SQLServer]
+server=192.168.0.95,28000
+Database=MES_nAFT
+[FTPINFO]
+FTPPort=21
+FileSvr=192.168.0.95
+[Work]	 
+ProcessID=0401|0405|3101|5101|6101
+Machine=040501|040502|040503|040504
+Screen=PlanInput/1|CardRePrint/1|Result/1|InspectResult/1|Move/1|MissingWorkQty/1|DailMachineCheck/1|MtrLotStock/1|MtrLossAlarm/1
+View=4
+ReasonHorizontal=7
+ReasonVertical=7
+WeightMeter=COM3
+[REASON]
+Horizontal=7
+Vertical=7
