@@ -70,14 +70,6 @@ namespace WizWork
                         Frm_tprc_Result child1 = new Frm_tprc_Result();
                         form = child1;
                         break;
-                    case 2:     //원자재 입고 조회 
-                        frm_mtr_OCStuffin_Q child2 = new frm_mtr_OCStuffin_Q();
-                        form = child2;
-                        break;
-                    case 3:     //제품 출고 조회 
-                        frm_tprc_OutWareScan_Q child3 = new frm_tprc_OutWareScan_Q();
-                        form = child3;
-                        break;
                     case 4:     //설비점검 조회
                         Frm_tprc_DailMachineCheck_Q child4 = new Frm_tprc_DailMachineCheck_Q();
                         form = child4;

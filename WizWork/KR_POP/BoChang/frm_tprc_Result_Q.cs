@@ -826,7 +826,7 @@ namespace WizWork
             grdData.Columns[n++].Visible = true;
 
             grdData.Columns[n].Name = "BoxID";
-            grdData.Columns[n].HeaderText = "이동전표";
+            grdData.Columns[n].HeaderText = "생산라벨번호";
             grdData.Columns[n].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             grdData.Columns[n++].Visible = true;
 

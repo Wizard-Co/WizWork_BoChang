@@ -679,7 +679,7 @@ namespace WizWork
                                                 Lib.CheckNull(dr["BuyerArticleNo"].ToString()),
                                                 Lib.CheckNull(dr["InstID"].ToString()),
                                                 Lib.CheckNull(dr["OrderID"].ToString()),
-                                                string.Format("{0:n2}", InstQty),          //소수점 2자리
+                                                string.Format("{0:n0}", InstQty),          
                                                 Lib.CheckNull(dr["Process"].ToString()),
                                                 Lib.CheckNull(dr["MachineID"].ToString()),
                                                 Lib.CheckNull(dr["Article"].ToString()),
@@ -1314,63 +1314,7 @@ namespace WizWork
             }
 
             return true;
-        }
-
-
-       
-
-        #region(Mold 페이지로 넘겨도 좋은지 체크) btnMoldChange_AccessCheck_YN
-        private bool btnMoldChange_AccessCheck_YN()
-        {
-            // 1. 변경이 가능한지, 즉 > 현재 작업진행중인 항목인지 확인필요.
-            if (grdData.SelectedRows.Count > 0 && grdData.SelectedRows.Count == 1)
-            {
-                string ChkProcess = grdData.SelectedRows[0].Cells["ProcessID"].Value.ToString();
-                if (ChkProcess == "1101")
-                {
-                    // 재단은 필요없자나..
-                    WizCommon.Popup.MyMessageBox.ShowBox("선택한 작지는 재단 작업지시입니다. \r\n 금형변경 버튼을 선택할 수 없습니다.", "[공정오류]", 0, 1);
-                    return false;
-                }
-
-                // 어차피 호기세팅 되어있는 애들만 작지현황에 뜨기때문에ㅡ
-                // [작업x번] 에 대해서 고려할 이유는 없음.
-                string ChkMachine = grdData.SelectedRows[0].Cells["MachineNo"].Value.ToString();
-                bool ChkMachineID_Pass = false;
-
-                if (ChkMachine == btnMoldW1.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW2.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW3.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW4.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW5.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW6.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW7.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW8.Text) { ChkMachineID_Pass = true; }
-                if (ChkMachine == btnMoldW9.Text) { ChkMachineID_Pass = true; }
-
-                if (ChkMachineID_Pass == true)
-                {
-                    WizCommon.Popup.MyMessageBox.ShowBox("선택한 작지는 작업중이 아닙니다. \r\n 금형변경 버튼을 선택할 수 없습니다.", "[작지오류]", 0, 1);
-                    return false;
-                }
-                return true;
-            }
-            else
-            { return false; }
-        }
-
-        #endregion
-
-
-        // Q_Point
-        private void btnQ_Point_Click(object sender, EventArgs e)
-        {
-            Message[0] = "[공사중]";
-            Message[1] = string.Format("준비중입니다.\r\n기능은 관리자에게 문의하세요.");
-            WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 1);
-        }
-
-      
+        }  
 
         #region(통신페이지로 넘어가도 좋은지 체크) btnPLC_Transfer_AccessCheck_YN
         private bool btnPLC_Transfer_AccessCheck_YN()
@@ -2467,105 +2411,19 @@ namespace WizWork
 
         public void SetPreScanPopUpLoad(string processid, string machindid, string moldid)
         {
-            //if (Frm_tprc_Main.g_tBase.Process.Contains("외주") == true)
-            //{
-            //    //라벨 스캔
-            //    frm_PopUp_PreScanWork_Grid4 FPPSW = new frm_PopUp_PreScanWork_Grid4(processid, machindid, moldid);
-            //    FPPSW.StartPosition = FormStartPosition.CenterScreen;
-            //    FPPSW.BringToFront();
-            //    FPPSW.TopMost = true;
+            frm_PopUp_PreScanWork4 FPPSW = new frm_PopUp_PreScanWork4(processid, machindid, moldid);
+            FPPSW.StartPosition = FormStartPosition.CenterScreen;
+            FPPSW.BringToFront();
+            FPPSW.TopMost = true;
 
-            //    if (FPPSW.ShowDialog() == DialogResult.OK)
-            //    {
-
-            //        //2021-11-30 하위품 라벨 리스트 추가
-            //        List<string> listChildLabelID = new List<string>();
-            //        //2021-11-30 하위품 Article 리스트 추가
-            //        List<string> listChildArticle = new List<string>();
-            //        //2022-05-18 하위품 ArticleID 리스트 추가
-            //        List<string> listChildArticleID = new List<string>();
-
-            //        listChildLabelID = FPPSW.lstChildLabelList;
-            //        listChildArticle = FPPSW.lstChildArticleList;
-            //        listChildArticleID = FPPSW.lstChildArticleIDList;
-
-            //        MoveWorking(listChildLabelID, listChildArticle, listChildArticleID);
-            //    }
-            //}
-            //else
-            //{
-
-            //첫번째 공정은 선택 2번째 공정부터 라벨 스캔
-            //첫번째면서 반제품일수도 있어서 저장할 제품의 자재를 찾아서 반제품 하나라도 있으면 스캔하는 걸로 처리
-
-            int ArticleGrp = 0;
-
-            Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
-
-            sqlParameter.Add("PLLOTID", Frm_tprc_Main.g_tBase.sLotID);
-
-            DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_WizWork_CheckChildArticleGrpID", sqlParameter, false);
-
-            if (dt != null && dt.Rows.Count > 0)
+            if (FPPSW.ShowDialog() == DialogResult.OK)
             {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    if(dr["ArticleGrpID"].ToString() == "03" || dr["ArticleGrpID"].ToString() == "05")
-                    {
-                        ArticleGrp++;
-                    }
-                }
+                // ok라는건, 새로운 시작처리가 하나 있다는 것.
+                // re_search.
+                procQuery();
+                WorkingMachine_btnSetting();
+                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             }
-
-
-            if (ArticleGrp == 0) //ConvertInt(Frm_tprc_Main.g_tBase.sInstDetSeq) == 1 &&
-            {
-                frm_PopUp_PreScanWork4 FPPSW = new frm_PopUp_PreScanWork4(processid, machindid, moldid);
-                FPPSW.StartPosition = FormStartPosition.CenterScreen;
-                FPPSW.BringToFront();
-                FPPSW.TopMost = true;
-
-                if (FPPSW.ShowDialog() == DialogResult.OK)
-                {
-                    // ok라는건, 새로운 시작처리가 하나 있다는 것.
-                    // re_search.
-                    procQuery();
-                    WorkingMachine_btnSetting();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
-                }
-            }
-            else 
-            {
-                frm_PopUp_PreScanWork_Grid4 FPPSW = new frm_PopUp_PreScanWork_Grid4(processid, machindid, moldid);
-                FPPSW.StartPosition = FormStartPosition.CenterScreen;
-                FPPSW.BringToFront();
-                FPPSW.TopMost = true;
-
-                if (FPPSW.ShowDialog() == DialogResult.OK)
-                {
-                    // ok라는건, 새로운 시작처리가 하나 있다는 것.
-                    // re_search.
-                    procQuery();
-                    WorkingMachine_btnSetting();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
-                }
-            }
-
-            //}
-
-            //라벨 선택
-            //frm_PopUp_PreScanWork4 FPPSW = new frm_PopUp_PreScanWork4(processid, machindid, moldid);
-            //FPPSW.StartPosition = FormStartPosition.CenterScreen;
-            //FPPSW.BringToFront();
-            //FPPSW.TopMost = true;
-
-            //if (FPPSW.ShowDialog() == DialogResult.OK)
-            //{
-            //    // ok라는건, 새로운 시작처리가 하나 있다는 것.
-            //    // re_search.
-            //    procQuery();
-            //    WorkingMachine_btnSetting();
-            //}
         }
 
 

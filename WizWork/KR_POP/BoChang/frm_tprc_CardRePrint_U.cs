@@ -49,7 +49,7 @@ namespace WizWork
 
 
             grdData.Columns[++i].Name = "LabelID";
-            grdData.Columns[i].HeaderText = "라벨ID";
+            grdData.Columns[i].HeaderText = "생산라벨번호";
             grdData.Columns[i].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             grdData.Columns[i].ReadOnly = true;

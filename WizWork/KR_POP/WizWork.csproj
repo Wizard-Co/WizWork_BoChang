@@ -165,18 +165,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoChang\frm_mtr_OCStuffin_Q.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\frm_mtr_OCStuffin_Q.designer.cs">
-      <DependentUpon>frm_mtr_OCStuffin_Q.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\frm_mtr_OCStuffin_U.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\frm_mtr_OCStuffin_U.designer.cs">
-      <DependentUpon>frm_mtr_OCStuffin_U.cs</DependentUpon>
-    </Compile>
     <Compile Include="BoChang\frm_tprc_CardRePrint_U.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,24 +194,6 @@
     </Compile>
     <Compile Include="BoChang\frm_tprc_Mold_Q.designer.cs">
       <DependentUpon>frm_tprc_Mold_Q.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_MoveMenuCollection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_MoveMenuCollection.designer.cs">
-      <DependentUpon>frm_tprc_MoveMenuCollection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_OutWareScan_Q.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_OutWareScan_Q.designer.cs">
-      <DependentUpon>frm_tprc_OutWareScan_Q.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_OutWareScan_U.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\frm_tprc_OutWareScan_U.designer.cs">
-      <DependentUpon>frm_tprc_OutWareScan_U.cs</DependentUpon>
     </Compile>
     <Compile Include="BoChang\Frm_tprc_PlanInputMolded_Q.cs">
       <SubType>Form</SubType>
@@ -308,18 +278,6 @@
     </Compile>
     <Compile Include="BoChang\PopUp\Frm_PopUpSel_KPI_InstID.Designer.cs">
       <DependentUpon>Frm_PopUpSel_KPI_InstID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\PopUp\Frm_PopUpSel_sInspectSub.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\PopUp\Frm_PopUpSel_sInspectSub.Designer.cs">
-      <DependentUpon>Frm_PopUpSel_sInspectSub.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BoChang\PopUp\Frm_PopUpSel_sOutwareSub.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BoChang\PopUp\Frm_PopUpSel_sOutwareSub.Designer.cs">
-      <DependentUpon>Frm_PopUpSel_sOutwareSub.cs</DependentUpon>
     </Compile>
     <Compile Include="BoChang\PopUp\Frm_PopUp_LabelPrintQty.cs">
       <SubType>Form</SubType>
@@ -489,6 +447,18 @@
     <Compile Include="BoChang\PopUp\Frm_PopUp_sJobIDBy0405.Designer.cs">
       <DependentUpon>Frm_PopUp_sJobIDBy0405.cs</DependentUpon>
     </Compile>
+    <Compile Include="BoChang\PopUp\Frm_PopUp_Work_Jaturi_Save_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BoChang\PopUp\Frm_PopUp_Work_Jaturi_Save_U.Designer.cs">
+      <DependentUpon>Frm_PopUp_Work_Jaturi_Save_U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BoChang\PopUp\Frm_PopUp_Work_Save_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BoChang\PopUp\Frm_PopUp_Work_Save_U.Designer.cs">
+      <DependentUpon>Frm_PopUp_Work_Save_U.cs</DependentUpon>
+    </Compile>
     <Compile Include="BoChang\PopUp\Frm_tins_Calendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -586,12 +556,6 @@
     <EmbeddedResource Include="BoChang\Frm_Info.resx">
       <DependentUpon>Frm_Info.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\frm_mtr_OCStuffin_Q.resx">
-      <DependentUpon>frm_mtr_OCStuffin_Q.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\frm_mtr_OCStuffin_U.resx">
-      <DependentUpon>frm_mtr_OCStuffin_U.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BoChang\frm_tprc_CardRePrint_U.resx">
       <DependentUpon>frm_tprc_CardRePrint_U.cs</DependentUpon>
     </EmbeddedResource>
@@ -606,15 +570,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\frm_tprc_Mold_Q.resx">
       <DependentUpon>frm_tprc_Mold_Q.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\frm_tprc_MoveMenuCollection.resx">
-      <DependentUpon>frm_tprc_MoveMenuCollection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\frm_tprc_OutWareScan_Q.resx">
-      <DependentUpon>frm_tprc_OutWareScan_Q.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\frm_tprc_OutWareScan_U.resx">
-      <DependentUpon>frm_tprc_OutWareScan_U.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\Frm_tprc_PlanInputMolded_Q.resx">
       <DependentUpon>Frm_tprc_PlanInputMolded_Q.cs</DependentUpon>
@@ -654,12 +609,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\PopUp\Frm_PopUpSel_KPI_InstID.resx">
       <DependentUpon>Frm_PopUpSel_KPI_InstID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\PopUp\Frm_PopUpSel_sInspectSub.resx">
-      <DependentUpon>Frm_PopUpSel_sInspectSub.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BoChang\PopUp\Frm_PopUpSel_sOutwareSub.resx">
-      <DependentUpon>Frm_PopUpSel_sOutwareSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\PopUp\Frm_PopUp_LabelPrintQty.resx">
       <DependentUpon>Frm_PopUp_LabelPrintQty.cs</DependentUpon>
@@ -750,6 +699,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\PopUp\Frm_PopUp_sJobIDBy0405.resx">
       <DependentUpon>Frm_PopUp_sJobIDBy0405.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BoChang\PopUp\Frm_PopUp_Work_Jaturi_Save_U.resx">
+      <DependentUpon>Frm_PopUp_Work_Jaturi_Save_U.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BoChang\PopUp\Frm_PopUp_Work_Save_U.resx">
+      <DependentUpon>Frm_PopUp_Work_Save_U.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BoChang\PopUp\Frm_tins_Calendar.resx">
       <DependentUpon>Frm_tins_Calendar.cs</DependentUpon>

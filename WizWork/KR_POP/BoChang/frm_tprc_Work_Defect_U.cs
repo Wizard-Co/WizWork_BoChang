@@ -42,6 +42,12 @@ namespace WizWork
             this.dicDefect = dicDefect;
         }
 
+        public frm_tprc_Work_Defect_U(Dictionary<string, frm_tprc_Work_Defect_U_CodeView> dicDefect)
+        {
+            InitializeComponent();
+            this.dicDefect = dicDefect;
+        }
+
         private void frm_tprc_Work_Defect_U_Load(object sender, EventArgs e)
         {
             SetLayout(Horizontal, Vertical);

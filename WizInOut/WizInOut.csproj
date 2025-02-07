@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CCCFEDE-053C-4034-86AC-AD955D3C33AB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WizInOut</RootNamespace>
+    <AssemblyName>WizInOut</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WizWork.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\30_현영산업\WizWork_HyeonYeong_C#_KDH_20220303\WizWork\packages\Microsoft.Office.Interop.Excel.12.0.4518.1014\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InOut\Frm_tinout_OCStuffin_Q.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OCStuffin_Q.designer.cs">
+      <DependentUpon>Frm_tinout_OCStuffin_Q.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OCStuffin_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OCStuffin_U.designer.cs">
+      <DependentUpon>Frm_tinout_OCStuffin_U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_Info.Designer.cs">
+      <DependentUpon>Frm_tinout_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_Main.Designer.cs">
+      <DependentUpon>Frm_tinout_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OutWareScan_Q.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OutWareScan_Q.designer.cs">
+      <DependentUpon>Frm_tinout_OutWareScan_Q.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OutWareScan_U.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\Frm_tinout_OutWareScan_U.designer.cs">
+      <DependentUpon>Frm_tinout_OutWareScan_U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_CMNumericKeypad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_CMNumericKeypad.Designer.cs">
+      <DependentUpon>Frm_CMNumericKeypad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_Common.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_Common.Designer.cs">
+      <DependentUpon>Frm_PopUpSel_Common.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_sInspectSub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_sInspectSub.Designer.cs">
+      <DependentUpon>Frm_PopUpSel_sInspectSub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_sOutwareSub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_PopUpSel_sOutwareSub.Designer.cs">
+      <DependentUpon>Frm_PopUpSel_sOutwareSub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_ChoiceLabelPrintType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_ChoiceLabelPrintType.Designer.cs">
+      <DependentUpon>Frm_tinout_PopUpSel_ChoiceLabelPrintType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_Excel.Designer.cs">
+      <DependentUpon>Frm_tinout_PopUpSel_Excel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_InspectText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOut\PopUp\Frm_tinout_PopUpSel_InspectText.Designer.cs">
+      <DependentUpon>Frm_tinout_PopUpSel_InspectText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOut\WizWorkLib.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InOut\Frm_tinout_OCStuffin_Q.resx">
+      <DependentUpon>Frm_tinout_OCStuffin_Q.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\Frm_tinout_OCStuffin_U.resx">
+      <DependentUpon>Frm_tinout_OCStuffin_U.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\Frm_tinout_Info.resx">
+      <DependentUpon>Frm_tinout_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\Frm_tinout_Main.resx">
+      <DependentUpon>Frm_tinout_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\Frm_tinout_OutWareScan_Q.resx">
+      <DependentUpon>Frm_tinout_OutWareScan_Q.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\Frm_tinout_OutWareScan_U.resx">
+      <DependentUpon>Frm_tinout_OutWareScan_U.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_CMNumericKeypad.resx">
+      <DependentUpon>Frm_CMNumericKeypad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_PopUpSel_Common.resx">
+      <DependentUpon>Frm_PopUpSel_Common.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_PopUpSel_sInspectSub.resx">
+      <DependentUpon>Frm_PopUpSel_sInspectSub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_PopUpSel_sOutwareSub.resx">
+      <DependentUpon>Frm_PopUpSel_sOutwareSub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_tinout_PopUpSel_ChoiceLabelPrintType.resx">
+      <DependentUpon>Frm_tinout_PopUpSel_ChoiceLabelPrintType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_tinout_PopUpSel_Excel.resx">
+      <DependentUpon>Frm_tinout_PopUpSel_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOut\PopUp\Frm_tinout_PopUpSel_InspectText.resx">
+      <DependentUpon>Frm_tinout_PopUpSel_InspectText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WizCommon\WizCommon.csproj">
+      <Project>{04869e1c-a146-4445-b80c-95e1e6eb9a35}</Project>
+      <Name>WizCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delivery-packages-on-a-trolley.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\correct-mark %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Check_32pix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-search-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WizWork.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

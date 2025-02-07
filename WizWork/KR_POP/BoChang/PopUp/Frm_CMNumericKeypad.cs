@@ -238,19 +238,6 @@ namespace WizWork.POPUP
 
                     }
 
-                    if (Owner.Name == "frm_mtr_OCStuffin_U")
-                    {
-                        if (strKobType == "OK")
-                        {
-                            ((WizWork.frm_mtr_OCStuffin_U)(this.Owner)).SetCheckValue(strChkValue);
-                        }
-                        else
-                        {
-                            ((WizWork.frm_mtr_OCStuffin_U)(this.Owner)).SetCheckValueCancel(strChkValue);
-                        }
-
-                    }
-
                     if (this.Owner.Name.ToString() == "Frm_tprc_PlanInput_Q")
                     {
                         if (strKobType == "OK")
@@ -301,21 +288,6 @@ namespace WizWork.POPUP
                         else 
                         {
                             ((WizWork.frm_tins_InspectAuto_U)(this.Owner)).SetCheckValue("0");
-                        }
-                    }
-                }
-
-                if (this.Owner.Name == "frm_mtr_OCStuffin_U")
-                {
-                    if (!blnBtnClosing)
-                    {
-                        if (WizCommon.Popup.MyMessageBox.ShowBox("종료하시겠습니까? OK를 누르시면 측정값이 0으로 입력됩니다.", "[종료]", 0, 0) == DialogResult.Yes)
-                        {
-                            e.Cancel = true;
-                        }
-                        else
-                        {
-                            ((WizWork.frm_mtr_OCStuffin_U)(this.Owner)).SetCheckValue("0");
                         }
                     }
                 }

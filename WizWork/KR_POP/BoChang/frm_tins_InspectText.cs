@@ -40,12 +40,6 @@ namespace WizWork
                 
             }
 
-            if (Owner.Name == "frm_mtr_OCStuffin_U")
-            {
-                ((WizWork.frm_mtr_OCStuffin_U)(this.Owner)).SetCheckValue(strChkValue);
-
-            }
-
             Close();
             return;
         }

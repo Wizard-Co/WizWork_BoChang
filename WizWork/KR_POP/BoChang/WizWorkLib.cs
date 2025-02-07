@@ -2949,7 +2949,347 @@ namespace WizWork
 
     #endregion
 
+    #region 절단에서 사용하는 result 클래스
 
+    public class Sub_TWkResult_By_Cutting
+    {
+        float _JobID = 0;
+        string _ArticleID = "";
+        string _LabelID = "";
+        string _LabelGubun = "";
+        string _StartLabelID = "";
+        string _PLPDInstID = "";
+        int _PLPDSInstSeq = 0;
+        string _ProcessID = "";
+        string _MachineID = "";
+        float _WorkQty = 0;
+        string _ScanDate = "";
+        string _ScanTime = "";
+        string _WorkStartDate = "";
+        string _WorkStartTime = "";
+        string _WorkEndDate = "";
+        string _WorkEndTime = "";
+        string _Comments = "";
+        float  _CycleTime = 0;
+        string _SplitYNGBN = "";
+        string _CompletionYN = "";
+        string _CreateUserID = "";
+
+        public float JobID
+        {
+            get { return _JobID; }
+            set { _JobID = value; }
+        }
+
+        public string ArticleID
+        {
+            get { return _ArticleID; }
+            set { _ArticleID = value; }
+        }
+
+        public string LabelID
+        {
+            get { return _LabelID; }
+            set { _LabelID = value; }
+        }
+
+        public string LabelGubun
+        {
+            get { return _LabelGubun; }
+            set { _LabelGubun = value; }
+        }
+
+        public string StartLabelID
+        {
+            get { return _StartLabelID; }
+            set { _StartLabelID = value; }
+        }
+
+        public string PLPDInstID
+        {
+            get { return _PLPDInstID; }
+            set { _PLPDInstID = value; }
+        }
+
+        public float WorkQty
+        {
+            get { return _WorkQty; }
+            set { _WorkQty = value; }
+        }
+
+        public int PLPDSInstSeq
+        {
+            get { return _PLPDSInstSeq; }
+            set { _PLPDSInstSeq = value; }
+        }
+
+        public string ProcessID
+        {
+            get { return _ProcessID; }
+            set { _ProcessID = value; }
+        }
+
+        public string MachineID
+        {
+            get { return _MachineID; }
+            set { _MachineID = value; }
+        }
+
+        public string ScanDate
+        {
+            get { return _ScanDate; }
+            set { _ScanDate = value; }
+        }
+
+        public string ScanTime
+        {
+            get { return _ScanTime; }
+            set { _ScanTime = value; }
+        }
+
+        public string WorkStartDate
+        {
+            get { return _WorkStartDate; }
+            set { _WorkStartDate = value; }
+        }
+
+        public string WorkStartTime
+        {
+            get { return _WorkStartTime; }
+            set { _WorkStartTime = value; }
+        }
+
+        public string WorkEndDate
+        {
+            get { return _WorkEndDate; }
+            set { _WorkEndDate = value; }
+        }
+
+        public string WorkEndTime
+        {
+            get { return _WorkEndTime; }
+            set { _WorkEndTime = value; }
+        }
+
+        public string Comments
+        {
+            get { return _Comments; }
+            set { _Comments = value; }
+        }
+
+        public float CycleTime
+        {
+            get { return _CycleTime; }
+            set { _CycleTime = value; }
+        }
+
+        public string SplitYNGBN
+        {
+            get { return _SplitYNGBN; }
+            set { _SplitYNGBN = value; }
+        }
+
+        public string CompletionYN
+        {
+            get { return _CompletionYN; }
+            set { _CompletionYN = value; }
+        }
+
+        public string CreateUserID
+        {
+            get { return _CreateUserID; }
+            set { _CreateUserID = value; }
+        }
+
+        public Sub_TWkResult_By_Cutting()
+        {
+            this.JobID = 0;
+            this.ArticleID = "";
+            this.LabelID = "";
+            this.LabelGubun = "";
+            this.StartLabelID = "";
+            this.PLPDInstID = "";
+            this.PLPDSInstSeq = 0;
+            this.ProcessID = "";
+            this.MachineID = "";
+            this.WorkQty = 0;
+            this.ScanDate = "";
+            this.ScanTime = "";
+            this.WorkStartDate = "";
+            this.WorkStartTime = "";
+            this.WorkEndDate = "";
+            this.WorkEndTime = "";
+            this.CycleTime = 0;
+            this.Comments = "";
+            this.SplitYNGBN = "";
+            this.CompletionYN = "";
+            this.CreateUserID = "";
+        }
+    }
+
+
+    public class Sub_TWkResultArticleChild_By_Cutting
+    {
+        float _JobID = 0;
+        string _ChildArticleID = "";
+        string _ChildLabelID = "";
+        double _ChildUseQty = 0;
+        string _CreateUserID = "";
+
+        public float JobID
+        {
+            get { return _JobID; }
+            set { _JobID = value; }
+        }
+
+        public string ChildArticleID
+        {
+            get { return _ChildArticleID; }
+            set { _ChildArticleID = value; }
+        }
+
+        public string ChildLabelID
+        {
+            get { return _ChildLabelID; }
+            set { _ChildLabelID = value; }
+        }
+
+        public double ChildUseQty
+        {
+            get { return _ChildUseQty; }
+            set { _ChildUseQty = value; }
+        }
+
+        public string CreateUserID
+        {
+            get { return _CreateUserID; }
+            set { _CreateUserID = value; }
+        }
+
+        public Sub_TWkResultArticleChild_By_Cutting()
+        {
+            this.JobID = 0;
+            this.ChildArticleID = "";
+            this.ChildLabelID = "";
+            this.ChildUseQty = 0;
+            this.CreateUserID = "";
+        }
+    }
+
+    public class Sub_TWkLabelPrint_By_Cutting
+    {
+        string _LabelID = "";
+        string _LabelGubun = "";
+        string _ProcessID = "";
+        string _ArticleID = "";
+        string _PrintDate = "";
+        string _ReprintDate = "";
+        int _ReprintQty = 0;
+        string _PLPDInstID = "";
+        int    _PLPDSInstSeq = 0;
+        string _OrderID = "";
+        int _PrintQty = 0;
+        int _QtyPerBox = 0;
+        string _CreateUserID = "";
+
+        public string LabelID
+        {
+            get { return _LabelID; }
+            set { _LabelID = value; }
+        }
+
+        public string LabelGubun
+        {
+            get { return _LabelGubun; }
+            set { _LabelGubun = value; }
+        }
+
+        public string ProcessID
+        {
+            get { return _ProcessID; }
+            set { _ProcessID = value; }
+        }
+
+        public string ArticleID
+        {
+            get { return _ArticleID; }
+            set { _ArticleID = value; }
+        }
+
+        public string PrintDate
+        {
+            get { return _PrintDate; }
+            set { _PrintDate = value; }
+        }
+
+        public string ReprintDate
+        {
+            get { return _ReprintDate; }
+            set { _ReprintDate = value; }
+        }
+
+        public int ReprintQty
+        {
+            get { return _ReprintQty; }
+            set { _ReprintQty = value; }
+        }
+
+        public string PLPDInstID
+        {
+            get { return _PLPDInstID; }
+            set { _PLPDInstID = value; }
+        }
+
+        public int PLPDSInstSeq
+        {
+            get { return _PLPDSInstSeq; }
+            set { _PLPDSInstSeq = value; }
+        }
+
+        public string OrderID
+        {
+            get { return _OrderID; }
+            set { _OrderID = value; }
+        }
+
+        public int PrintQty
+        {
+            get { return _PrintQty; }
+            set { _PrintQty = value; }
+        }
+
+        public int QtyPerBox
+        {
+            get { return _QtyPerBox; }
+            set { _QtyPerBox = value; }
+        }
+
+        public string CreateUserID
+        {
+            get { return _CreateUserID; }
+            set { _CreateUserID = value; }
+        }
+
+        public Sub_TWkLabelPrint_By_Cutting()
+        {
+            this.LabelID = "";
+            this.LabelGubun = "";
+            this.ProcessID = "";
+            this.ArticleID = "";
+            this.PrintDate = "";
+            this.ReprintDate = "";
+            this.ReprintQty = 0;
+            this.PLPDInstID = "";
+            this.PLPDSInstSeq = 0;
+            this.OrderID = "";
+            this.PrintQty = 0;
+            this.QtyPerBox = 0;
+            this.CreateUserID = "";
+        }
+    }
+
+
+    #endregion
 
 
     #region 태그프린트 클래스

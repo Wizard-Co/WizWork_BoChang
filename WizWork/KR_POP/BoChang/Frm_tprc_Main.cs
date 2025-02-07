@@ -452,21 +452,6 @@ namespace WizWork
                         }
                         form = child13;
                         break;
-                    //입고/출고
-                    case 12: 
-                        btnimage(12);
-                        frm_tprc_MoveMenuCollection child14 = new frm_tprc_MoveMenuCollection();
-                        foreach (Form openForm in Application.OpenForms) // 기존의 실행된건 종료시키기 2023.01.30
-                        {
-                            if (openForm.Name == child14.Name)
-                            {
-                                openForm.Close();
-                                break;
-                            }
-                        }
-                        form = child14;
-                        break;
-
                     case 17:
                         //btnimage(18);
                         frm_tprc_setProcess child17 = new frm_tprc_setProcess(true);//NoWork == true라는 bool값
