@@ -65,7 +65,7 @@ namespace WizInOut
             u_InspectID = InspectID;
         }
 
-        private void frm_mtr_OCStuffin_U_Load(object sender, EventArgs e)
+        private void Frm_tinout_OCStuffin_U_Load(object sender, EventArgs e)
         {
             LogData.LogSave(this.GetType().Name, "S"); //log 남기기(로드 S) 2022-10-24
 
@@ -100,7 +100,6 @@ namespace WizInOut
                 //검수일자
                 mtb_IDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
-
         }
 
         #region 그리드, 탭페이지 초기화
@@ -2715,7 +2714,7 @@ namespace WizInOut
                 List<string> list_Data = null;
                 g_sPrinterName = Lib.GetDefaultPrinter();
                 TSCLIB_DLL.openport(g_sPrinterName);
-
+                
                 list_Data = new List<string>();
                 Dictionary<string, object> sqlParameter2 = new Dictionary<string, object>();
                 sqlParameter2.Add("StuffinID", m_StuffinID);
@@ -2731,12 +2730,11 @@ namespace WizInOut
                     double.TryParse(dr["Qty"].ToString(), out douworkqty);
 
                     list_Data.Add(Lib.CheckNull(m_LabelID)); //라벨번호(공정전표) 바코드 0
-                    list_Data.Add(Lib.CheckNull(dr["KCustom"].ToString()));//거래처 1
-                    list_Data.Add(Lib.CheckNull(dr["BuyerArticleNo"].ToString())); //품명 2
-                    list_Data.Add(Lib.CheckNull(dr["Spec"].ToString()));//Spec 3
-                    list_Data.Add(Lib.CheckNull(dr["Texture"].ToString()));//재질 4
-                    list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + dr["UnitClss"].ToString());//입고수량 5
-                    list_Data.Add(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, Lib.CheckNull(dr["StuffDate"].ToString())));//입고일자 6
+                    list_Data.Add(Lib.CheckNull(dr["Article"].ToString()));//품명 1
+                    list_Data.Add(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, Lib.CheckNull(dr["StuffDate"].ToString())));//입고일 2
+                    list_Data.Add(Lib.CheckNull(dr["KCustom"].ToString()));//거래처 3
+                    list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + dr["UnitClss"].ToString());//수량 4
+                    list_Data.Add(m_LabelID);//로트번호 5
 
                 }
 
@@ -3040,6 +3038,7 @@ namespace WizInOut
         {
             return string.Format("{0:N0}", obj);
         }
+
 
 
         #endregion

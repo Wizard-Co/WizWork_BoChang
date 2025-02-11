@@ -3162,15 +3162,15 @@ namespace WizWork
                     }
                     else
                     {
-                        sqlParameter2.Add("InstID", list_TWkLabelPrint[i - R].sInstID);
-                        if (LabelPrintYN == "Y")
-                        {
-                            sqlParameter2.Add("CardID", list_TWkLabelPrint[i - R].sLabelID);
-                        }
-                        else
-                        {
+                        sqlParameter2.Add("InstID", Frm_tprc_Main.g_tBase.sInstID);
+                        //if (LabelPrintYN == "Y")
+                        //{
+                        //    sqlParameter2.Add("CardID", list_TWkResult[i - R].sLabelID);
+                        //}
+                        //else
+                        //{
                             sqlParameter2.Add("CardID", list_TWkResult[i - R].LabelID);
-                        }
+                        //}
                     }
                     
                     DataTable dt2 = DataStore.Instance.ProcedureToDataTable("[xp_WorkCard_sWorkCardPrint]", sqlParameter2, false);
@@ -3192,11 +3192,10 @@ namespace WizWork
                             double.TryParse(dr["wk_defectQty"].ToString(), out doudefectqty);
 
                             list_Data.Add(Lib.CheckNull(dr["wk_CardID"].ToString())); //라벨번호(공정전표)
-                            list_Data.Add(Lib.CheckNull(dr["BuyerArticleNo"].ToString()));// 품번
-                            list_Data.Add(Lib.CheckNull(dr["Article"].ToString())); // 품명
-                            list_Data.Add(Lib.CheckNull(dr["Spec"].ToString()));//규격
-                            list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + Lib.CheckNull(dr["UnitClssName"].ToString()));// _수량
-                            list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["wk_ResultDate"].ToString())));//D_생산일자
+                            list_Data.Add(Lib.CheckNull(dr["Article"].ToString()));//품명 1
+                            list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + Lib.CheckNull(dr["UnitClssName"].ToString()));//수량 2
+                            list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["wk_ResultDate"].ToString())));//생산일 3
+                            list_Data.Add(Lib.CheckNull(dr["wk_Name"].ToString()));//생산자 4
 
                         }
                     }
@@ -3352,6 +3351,13 @@ namespace WizWork
                     CheckLabelIDByCutting(Frm_tprc_Main.g_tBase.sInstID);//pl_PlateDesign의 InstID를 
                     FillGridData2ByCutting(Frm_tprc_Main.g_tBase.sInstID); //생산할 품목 하단 그리드에 조회
                     SetLabelQty_By_Cutting();//재고 가져오기
+
+                    //DB 저장시 최대 길이 20이라 19자리부터 자투리 못 만들게 조건 추가 2025-02-10 KDH
+                    if(m_LabelID.Length > 18)
+                    {
+                        btnJaturi.Visible = false;
+                    }
+
                 }
 
                 FillGridData1();//당일 해당공정의 생산실적 조회           
@@ -3389,9 +3395,6 @@ namespace WizWork
                 {
                     txtFacilityCollectQty.Text = "0";       // 설비수집 수량
                 }
-
-
-
             }
             catch (Exception ex)
             {

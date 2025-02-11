@@ -348,7 +348,7 @@ namespace WizIns
                             WorkQty = Lib.stringFormatN0(dr["WorkQty"]),
                             NoInspectQty = Lib.stringFormatN0(dr["NoInspectQty"]),
                             WorkDate = Lib.DatePickerFormat(dr["WorkEndDate"].ToString()),
-                            JobID = dr["JobID"].ToString()
+                            //JobID = dr["JobID"].ToString()
                         };
 
                         lstMain.Add(Scan);

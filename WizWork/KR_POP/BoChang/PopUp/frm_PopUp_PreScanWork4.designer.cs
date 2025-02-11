@@ -401,6 +401,7 @@
             this.txtBarCodePreScan.Name = "txtBarCodePreScan";
             this.txtBarCodePreScan.Size = new System.Drawing.Size(305, 61);
             this.txtBarCodePreScan.TabIndex = 4;
+            this.txtBarCodePreScan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarCodePreScan_KeyPress);
             // 
             // cmdBarCodePreScan
             // 
@@ -413,6 +414,7 @@
             this.cmdBarCodePreScan.TabIndex = 3;
             this.cmdBarCodePreScan.Text = "스  캔";
             this.cmdBarCodePreScan.UseVisualStyleBackColor = true;
+            this.cmdBarCodePreScan.Click += new System.EventHandler(this.cmdBarCodePreScan_Click);
             // 
             // panel6
             // 

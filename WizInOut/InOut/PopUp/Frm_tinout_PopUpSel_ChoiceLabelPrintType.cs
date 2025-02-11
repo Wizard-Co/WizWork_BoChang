@@ -93,6 +93,7 @@ namespace WizInOut
             else
             {
                 btnExcel.Text = "엑셀 설치가 안 되어 발행 불가";
+                btnExcel.Enabled = false;
             }
         }
 

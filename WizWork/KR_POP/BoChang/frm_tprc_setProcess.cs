@@ -1195,19 +1195,19 @@ namespace WizWork
                     return false;
                 }
 
-                if (Check_PersonWorking(grdAllPerson.SelectedRows[0].Cells["PersonID"].Value.ToString()) == true)
-                {
-                    Message[0] = "[작업자 선택]";
-                    Message[1] = "현재 작업자는 다른 작업을 진행중 입니다.";
-                    if (WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 0) == DialogResult.OK)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                //if (Check_PersonWorking(grdAllPerson.SelectedRows[0].Cells["PersonID"].Value.ToString()) == true)
+                //{
+                //    Message[0] = "[작업자 선택]";
+                //    Message[1] = "현재 작업자는 다른 작업을 진행중 입니다.";
+                //    if (WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 0) == DialogResult.OK)
+                //    {
+                //        return true;
+                //    }
+                //    else
+                //    {
+                //        return false;
+                //    }
+                //}
             }
 
             // 2020.04.13 둘리 -> 해당 호기가 작업중이어도 메시지 출력후에 화면이 꺼지지 않도록!!!

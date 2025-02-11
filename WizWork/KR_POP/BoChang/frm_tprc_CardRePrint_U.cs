@@ -481,14 +481,10 @@ namespace WizWork
                                 double.TryParse(dr["wk_defectQty"].ToString(), out doudefectqty);
 
                                 list_Data.Add(Lib.CheckNull(dr["wk_CardID"].ToString())); //라벨번호(공정전표)
-                                list_Data.Add(Lib.CheckNull(dr["BuyerArticleNo"].ToString()));// 품번
-
-                                //2024-06-04
-                                list_Data.Add(Lib.CheckNull(dr["Article"].ToString())); // 품명
-                                list_Data.Add(Lib.CheckNull(dr["Spec"].ToString()));//규격
-
-                                list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + Lib.CheckNull(dr["UnitClssName"].ToString()));// _수량
-                                list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["wk_ResultDate"].ToString())));//D_생산일자
+                                list_Data.Add(Lib.CheckNull(dr["Article"].ToString()));//품명 1
+                                list_Data.Add((string.Format("{0:n0}", (int)douworkqty)) + Lib.CheckNull(dr["UnitClssName"].ToString()));//수량 2
+                                list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["wk_ResultDate"].ToString())));//생산일 3
+                                list_Data.Add(Lib.CheckNull(dr["wk_Name"].ToString()));//생산자 4
                             }
 
                         }

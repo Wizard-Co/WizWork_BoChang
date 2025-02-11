@@ -30,9 +30,9 @@ namespace WizWork
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_tprc_PlanInputMolded_Q));
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,36 +48,6 @@ namespace WizWork
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnMoldW40 = new System.Windows.Forms.Button();
-            this.btnMoldW39 = new System.Windows.Forms.Button();
-            this.btnMoldW38 = new System.Windows.Forms.Button();
-            this.btnMoldW37 = new System.Windows.Forms.Button();
-            this.btnMoldW36 = new System.Windows.Forms.Button();
-            this.btnMoldW35 = new System.Windows.Forms.Button();
-            this.btnMoldW34 = new System.Windows.Forms.Button();
-            this.btnMoldW33 = new System.Windows.Forms.Button();
-            this.btnMoldW32 = new System.Windows.Forms.Button();
-            this.btnMoldW31 = new System.Windows.Forms.Button();
-            this.btnMoldW30 = new System.Windows.Forms.Button();
-            this.btnMoldW29 = new System.Windows.Forms.Button();
-            this.btnMoldW28 = new System.Windows.Forms.Button();
-            this.btnMoldW27 = new System.Windows.Forms.Button();
-            this.btnMoldW26 = new System.Windows.Forms.Button();
-            this.btnMoldW25 = new System.Windows.Forms.Button();
-            this.btnMoldW24 = new System.Windows.Forms.Button();
-            this.btnMoldW23 = new System.Windows.Forms.Button();
-            this.btnMoldW22 = new System.Windows.Forms.Button();
-            this.btnMoldW21 = new System.Windows.Forms.Button();
-            this.btnMoldW20 = new System.Windows.Forms.Button();
-            this.btnMoldW19 = new System.Windows.Forms.Button();
-            this.btnMoldW18 = new System.Windows.Forms.Button();
-            this.btnMoldW17 = new System.Windows.Forms.Button();
-            this.btnMoldW16 = new System.Windows.Forms.Button();
-            this.btnMoldW15 = new System.Windows.Forms.Button();
-            this.btnMoldW14 = new System.Windows.Forms.Button();
-            this.btnMoldW13 = new System.Windows.Forms.Button();
-            this.btnMoldW12 = new System.Windows.Forms.Button();
-            this.btnMoldW10 = new System.Windows.Forms.Button();
             this.btnMoldW9 = new System.Windows.Forms.Button();
             this.btnMoldW8 = new System.Windows.Forms.Button();
             this.btnMoldW7 = new System.Windows.Forms.Button();
@@ -87,7 +57,7 @@ namespace WizWork
             this.btnMoldW3 = new System.Windows.Forms.Button();
             this.btnMoldW2 = new System.Windows.Forms.Button();
             this.btnMoldW1 = new System.Windows.Forms.Button();
-            this.btnMoldW11 = new System.Windows.Forms.Button();
+            this.btnMoldW10 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.grdData = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -261,77 +231,47 @@ namespace WizWork
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 40;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW40, 39, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW39, 38, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW38, 37, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW37, 36, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW36, 35, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW35, 34, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW34, 33, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW33, 32, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW32, 31, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW31, 30, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW30, 29, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW29, 28, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW28, 27, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW27, 26, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW26, 25, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW25, 24, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW24, 23, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW23, 22, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW22, 21, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW21, 20, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW20, 19, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW19, 18, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW18, 17, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW17, 16, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW16, 15, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW15, 14, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW14, 13, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW13, 12, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW12, 11, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW10, 9, 0);
+            this.tableLayoutPanel3.ColumnCount = 10;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW9, 8, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW8, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW7, 6, 0);
@@ -341,381 +281,22 @@ namespace WizWork
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW3, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnMoldW1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnMoldW11, 10, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnMoldW10, 9, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(3300, 120);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(854, 143);
             this.tableLayoutPanel3.TabIndex = 222;
-            // 
-            // btnMoldW40
-            // 
-            this.btnMoldW40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW40.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW40.Location = new System.Drawing.Point(3201, 3);
-            this.btnMoldW40.Name = "btnMoldW40";
-            this.btnMoldW40.Size = new System.Drawing.Size(96, 114);
-            this.btnMoldW40.TabIndex = 255;
-            this.btnMoldW40.Text = "작업40";
-            this.btnMoldW40.UseVisualStyleBackColor = true;
-            this.btnMoldW40.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW39
-            // 
-            this.btnMoldW39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW39.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW39.Location = new System.Drawing.Point(3119, 3);
-            this.btnMoldW39.Name = "btnMoldW39";
-            this.btnMoldW39.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW39.TabIndex = 254;
-            this.btnMoldW39.Text = "작업39";
-            this.btnMoldW39.UseVisualStyleBackColor = true;
-            this.btnMoldW39.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW38
-            // 
-            this.btnMoldW38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW38.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW38.Location = new System.Drawing.Point(3037, 3);
-            this.btnMoldW38.Name = "btnMoldW38";
-            this.btnMoldW38.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW38.TabIndex = 253;
-            this.btnMoldW38.Text = "작업38";
-            this.btnMoldW38.UseVisualStyleBackColor = true;
-            this.btnMoldW38.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW37
-            // 
-            this.btnMoldW37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW37.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW37.Location = new System.Drawing.Point(2955, 3);
-            this.btnMoldW37.Name = "btnMoldW37";
-            this.btnMoldW37.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW37.TabIndex = 252;
-            this.btnMoldW37.Text = "작업37";
-            this.btnMoldW37.UseVisualStyleBackColor = true;
-            this.btnMoldW37.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW36
-            // 
-            this.btnMoldW36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW36.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW36.Location = new System.Drawing.Point(2873, 3);
-            this.btnMoldW36.Name = "btnMoldW36";
-            this.btnMoldW36.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW36.TabIndex = 251;
-            this.btnMoldW36.Text = "작업36";
-            this.btnMoldW36.UseVisualStyleBackColor = true;
-            this.btnMoldW36.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW35
-            // 
-            this.btnMoldW35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW35.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW35.Location = new System.Drawing.Point(2791, 3);
-            this.btnMoldW35.Name = "btnMoldW35";
-            this.btnMoldW35.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW35.TabIndex = 250;
-            this.btnMoldW35.Text = "작업35";
-            this.btnMoldW35.UseVisualStyleBackColor = true;
-            this.btnMoldW35.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW34
-            // 
-            this.btnMoldW34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW34.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW34.Location = new System.Drawing.Point(2709, 3);
-            this.btnMoldW34.Name = "btnMoldW34";
-            this.btnMoldW34.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW34.TabIndex = 249;
-            this.btnMoldW34.Text = "작업34";
-            this.btnMoldW34.UseVisualStyleBackColor = true;
-            this.btnMoldW34.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW33
-            // 
-            this.btnMoldW33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW33.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW33.Location = new System.Drawing.Point(2627, 3);
-            this.btnMoldW33.Name = "btnMoldW33";
-            this.btnMoldW33.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW33.TabIndex = 248;
-            this.btnMoldW33.Text = "작업33";
-            this.btnMoldW33.UseVisualStyleBackColor = true;
-            this.btnMoldW33.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW32
-            // 
-            this.btnMoldW32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW32.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW32.Location = new System.Drawing.Point(2545, 3);
-            this.btnMoldW32.Name = "btnMoldW32";
-            this.btnMoldW32.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW32.TabIndex = 247;
-            this.btnMoldW32.Text = "작업32";
-            this.btnMoldW32.UseVisualStyleBackColor = true;
-            this.btnMoldW32.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW31
-            // 
-            this.btnMoldW31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW31.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW31.Location = new System.Drawing.Point(2463, 3);
-            this.btnMoldW31.Name = "btnMoldW31";
-            this.btnMoldW31.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW31.TabIndex = 246;
-            this.btnMoldW31.Text = "작업31";
-            this.btnMoldW31.UseVisualStyleBackColor = true;
-            this.btnMoldW31.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW30
-            // 
-            this.btnMoldW30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW30.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW30.Location = new System.Drawing.Point(2381, 3);
-            this.btnMoldW30.Name = "btnMoldW30";
-            this.btnMoldW30.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW30.TabIndex = 245;
-            this.btnMoldW30.Text = "작업30";
-            this.btnMoldW30.UseVisualStyleBackColor = true;
-            this.btnMoldW30.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW29
-            // 
-            this.btnMoldW29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW29.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW29.Location = new System.Drawing.Point(2299, 3);
-            this.btnMoldW29.Name = "btnMoldW29";
-            this.btnMoldW29.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW29.TabIndex = 244;
-            this.btnMoldW29.Text = "작업29";
-            this.btnMoldW29.UseVisualStyleBackColor = true;
-            this.btnMoldW29.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW28
-            // 
-            this.btnMoldW28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW28.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW28.Location = new System.Drawing.Point(2217, 3);
-            this.btnMoldW28.Name = "btnMoldW28";
-            this.btnMoldW28.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW28.TabIndex = 243;
-            this.btnMoldW28.Text = "작업28";
-            this.btnMoldW28.UseVisualStyleBackColor = true;
-            this.btnMoldW28.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW27
-            // 
-            this.btnMoldW27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW27.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW27.Location = new System.Drawing.Point(2135, 3);
-            this.btnMoldW27.Name = "btnMoldW27";
-            this.btnMoldW27.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW27.TabIndex = 242;
-            this.btnMoldW27.Text = "작업27";
-            this.btnMoldW27.UseVisualStyleBackColor = true;
-            this.btnMoldW27.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW26
-            // 
-            this.btnMoldW26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW26.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW26.Location = new System.Drawing.Point(2053, 3);
-            this.btnMoldW26.Name = "btnMoldW26";
-            this.btnMoldW26.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW26.TabIndex = 241;
-            this.btnMoldW26.Text = "작업26";
-            this.btnMoldW26.UseVisualStyleBackColor = true;
-            this.btnMoldW26.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW25
-            // 
-            this.btnMoldW25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW25.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW25.Location = new System.Drawing.Point(1971, 3);
-            this.btnMoldW25.Name = "btnMoldW25";
-            this.btnMoldW25.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW25.TabIndex = 240;
-            this.btnMoldW25.Text = "작업25";
-            this.btnMoldW25.UseVisualStyleBackColor = true;
-            this.btnMoldW25.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW24
-            // 
-            this.btnMoldW24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW24.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW24.Location = new System.Drawing.Point(1889, 3);
-            this.btnMoldW24.Name = "btnMoldW24";
-            this.btnMoldW24.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW24.TabIndex = 239;
-            this.btnMoldW24.Text = "작업24";
-            this.btnMoldW24.UseVisualStyleBackColor = true;
-            this.btnMoldW24.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW23
-            // 
-            this.btnMoldW23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW23.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW23.Location = new System.Drawing.Point(1807, 3);
-            this.btnMoldW23.Name = "btnMoldW23";
-            this.btnMoldW23.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW23.TabIndex = 238;
-            this.btnMoldW23.Text = "작업23";
-            this.btnMoldW23.UseVisualStyleBackColor = true;
-            this.btnMoldW23.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW22
-            // 
-            this.btnMoldW22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW22.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW22.Location = new System.Drawing.Point(1725, 3);
-            this.btnMoldW22.Name = "btnMoldW22";
-            this.btnMoldW22.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW22.TabIndex = 237;
-            this.btnMoldW22.Text = "작업22";
-            this.btnMoldW22.UseVisualStyleBackColor = true;
-            this.btnMoldW22.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW21
-            // 
-            this.btnMoldW21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW21.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW21.Location = new System.Drawing.Point(1643, 3);
-            this.btnMoldW21.Name = "btnMoldW21";
-            this.btnMoldW21.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW21.TabIndex = 236;
-            this.btnMoldW21.Text = "작업21";
-            this.btnMoldW21.UseVisualStyleBackColor = true;
-            this.btnMoldW21.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW20
-            // 
-            this.btnMoldW20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW20.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW20.Location = new System.Drawing.Point(1561, 3);
-            this.btnMoldW20.Name = "btnMoldW20";
-            this.btnMoldW20.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW20.TabIndex = 235;
-            this.btnMoldW20.Text = "작업20";
-            this.btnMoldW20.UseVisualStyleBackColor = true;
-            this.btnMoldW20.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW19
-            // 
-            this.btnMoldW19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW19.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW19.Location = new System.Drawing.Point(1479, 3);
-            this.btnMoldW19.Name = "btnMoldW19";
-            this.btnMoldW19.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW19.TabIndex = 234;
-            this.btnMoldW19.Text = "작업19";
-            this.btnMoldW19.UseVisualStyleBackColor = true;
-            this.btnMoldW19.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW18
-            // 
-            this.btnMoldW18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW18.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW18.Location = new System.Drawing.Point(1397, 3);
-            this.btnMoldW18.Name = "btnMoldW18";
-            this.btnMoldW18.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW18.TabIndex = 233;
-            this.btnMoldW18.Text = "작업18";
-            this.btnMoldW18.UseVisualStyleBackColor = true;
-            this.btnMoldW18.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW17
-            // 
-            this.btnMoldW17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW17.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW17.Location = new System.Drawing.Point(1315, 3);
-            this.btnMoldW17.Name = "btnMoldW17";
-            this.btnMoldW17.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW17.TabIndex = 232;
-            this.btnMoldW17.Text = "작업17";
-            this.btnMoldW17.UseVisualStyleBackColor = true;
-            this.btnMoldW17.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW16
-            // 
-            this.btnMoldW16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW16.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW16.Location = new System.Drawing.Point(1233, 3);
-            this.btnMoldW16.Name = "btnMoldW16";
-            this.btnMoldW16.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW16.TabIndex = 231;
-            this.btnMoldW16.Text = "작업16";
-            this.btnMoldW16.UseVisualStyleBackColor = true;
-            this.btnMoldW16.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW15
-            // 
-            this.btnMoldW15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW15.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW15.Location = new System.Drawing.Point(1151, 3);
-            this.btnMoldW15.Name = "btnMoldW15";
-            this.btnMoldW15.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW15.TabIndex = 230;
-            this.btnMoldW15.Text = "작업15";
-            this.btnMoldW15.UseVisualStyleBackColor = true;
-            this.btnMoldW15.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW14
-            // 
-            this.btnMoldW14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW14.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW14.Location = new System.Drawing.Point(1069, 3);
-            this.btnMoldW14.Name = "btnMoldW14";
-            this.btnMoldW14.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW14.TabIndex = 229;
-            this.btnMoldW14.Text = "작업14";
-            this.btnMoldW14.UseVisualStyleBackColor = true;
-            this.btnMoldW14.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW13
-            // 
-            this.btnMoldW13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW13.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW13.Location = new System.Drawing.Point(987, 3);
-            this.btnMoldW13.Name = "btnMoldW13";
-            this.btnMoldW13.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW13.TabIndex = 228;
-            this.btnMoldW13.Text = "작업13";
-            this.btnMoldW13.UseVisualStyleBackColor = true;
-            this.btnMoldW13.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW12
-            // 
-            this.btnMoldW12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW12.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW12.Location = new System.Drawing.Point(905, 3);
-            this.btnMoldW12.Name = "btnMoldW12";
-            this.btnMoldW12.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW12.TabIndex = 227;
-            this.btnMoldW12.Text = "작업12";
-            this.btnMoldW12.UseVisualStyleBackColor = true;
-            this.btnMoldW12.Click += new System.EventHandler(this.btnWorkingMold_Click);
-            // 
-            // btnMoldW10
-            // 
-            this.btnMoldW10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW10.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW10.Location = new System.Drawing.Point(741, 3);
-            this.btnMoldW10.Name = "btnMoldW10";
-            this.btnMoldW10.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW10.TabIndex = 9;
-            this.btnMoldW10.Text = "작업10";
-            this.btnMoldW10.UseVisualStyleBackColor = true;
-            this.btnMoldW10.Click += new System.EventHandler(this.btnWorkingMold_Click);
             // 
             // btnMoldW9
             // 
             this.btnMoldW9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW9.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW9.Location = new System.Drawing.Point(659, 3);
+            this.btnMoldW9.Location = new System.Drawing.Point(683, 3);
             this.btnMoldW9.Name = "btnMoldW9";
-            this.btnMoldW9.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW9.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW9.TabIndex = 8;
             this.btnMoldW9.Text = "작업9";
             this.btnMoldW9.UseVisualStyleBackColor = true;
@@ -725,9 +306,9 @@ namespace WizWork
             // 
             this.btnMoldW8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW8.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW8.Location = new System.Drawing.Point(577, 3);
+            this.btnMoldW8.Location = new System.Drawing.Point(598, 3);
             this.btnMoldW8.Name = "btnMoldW8";
-            this.btnMoldW8.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW8.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW8.TabIndex = 7;
             this.btnMoldW8.Text = "작업8";
             this.btnMoldW8.UseVisualStyleBackColor = true;
@@ -737,9 +318,9 @@ namespace WizWork
             // 
             this.btnMoldW7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW7.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW7.Location = new System.Drawing.Point(495, 3);
+            this.btnMoldW7.Location = new System.Drawing.Point(513, 3);
             this.btnMoldW7.Name = "btnMoldW7";
-            this.btnMoldW7.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW7.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW7.TabIndex = 6;
             this.btnMoldW7.Text = "작업7";
             this.btnMoldW7.UseVisualStyleBackColor = true;
@@ -749,9 +330,9 @@ namespace WizWork
             // 
             this.btnMoldW6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW6.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW6.Location = new System.Drawing.Point(413, 3);
+            this.btnMoldW6.Location = new System.Drawing.Point(428, 3);
             this.btnMoldW6.Name = "btnMoldW6";
-            this.btnMoldW6.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW6.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW6.TabIndex = 5;
             this.btnMoldW6.Text = "작업6";
             this.btnMoldW6.UseVisualStyleBackColor = true;
@@ -761,9 +342,9 @@ namespace WizWork
             // 
             this.btnMoldW5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW5.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW5.Location = new System.Drawing.Point(331, 3);
+            this.btnMoldW5.Location = new System.Drawing.Point(343, 3);
             this.btnMoldW5.Name = "btnMoldW5";
-            this.btnMoldW5.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW5.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW5.TabIndex = 4;
             this.btnMoldW5.Text = "작업5";
             this.btnMoldW5.UseVisualStyleBackColor = true;
@@ -773,9 +354,9 @@ namespace WizWork
             // 
             this.btnMoldW4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW4.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW4.Location = new System.Drawing.Point(249, 3);
+            this.btnMoldW4.Location = new System.Drawing.Point(258, 3);
             this.btnMoldW4.Name = "btnMoldW4";
-            this.btnMoldW4.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW4.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW4.TabIndex = 3;
             this.btnMoldW4.Text = "작업4";
             this.btnMoldW4.UseVisualStyleBackColor = true;
@@ -785,9 +366,9 @@ namespace WizWork
             // 
             this.btnMoldW3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW3.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW3.Location = new System.Drawing.Point(167, 3);
+            this.btnMoldW3.Location = new System.Drawing.Point(173, 3);
             this.btnMoldW3.Name = "btnMoldW3";
-            this.btnMoldW3.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW3.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW3.TabIndex = 2;
             this.btnMoldW3.Text = "작업3";
             this.btnMoldW3.UseVisualStyleBackColor = true;
@@ -797,9 +378,9 @@ namespace WizWork
             // 
             this.btnMoldW2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMoldW2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW2.Location = new System.Drawing.Point(85, 3);
+            this.btnMoldW2.Location = new System.Drawing.Point(88, 3);
             this.btnMoldW2.Name = "btnMoldW2";
-            this.btnMoldW2.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW2.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW2.TabIndex = 1;
             this.btnMoldW2.Text = "작업2";
             this.btnMoldW2.UseVisualStyleBackColor = true;
@@ -811,23 +392,23 @@ namespace WizWork
             this.btnMoldW1.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
             this.btnMoldW1.Location = new System.Drawing.Point(3, 3);
             this.btnMoldW1.Name = "btnMoldW1";
-            this.btnMoldW1.Size = new System.Drawing.Size(76, 114);
+            this.btnMoldW1.Size = new System.Drawing.Size(79, 137);
             this.btnMoldW1.TabIndex = 0;
             this.btnMoldW1.Text = "작업1";
             this.btnMoldW1.UseVisualStyleBackColor = true;
             this.btnMoldW1.Click += new System.EventHandler(this.btnWorkingMold_Click);
             // 
-            // btnMoldW11
+            // btnMoldW10
             // 
-            this.btnMoldW11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMoldW11.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
-            this.btnMoldW11.Location = new System.Drawing.Point(823, 3);
-            this.btnMoldW11.Name = "btnMoldW11";
-            this.btnMoldW11.Size = new System.Drawing.Size(76, 114);
-            this.btnMoldW11.TabIndex = 10;
-            this.btnMoldW11.Text = "작업11";
-            this.btnMoldW11.UseVisualStyleBackColor = true;
-            this.btnMoldW11.Click += new System.EventHandler(this.btnWorkingMold_Click);
+            this.btnMoldW10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMoldW10.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMoldW10.Location = new System.Drawing.Point(768, 3);
+            this.btnMoldW10.Name = "btnMoldW10";
+            this.btnMoldW10.Size = new System.Drawing.Size(83, 137);
+            this.btnMoldW10.TabIndex = 10;
+            this.btnMoldW10.Text = "작업10";
+            this.btnMoldW10.UseVisualStyleBackColor = true;
+            this.btnMoldW10.Click += new System.EventHandler(this.btnWorkingMold_Click);
             // 
             // label1
             // 
@@ -843,14 +424,14 @@ namespace WizWork
             this.grdData.AllowUserToAddRows = false;
             this.grdData.AllowUserToDeleteRows = false;
             this.grdData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdData.ColumnHeadersHeight = 35;
             this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -870,21 +451,21 @@ namespace WizWork
             this.MachineID,
             this.CreateUserID,
             this.SHWorkingYN});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdData.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdData.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdData.Location = new System.Drawing.Point(7, 140);
             this.grdData.MultiSelect = false;
             this.grdData.Name = "grdData";
             this.grdData.ReadOnly = true;
             this.grdData.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.grdData.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.grdData.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdData.RowTemplate.Height = 23;
             this.grdData.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1410,7 +991,6 @@ namespace WizWork
             this.btnInspectAuto.Text = "자주검사";
             this.btnInspectAuto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnInspectAuto.UseVisualStyleBackColor = false;
-            this.btnInspectAuto.Visible = false;
             this.btnInspectAuto.Click += new System.EventHandler(this.btnInspectAuto_Click);
             // 
             // btnKPI
@@ -1509,7 +1089,6 @@ namespace WizWork
         private Button btnWorkOrderJPG;
         private Button btnInspectAuto;
         private TextBox txtBuyerArticle;
-        private Button btnMoldW10;
         private ComboBox cboBuyerArticle;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewCheckBoxColumn Check;
@@ -1530,35 +1109,6 @@ namespace WizWork
         private Button btnKPI;
         private SplitContainer splitContainer1;
         private Panel panel1;
-        private Button btnMoldW12;
-        private Button btnMoldW11;
-        private Button btnMoldW40;
-        private Button btnMoldW39;
-        private Button btnMoldW38;
-        private Button btnMoldW37;
-        private Button btnMoldW36;
-        private Button btnMoldW35;
-        private Button btnMoldW34;
-        private Button btnMoldW33;
-        private Button btnMoldW32;
-        private Button btnMoldW31;
-        private Button btnMoldW30;
-        private Button btnMoldW29;
-        private Button btnMoldW28;
-        private Button btnMoldW27;
-        private Button btnMoldW26;
-        private Button btnMoldW25;
-        private Button btnMoldW24;
-        private Button btnMoldW23;
-        private Button btnMoldW22;
-        private Button btnMoldW21;
-        private Button btnMoldW20;
-        private Button btnMoldW19;
-        private Button btnMoldW18;
-        private Button btnMoldW17;
-        private Button btnMoldW16;
-        private Button btnMoldW15;
-        private Button btnMoldW14;
-        private Button btnMoldW13;
+        private Button btnMoldW10;
     }
 }

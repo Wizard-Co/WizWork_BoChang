@@ -7193,3 +7193,4 @@ D:\업무\프로그램\2022\보창프레스\WizWork\KR_POP\obj\x86\Debug\WizMes_
 D:\업무\프로그램\2022\보창프레스\WizWork\KR_POP\obj\x86\Debug\WizWork.csproj.CopyComplete
 D:\업무\프로그램\2022\보창프레스\WizWork\KR_POP\obj\x86\Debug\WizWork.BoChang.PopUp.Frm_PopUp_Work_Save_U.resources
 D:\업무\프로그램\2022\보창프레스\WizWork\KR_POP\obj\x86\Debug\WizWork.BoChang.PopUp.Frm_PopUp_Work_Jaturi_Save_U.resources
+D:\업무\프로그램\2022\보창프레스\WizWork\KR_POP\obj\x86\Debug\WizWork.Frm_PopUpSel_PLLOTSelect.resources

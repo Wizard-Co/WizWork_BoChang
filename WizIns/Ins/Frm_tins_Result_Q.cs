@@ -872,14 +872,10 @@ namespace WizIns
                         list_Data = new List<string>();
 
                         list_Data.Add(Lib.CheckNull(dr["InBoxID"].ToString()));// 공정라벨
-                        list_Data.Add(Lib.CheckNull(dr["KCompany"].ToString()));// 거래처
-                        list_Data.Add(Lib.CheckNull(dr["Article"].ToString()));// 품명
-                        list_Data.Add(Lib.CheckNull(dr["BuyerArticleNo"].ToString()));// 품번
-                        list_Data.Add(Lib.stringFormatN0(Lib.ConvertDouble(Lib.CheckNull(dr["PackQty"].ToString()))) + " EA");// 수량
-                        list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["PackDate"].ToString())));// 일자
-                        //list_Data.Add(Lib.CheckNull(dr["DayOrNight"].ToString()));//주간, 야간 
-                        list_Data.Add(Lib.CheckNull(dr["Name"].ToString()));// 작업자
-                        //list_Data.Add(Lib.CheckNull(dr["DayOrNightID"].ToString()));//주간, 야간
+                        list_Data.Add(Lib.CheckNull(dr["Article"].ToString()));// 품명 1
+                        list_Data.Add(Lib.stringFormatN0(Lib.ConvertDouble(Lib.CheckNull(dr["PackQty"].ToString()))) + " EA");// 수량 2
+                        list_Data.Add(Lib.CheckNull(Lib.MakeDate(WizWorkLib.DateTimeClss.DF_FULL, dr["PackDate"].ToString())));// 일자 3
+                        list_Data.Add(Lib.CheckNull(dr["Name"].ToString()));// 작업자 4
 
                         WizWork.TSCLIB_DLL.openport(g_sPrinterName);
                         if (SendWindowDllCommand(list_Data, sTagID, 1,0))

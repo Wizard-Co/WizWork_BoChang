@@ -27,6 +27,7 @@ namespace WizWork
 
         private string m_ProcessID = "";        //공정id
         private string m_MachineID = "";        //머신id  
+        private string m_ArticleID = "";        //품명id 
         private string m_LabelGubun = "";       //라벨구분  
         private string m_MoldID = "";
         private string m_MtrExceptYN = "";      // 예외처리 체크용도
@@ -35,6 +36,8 @@ namespace WizWork
         private string m_ChildUnitClss = "";    //2021-05-12
         private string Wh_Ar_InstID = "";
         private string Wh_Ar_InstID_Seq = "";
+
+        private double m_LocRemainQty = 0;      //    '자품목 현 재고량  (스캔 후 초기화)
 
         List<string> ArticleIDList = new List<string>(); //2022-05-20 하위품 수를 알기 위한 리스트
         List<string> ChildArticleIDList = new List<string>(); //2023-10-06 하위품 갯수 리스트
@@ -940,5 +943,209 @@ namespace WizWork
                 WizCommon.Popup.MyMessageBox.ShowBox(string.Format("오류! 관리자에게 문의\r\n{0}", ex.Message), "[오류 - setPreScanLabel()]", 0, 1);
             }
         }
+
+        //스캔 클릭 이벤트
+        private void cmdBarCodePreScan_Click(object sender, EventArgs e)
+        {
+            //절단이 아닌 경우만
+            if (m_ProcessID != "0401")
+            {
+                POPUP.Frm_CMKeypad.g_Name = "바코드 스캔";
+                POPUP.Frm_CMKeypad FK = new POPUP.Frm_CMKeypad();
+                POPUP.Frm_CMKeypad.KeypadStr = txtBarCodePreScan.Text.Trim();
+                if (FK.ShowDialog() == DialogResult.OK)
+                {
+                    txtBarCodePreScan.Text = FK.tbInputText.Text;
+                    if (BarcodeEnter())
+                    {
+
+                    }
+                }
+                else
+                {
+                    txtBarCodePreScan.Text = string.Empty;
+                }
+            }
+        }
+
+        //텍스트박스 keypress 이벤트
+        private void txtBarCodePreScan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                //절단이 아닌 경우만
+                if (m_ProcessID != "0401")
+                {
+                    if (e.KeyChar == (char)13)
+                    {
+                        txtBarCodePreScan.Text = txtBarCodePreScan.Text.Trim().ToUpper();
+                        if (BarcodeEnter())
+                        {
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WizCommon.Popup.MyMessageBox.ShowBox(ex.Message.ToString(), "[오류]", 0, 1);
+            }
+        }
+
+        #region 스캔 바코드 기반 데이터 가져오기
+
+        // 스캔 바코드 기반 조건체크 및 데이터 가져오기.
+        private bool BarcodeEnter()
+        {
+            string Barcode = txtBarCodePreScan.Text.Trim();
+            double SumQty = 0;
+
+            try
+            {
+                //마지막은 합계라 마지막 포함 안 함
+                for (int i = 0; i < dgdMain.Rows.Count - 1; i++) 
+                {
+                    BarCodeCheck(Barcode, dgdMain.Rows[i].Cells["ArticleID"].Value.ToString());
+                }
+
+                if(m_ArticleID == "")
+                {
+                    Message[0] = "[스캔오류]";
+                    Message[1] = "하위품이 아니거나 잘못된 바코드입니다.";
+                    throw new Exception();
+                }
+
+                if ((m_LocRemainQty == 0) || (m_LocRemainQty < 0))
+                {
+                    Message[0] = "[라벨오류]";
+                    Message[1] = "입력된 롯트는 현재 재고량이 0이하입니다.\r\n" +
+                                   "재고를 모두 소진하였습니다.";
+                    throw new Exception();
+                }
+
+                for (int i = 0; i < dgdMain.Rows.Count; i++)
+                {
+                    if (dgdMain.Rows[i].Cells["ArticleID"].Value.ToString() == m_ArticleID)
+                    {
+                        dgdMain.Rows[i].Cells["Label"].Value = txtBarCodePreScan.Text.ToString();
+                        dgdMain.Rows[i].Cells["NowLoc"].Value = Lib.CheckNull(stringFormatN0(m_LocRemainQty)); // 현재고량                        
+                        txtBarCodePreScan.Text = "";
+                    }
+
+                    if (i < (dgdMain.Rows.Count - 1))
+                    {
+                        SumQty += Convert.ToDouble(dgdMain.Rows[i].Cells["NowLoc"].Value);
+                    }
+
+                }
+
+                dgdMain.Rows[dgdMain.Rows.Count - 1].Cells["NowLoc"].Value = Lib.CheckNull(stringFormatN0(SumQty));
+
+                return true;
+            }
+
+            catch (Exception)
+            {
+                WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 1);
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region BarCodeCheck 펑션
+
+        /// <summary>
+        /// LotID에 해당하는 ArticleID 가져오기
+        /// 하위품 스캔 체크
+        /// </summary>
+        /// <param name="strBarCode"></param>
+        private void BarCodeCheck(string strBarCode, string childArticleID)
+        {
+            DataRow dr = null;
+            try
+            {
+                // 메시지 초기화
+                Message[0] = "";
+                Message[1] = "";
+
+                Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
+                sqlParameter.Add("LotID", strBarCode);
+                sqlParameter.Add("ProcessID", m_ProcessID);
+                sqlParameter.Add("MachineID", m_MachineID);
+                sqlParameter.Add("InstID", Frm_tprc_Main.g_tBase.sInstID);
+                sqlParameter.Add("InstDetSeq", Frm_tprc_Main.g_tBase.sInstDetSeq);
+                sqlParameter.Add("sArticleID", childArticleID);
+                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_WizWork_sLotInfoByLotID", sqlParameter, false);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    dr = dt.Rows[0];
+
+                    m_ArticleID = dr["ArticleID"].ToString().Trim();
+                    m_LabelGubun = dr["LabelGubun"].ToString().Trim();                    //라벨구분 1은 원자재 
+                    double.TryParse(dr["LocRemainQty"].ToString(), out m_LocRemainQty);   //해당창고재고량
+
+                }
+                //else
+                //{
+                //    // dt.rows count가 0 이야.
+                //    // 근데, 여기 들어오는 케이스가 현재 발견된게 지금 3건.
+                //    //  1. 입고승인/ 2. stuffinsub 의 outwareyn = y 인 케이스.
+                //    //  3. 하위품 사라진 경우(DB삭제)
+                //    //  이것들을 가려내야 한다.   (20_0330_허윤구)
+
+                //    //stuffinsub outware y or n
+                //    string[] CheckYN = new string[2];
+                //    string Query = "select outwareyn from stuffinsub where lotid = '" + strBarCode + "'";
+                //    CheckYN = DataStore.Instance.ExecuteQuery(Query, false);
+                //    string OutCheckYN = CheckYN[1];
+
+                //    string[] StuffCount = new string[2];
+                //    string sql_1 = "select cnt = COUNT(*) from StuffinSub where LotID = '" + strBarCode + "'";
+                //    StuffCount = DataStore.Instance.ExecuteQuery(sql_1, false);
+
+                //    string[] DeleteBarcodeYN = new string[2];
+                //    string sql_2 = "select cnt = COUNT(*) from wk_result where labelid = '" + strBarCode + "'";
+                //    DeleteBarcodeYN = DataStore.Instance.ExecuteQuery(sql_2, false);
+
+
+                //    if (OutCheckYN == "Y")
+                //    {
+                //        Message[0] = "[재고소진]";
+                //        Message[1] = "입력된 자재는 현재 재고량이 0이하입니다.\r\n" +
+                //                       "재고를 모두 소진하였습니다.";
+                //        throw new Exception();
+                //    }
+                //    else if (StuffCount[1] == "0")
+                //    {
+                //        Message[0] = "[입고 내역 없음]";
+                //        Message[1] = "해당 라벨로 입고된 내역이 없습니다.";
+                //        throw new Exception();
+                //    }
+                //    else if (DeleteBarcodeYN[1] == "0")
+                //    {
+                //        Message[0] = "[하위품 소실]";
+                //        Message[1] = "해당 하위품( " + strBarCode + " )은 승인되지 않은 품목이거나 삭제처리된 Lot입니다.";
+                //        throw new Exception();
+                //    }
+                //    else
+                //    {
+                //        Message[0] = "[입고승인]";
+                //        Message[1] = "해당 품목은 승인되지 않은 품목이거나 입고내역이 없는 품목이므로 사용할 수 없습니다.";
+                //        throw new Exception();
+                //    }
+                //}
+            }
+            catch (Exception)
+            {
+                m_ArticleID = "";
+                m_LabelGubun = "";
+                txtBarCodePreScan.Text = "";
+                //WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 1);
+            }
+        }
+
+        #endregion
     }
 }

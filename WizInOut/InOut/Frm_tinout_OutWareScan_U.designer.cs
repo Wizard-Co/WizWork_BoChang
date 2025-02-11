@@ -80,7 +80,6 @@
             this.txtArticleGrpTag = new System.Windows.Forms.TextBox();
             this.txtOrderSeq = new System.Windows.Forms.TextBox();
             this.txtOrderID = new System.Windows.Forms.TextBox();
-            this.btnchange = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -97,7 +96,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnchange);
             this.splitContainer1.Panel2.Controls.Add(this.cboPerson);
             this.splitContainer1.Panel2.Controls.Add(this.cboOutClss);
             this.splitContainer1.Panel2.Controls.Add(this.btnAdd);
@@ -437,7 +435,7 @@
             this.txtOutwareReqID.Location = new System.Drawing.Point(210, 51);
             this.txtOutwareReqID.Name = "txtOutwareReqID";
             this.txtOutwareReqID.ReadOnly = true;
-            this.txtOutwareReqID.Size = new System.Drawing.Size(203, 39);
+            this.txtOutwareReqID.Size = new System.Drawing.Size(279, 39);
             this.txtOutwareReqID.TabIndex = 207;
             this.txtOutwareReqID.Click += new System.EventHandler(this.txtOutwareReqID_Click);
             // 
@@ -459,7 +457,7 @@
             this.btnOutwareReqID.Name = "btnOutwareReqID";
             this.btnOutwareReqID.Size = new System.Drawing.Size(75, 40);
             this.btnOutwareReqID.TabIndex = 206;
-            this.btnOutwareReqID.Text = "출고지시\r\n번호";
+            this.btnOutwareReqID.Text = "수주관리\r\n번호";
             this.btnOutwareReqID.UseVisualStyleBackColor = true;
             this.btnOutwareReqID.Click += new System.EventHandler(this.btnOutwareReqID_Click);
             // 
@@ -671,20 +669,7 @@
             this.txtOrderID.Size = new System.Drawing.Size(142, 21);
             this.txtOrderID.TabIndex = 280;
             // 
-            // btnchange
-            // 
-            this.btnchange.BackColor = System.Drawing.SystemColors.Control;
-            this.btnchange.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnchange.ForeColor = System.Drawing.Color.DarkViolet;
-            this.btnchange.Location = new System.Drawing.Point(419, 51);
-            this.btnchange.Name = "btnchange";
-            this.btnchange.Size = new System.Drawing.Size(70, 40);
-            this.btnchange.TabIndex = 278;
-            this.btnchange.Text = "수주관리번호";
-            this.btnchange.UseVisualStyleBackColor = false;
-            this.btnchange.Click += new System.EventHandler(this.btnchange_Click);
-            // 
-            // frm_tprc_OutWareScan_U
+            // Frm_tinout_OutWareScan_U
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -711,9 +696,9 @@
             this.Controls.Add(this.txtOutClss);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "frm_tprc_OutWareScan_U";
+            this.Name = "Frm_tinout_OutWareScan_U";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frm_tprc_OutWareScan_U_Load);
+            this.Load += new System.EventHandler(this.Frm_tinout_OutWareScan_U_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -778,6 +763,5 @@
         private System.Windows.Forms.ComboBox cboOutClss;
         private System.Windows.Forms.TextBox txtOrderSeq;
         private System.Windows.Forms.TextBox txtOrderID;
-        private System.Windows.Forms.Button btnchange;
     }
 }

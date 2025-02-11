@@ -973,7 +973,7 @@
             this.txtInspectPersonTag.Size = new System.Drawing.Size(61, 21);
             this.txtInspectPersonTag.TabIndex = 9;
             // 
-            // frm_mtr_OCStuffin_U
+            // Frm_tinout_OCStuffin_U
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1004,9 +1004,9 @@
             this.Controls.Add(this.txtUnitClss);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "frm_mtr_OCStuffin_U";
+            this.Name = "Frm_tinout_OCStuffin_U";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frm_mtr_OCStuffin_U_Load);
+            this.Load += new System.EventHandler(this.Frm_tinout_OCStuffin_U_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

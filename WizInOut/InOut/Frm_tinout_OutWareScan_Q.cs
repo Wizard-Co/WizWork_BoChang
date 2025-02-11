@@ -27,7 +27,7 @@ namespace WizInOut
             InitializeComponent();
         }
 
-        private void frm_tprc_OutWareScan_Q_Load(object sender, EventArgs e)
+        private void Frm_tinout_OutWareScan_Q_Load(object sender, EventArgs e)
         {
             LogData.LogSave(this.GetType().Name, "S"); //log 남기기(로드 S) 2022-10-24
 
@@ -846,6 +846,7 @@ namespace WizInOut
             cboOutClss.ValueMember = "CodeID";
             cboOutClss.DisplayMember = "CodeName";
         }
+
 
 
         #endregion

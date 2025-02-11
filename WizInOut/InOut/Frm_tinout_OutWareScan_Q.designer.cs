@@ -441,7 +441,7 @@
             this.txtCustomTag.TabIndex = 2;
             this.txtCustomTag.Visible = false;
             // 
-            // frm_tprc_OutWareScan_Q
+            // Frm_tinout_OutWareScan_Q
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -457,9 +457,9 @@
             this.Controls.Add(this.txtBuyerArticleNo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "frm_tprc_OutWareScan_Q";
+            this.Name = "Frm_tinout_OutWareScan_Q";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frm_tprc_OutWareScan_Q_Load);
+            this.Load += new System.EventHandler(this.Frm_tinout_OutWareScan_Q_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

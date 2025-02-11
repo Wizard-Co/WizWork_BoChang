@@ -16,6 +16,8 @@ namespace WizInOut
         WizWorkLib Lib = new WizWorkLib();
         string[] Message = new string[2];
         string u_OutwareID = "";
+        string m_OutwareID = ""; // 저장 후 명세서 발행 정보 찾는 outwareID
+        string m_OrderID = "";  // 저장 후 명세서 발행 정보 찾는 orderID
         private DataSet ds = null;
         LogData LogData = new LogData(); //2022-10-24 log 남기는 함수
         //int u_OutSeq = 0;
@@ -34,7 +36,7 @@ namespace WizInOut
             //this.u_OutSeq = OutSeq;
         }
 
-        private void frm_tprc_OutWareScan_U_Load(object sender, EventArgs e)
+        private void Frm_tinout_OutWareScan_U_Load(object sender, EventArgs e)
         {
             LogData.LogSave(this.GetType().Name, "S"); //log 남기기(로드 S) 2022-10-24
             //데이터 그리드 컬럼 초기화
@@ -60,7 +62,6 @@ namespace WizInOut
                 //출고일자
                 mtb_ODate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
-
         }
 
         #region 그리드 초기화
@@ -346,8 +347,6 @@ namespace WizInOut
                                                             dr["OrderSeq"]  //OrderSeq
                                                             );
                                     }
-
-                                    btnchange.Enabled = false;
                                 }
                                 else
                                 {
@@ -728,17 +727,69 @@ namespace WizInOut
         {
             if (CheckData()) 
             {
-                if (SaveData())
-                {
-                    chkID.Enabled = true;
-                    chkQty.Enabled = true;
+                string SaveYN = "Y";  //저장 여부
+                string LabelYN = ""; //발행 여부
 
-                    Clear();
-                    DataGridClear();
-                    WizCommon.Popup.MyMessageBox.ShowBox("저장이 완료되었습니다.", "[확인]", 0, 1);
-                    LogData.LogSave(this.GetType().Name, "C"); //log 남기기(로드 S) 2022-10-24
-                    return;
+                //발행여부 선택
+                Frm_tinout_PopUpSel_ChoiceLabelPrintType ChoiceType = new Frm_tinout_PopUpSel_ChoiceLabelPrintType();
+                ChoiceType.Owner = this;
+                ChoiceType.WriteTextEvent += ChoiceType_WriteTextEvent;
+                ChoiceType.ShowDialog();
+
+                void ChoiceType_WriteTextEvent(string Message)
+                {
+                    if (Message == "Cancel")
+                    { SaveYN = "N"; }
+                    else if (Message == "Excel")
+                    {
+                        LabelYN = "Y";
+                    }
+                    else
+                    {
+                        LabelYN = "N";
+                    }
                 }
+
+                if (SaveYN == "Y")
+                {
+                    if (SaveData())
+                    {
+                        LogData.LogSave(this.GetType().Name, "C"); //log 남기기(로드 S) 2022-10-24
+                        chkID.Enabled = true;
+                        chkQty.Enabled = true;
+
+                        Clear();
+                        DataGridClear();
+
+                        //발행, 발행 안 함 나눔
+                        if (LabelYN == "Y")
+                        {
+                            //발행중 팝업창에서 발행
+                            Frm_tinout_PopUpSel_Excel ftpse = new Frm_tinout_PopUpSel_Excel(m_OutwareID, m_OrderID);
+                            ftpse.Owner = this;
+                            ftpse.ShowDialog();
+
+                        }
+                        else
+                        {
+                            WizCommon.Popup.MyMessageBox.ShowBox("저장이 완료되었습니다.", "[확인]", 0, 1);
+                            return;
+                        }
+
+                    }
+                }
+
+                //if (SaveData())
+                //{
+                //    chkID.Enabled = true;
+                //    chkQty.Enabled = true;
+
+                //    Clear();
+                //    DataGridClear();
+                //    WizCommon.Popup.MyMessageBox.ShowBox("저장이 완료되었습니다.", "[확인]", 0, 1);
+                //    LogData.LogSave(this.GetType().Name, "C"); //log 남기기(로드 S) 2022-10-24
+                //    return;
+                //}
             }
         }
 
@@ -793,9 +844,7 @@ namespace WizInOut
             txtArticleGrpTag.Text = "";         //품명그룹ID
 
             cboOutClss.SelectedIndex = 0; //출고구분
-            cboPerson.SelectedIndex = 0;  //출고자
-
-            btnchange.Enabled = true; //수주관리번호, 출고지시번호 버튼 클릭
+            cboPerson.SelectedIndex = 0;  //출고자         
         }
 
         private void DataGridClear()
@@ -841,8 +890,6 @@ namespace WizInOut
                 }
                 else
                 {
-                    btnchange.Enabled = false;
-
                     Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
 
                     //출고지시번호와 수주관리번호 구분
@@ -887,33 +934,33 @@ namespace WizInOut
         private void txtOutwareReqID_Click(object sender, EventArgs e)
         {
             //수주관리번호일 경우와 출고지시번호일 경우
-            if (btnOutwareReqID.Text.Contains("출고"))
-            {
-                Frm_PopUpSel_Common FPSC = new Frm_PopUpSel_Common("OutwareReqID", txtOutwareReqID.Text, "", "O");
-                FPSC.StartPosition = FormStartPosition.CenterScreen;
-                FPSC.BringToFront();
-                FPSC.TopMost = false;
-                FPSC.OWriteTextEvent += PopUp_WriteTextEvent;
-                FPSC.ShowDialog();
-            }
-            else
-            {
+            //if (btnOutwareReqID.Text.Contains("출고"))
+            //{
+            //    Frm_PopUpSel_Common FPSC = new Frm_PopUpSel_Common("OutwareReqID", txtOutwareReqID.Text, "", "O");
+            //    FPSC.StartPosition = FormStartPosition.CenterScreen;
+            //    FPSC.BringToFront();
+            //    FPSC.TopMost = false;
+            //    FPSC.OWriteTextEvent += PopUp_WriteTextEvent;
+            //    FPSC.ShowDialog();
+            //}
+            //else
+            //{
                 Frm_PopUpSel_Common FPSC = new Frm_PopUpSel_Common("OrderID", txtOutwareReqID.Text, "", "O");
                 FPSC.StartPosition = FormStartPosition.CenterScreen;
                 FPSC.BringToFront();
                 FPSC.TopMost = false;
                 FPSC.OWriteTextEvent += PopUp_WriteTextEvent;
                 FPSC.ShowDialog();
-            }
+            //}
 
             void PopUp_WriteTextEvent(string Custom, string InCustom, string OrderID, string OrderSeq, string BuyerArticleNo, string OrderQty, string OUnitClss, string Model, string Article, string DvlyDate, string Work, string ArticleGrp, string CustomID, string ArticleID, string OUnitClssID, string BuyerModelID, string WorkID, string InCustomID, string ArticleGrpID, string OK)
             {
                 if (OK == "Cancel")
-                { return; }
+                { 
+                    return; 
+                }
                 else
                 {
-                    btnchange.Enabled = false;
-
                     Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
 
                     //출고지시번호와 수주관리번호 구분
@@ -1503,14 +1550,17 @@ namespace WizInOut
                     {
                         list_Result.RemoveAt(0);
 
-                        //for (int i = 0; i < list_Result.Count; i++)
-                        //{
-                        //    KeyValue kv = list_Result[i];
-                        //    if (kv.key == "OutwareID")
-                        //    {
-                        //        m_StuffinID = kv.value.ToString();
-                        //    }
-                        //}
+                        m_OrderID = txtOrderID.Text.ToString();
+
+                        for (int i = 0; i < list_Result.Count; i++)
+                        {
+                            KeyValue kv = list_Result[i];
+                            if (kv.key == "OutwareID")
+                            {
+                                m_OutwareID = kv.value.ToString();
+                            }
+                        }
+
                         DataStore.Instance.CloseConnection(); //2021-09-23 DB 커넥트 연결 해제
                         return true;
                     }
@@ -1627,6 +1677,8 @@ namespace WizInOut
                     if (list_Result[0].key.ToLower() == "success")
                     {
                         list_Result.RemoveAt(0);
+                        m_OutwareID = u_OutwareID;
+                        m_OrderID = txtOrderID.Text.ToString();
 
                         //for (int i = 0; i < list_Result.Count; i++)
                         //{
@@ -1787,24 +1839,24 @@ namespace WizInOut
 
                         foreach (DataRow dr in drc)
                         {
-                            if (dr["OutwareReqID"].ToString() != "") 
-                            {
-                                txtOutwareReqID.Text = dr["OutwareReqID"].ToString();//출고지시번호
-                                txtOrderID.Text = dr["OrderID"].ToString();//관리번호
-                                //txtOutClss.Text = dr["OutClssName"].ToString();//출고구분
-                                //txtOutClssTag.Text = dr["OutClss"].ToString();//출고구분ID
-                                btnchange.Text = "수주관리번호";
-                                btnOutwareReqID.Text = "출고지시\r\n번호";
-                                btnchange.Enabled = false;
-                            }
-                            else
-                            {
+                            //if (dr["OutwareReqID"].ToString() != "") 
+                            //{
+                            //    txtOutwareReqID.Text = dr["OutwareReqID"].ToString();//출고지시번호
+                            //    txtOrderID.Text = dr["OrderID"].ToString();//관리번호
+                            //    //txtOutClss.Text = dr["OutClssName"].ToString();//출고구분
+                            //    //txtOutClssTag.Text = dr["OutClss"].ToString();//출고구분ID
+                            //    btnchange.Text = "수주관리번호";
+                            //    btnOutwareReqID.Text = "출고지시\r\n번호";
+                            //    btnchange.Enabled = false;
+                            //}
+                            //else
+                            //{
                                 txtOutwareReqID.Text = dr["OrderID"].ToString();//관리번호
                                 txtOrderID.Text = dr["OrderID"].ToString();//관리번호
-                                btnchange.Text = "출고지시번호";
-                                btnOutwareReqID.Text = "수주관리\r\n번호";
-                                btnchange.Enabled = false;
-                            }
+                            //    btnchange.Text = "출고지시번호";
+                            //    btnOutwareReqID.Text = "수주관리\r\n번호";
+                            //    btnchange.Enabled = false;
+                            //}
 
                             //출고구분
                             index = cboOutClss.FindString(dr["OutClssName"].ToString());
@@ -1964,19 +2016,5 @@ namespace WizInOut
 
         #endregion
 
-        //출고지시 없이 입력할 경우를 위해 수주번호로도 입력할수 있게 수주번호로 바꾸는 이벤트 추가
-        private void btnchange_Click(object sender, EventArgs e)
-        {
-            if (btnchange.Text == "수주관리번호")
-            {
-                btnchange.Text = "출고지시번호";
-                btnOutwareReqID.Text = "수주관리\r\n번호";
-            }
-            else
-            {
-                btnchange.Text = "수주관리번호";
-                btnOutwareReqID.Text = "출고지시\r\n번호";
-            }
-        }
     }
 }

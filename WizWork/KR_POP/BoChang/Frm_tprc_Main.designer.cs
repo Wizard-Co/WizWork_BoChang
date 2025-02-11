@@ -40,16 +40,16 @@
             this.timer_Clock = new System.Windows.Forms.Timer(this.components);
             this.tlpTop = new System.Windows.Forms.TableLayoutPanel();
             this.btnInfo = new System.Windows.Forms.Button();
-            this.btnWork = new System.Windows.Forms.Button();
-            this.btnNoWork = new System.Windows.Forms.Button();
-            this.btnRePrint = new System.Windows.Forms.Button();
-            this.btnWorkQ = new System.Windows.Forms.Button();
-            this.btnChoiceWorker = new System.Windows.Forms.Button();
-            this.btnSetting = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnSetting = new System.Windows.Forms.Button();
+            this.btnChoiceWorker = new System.Windows.Forms.Button();
+            this.btnInsInspectAuto = new System.Windows.Forms.Button();
+            this.btnWorkQ = new System.Windows.Forms.Button();
+            this.btnRePrint = new System.Windows.Forms.Button();
+            this.btnNoWork = new System.Windows.Forms.Button();
+            this.btnWork = new System.Windows.Forms.Button();
             this.btnSO = new System.Windows.Forms.Button();
             this.btnDailyCheck = new System.Windows.Forms.Button();
-            this.btnInsInspectAuto = new System.Windows.Forms.Button();
             this.btnMove = new System.Windows.Forms.Button();
             this.btnMoldMove = new System.Windows.Forms.Button();
             this.btnDailyMoldCheck = new System.Windows.Forms.Button();
@@ -154,25 +154,24 @@
             // 
             // tlpTop
             // 
-            this.tlpTop.ColumnCount = 9;
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlpTop.ColumnCount = 8;
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tlpTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpTop.Controls.Add(this.btnInfo, 0, 0);
-            this.tlpTop.Controls.Add(this.btnExit, 8, 0);
-            this.tlpTop.Controls.Add(this.btnSetting, 7, 0);
-            this.tlpTop.Controls.Add(this.btnChoiceWorker, 6, 0);
-            this.tlpTop.Controls.Add(this.btnInsInspectAuto, 1, 0);
-            this.tlpTop.Controls.Add(this.btnWorkQ, 5, 0);
-            this.tlpTop.Controls.Add(this.btnRePrint, 4, 0);
-            this.tlpTop.Controls.Add(this.btnNoWork, 3, 0);
-            this.tlpTop.Controls.Add(this.btnWork, 2, 0);
+            this.tlpTop.Controls.Add(this.btnWork, 1, 0);
+            this.tlpTop.Controls.Add(this.btnNoWork, 2, 0);
+            this.tlpTop.Controls.Add(this.btnRePrint, 3, 0);
+            this.tlpTop.Controls.Add(this.btnWorkQ, 4, 0);
+            this.tlpTop.Controls.Add(this.btnChoiceWorker, 5, 0);
+            this.tlpTop.Controls.Add(this.btnSetting, 6, 0);
+            this.tlpTop.Controls.Add(this.btnExit, 7, 0);
             this.tlpTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpTop.Location = new System.Drawing.Point(0, 0);
             this.tlpTop.Margin = new System.Windows.Forms.Padding(0);
@@ -195,124 +194,11 @@
             this.btnInfo.Location = new System.Drawing.Point(0, 0);
             this.btnInfo.Margin = new System.Windows.Forms.Padding(0);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(111, 84);
+            this.btnInfo.Size = new System.Drawing.Size(125, 84);
             this.btnInfo.TabIndex = 0;
             this.btnInfo.Text = "공지사항";
             this.btnInfo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnInfo.UseVisualStyleBackColor = false;
-            // 
-            // btnWork
-            // 
-            this.btnWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
-            this.btnWork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWork.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnWork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnWork.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnWork.Image = ((System.Drawing.Image)(resources.GetObject("btnWork.Image")));
-            this.btnWork.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnWork.Location = new System.Drawing.Point(222, 0);
-            this.btnWork.Margin = new System.Windows.Forms.Padding(0);
-            this.btnWork.Name = "btnWork";
-            this.btnWork.Size = new System.Drawing.Size(111, 84);
-            this.btnWork.TabIndex = 9;
-            this.btnWork.Text = "공정작업";
-            this.btnWork.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnWork.UseVisualStyleBackColor = false;
-            // 
-            // btnNoWork
-            // 
-            this.btnNoWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
-            this.btnNoWork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnNoWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNoWork.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnNoWork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNoWork.Font = new System.Drawing.Font("맑은 고딕", 8F, System.Drawing.FontStyle.Bold);
-            this.btnNoWork.Image = ((System.Drawing.Image)(resources.GetObject("btnNoWork.Image")));
-            this.btnNoWork.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnNoWork.Location = new System.Drawing.Point(333, 0);
-            this.btnNoWork.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNoWork.Name = "btnNoWork";
-            this.btnNoWork.Size = new System.Drawing.Size(111, 84);
-            this.btnNoWork.TabIndex = 8;
-            this.btnNoWork.Text = "무작업\r\n";
-            this.btnNoWork.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNoWork.UseVisualStyleBackColor = false;
-            // 
-            // btnRePrint
-            // 
-            this.btnRePrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
-            this.btnRePrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRePrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRePrint.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnRePrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRePrint.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnRePrint.Image = global::WizWork.Properties.Resources.printer;
-            this.btnRePrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRePrint.Location = new System.Drawing.Point(444, 0);
-            this.btnRePrint.Margin = new System.Windows.Forms.Padding(0);
-            this.btnRePrint.Name = "btnRePrint";
-            this.btnRePrint.Size = new System.Drawing.Size(111, 84);
-            this.btnRePrint.TabIndex = 7;
-            this.btnRePrint.Text = "공정라벨\r\n재발행";
-            this.btnRePrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRePrint.UseVisualStyleBackColor = false;
-            // 
-            // btnWorkQ
-            // 
-            this.btnWorkQ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
-            this.btnWorkQ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnWorkQ.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnWorkQ.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnWorkQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnWorkQ.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnWorkQ.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkQ.Image")));
-            this.btnWorkQ.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnWorkQ.Location = new System.Drawing.Point(555, 0);
-            this.btnWorkQ.Margin = new System.Windows.Forms.Padding(0);
-            this.btnWorkQ.Name = "btnWorkQ";
-            this.btnWorkQ.Size = new System.Drawing.Size(111, 84);
-            this.btnWorkQ.TabIndex = 7;
-            this.btnWorkQ.Text = "\n조회화면";
-            this.btnWorkQ.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnWorkQ.UseVisualStyleBackColor = false;
-            // 
-            // btnChoiceWorker
-            // 
-            this.btnChoiceWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
-            this.btnChoiceWorker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnChoiceWorker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnChoiceWorker.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChoiceWorker.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnChoiceWorker.Image = global::WizWork.Properties.Resources.worker;
-            this.btnChoiceWorker.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnChoiceWorker.Location = new System.Drawing.Point(666, 0);
-            this.btnChoiceWorker.Margin = new System.Windows.Forms.Padding(0);
-            this.btnChoiceWorker.Name = "btnChoiceWorker";
-            this.btnChoiceWorker.Size = new System.Drawing.Size(111, 84);
-            this.btnChoiceWorker.TabIndex = 21;
-            this.btnChoiceWorker.Text = "작업자선택";
-            this.btnChoiceWorker.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnChoiceWorker.UseVisualStyleBackColor = false;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(194)))), ((int)(((byte)(133)))));
-            this.btnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSetting.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSetting.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
-            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSetting.Location = new System.Drawing.Point(777, 0);
-            this.btnSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(111, 84);
-            this.btnSetting.TabIndex = 10;
-            this.btnSetting.Text = "환경설정";
-            this.btnSetting.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSetting.UseVisualStyleBackColor = false;
             // 
             // btnExit
             // 
@@ -325,15 +211,147 @@
             this.btnExit.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExit.Location = new System.Drawing.Point(888, 0);
+            this.btnExit.Location = new System.Drawing.Point(875, 0);
             this.btnExit.Margin = new System.Windows.Forms.Padding(0);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(117, 84);
+            this.btnExit.Size = new System.Drawing.Size(130, 84);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "작업종료";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(194)))), ((int)(((byte)(133)))));
+            this.btnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSetting.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSetting.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
+            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSetting.Location = new System.Drawing.Point(750, 0);
+            this.btnSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(125, 84);
+            this.btnSetting.TabIndex = 10;
+            this.btnSetting.Text = "환경설정";
+            this.btnSetting.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSetting.UseVisualStyleBackColor = false;
+            // 
+            // btnChoiceWorker
+            // 
+            this.btnChoiceWorker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
+            this.btnChoiceWorker.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnChoiceWorker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnChoiceWorker.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChoiceWorker.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnChoiceWorker.Image = global::WizWork.Properties.Resources.worker;
+            this.btnChoiceWorker.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnChoiceWorker.Location = new System.Drawing.Point(625, 0);
+            this.btnChoiceWorker.Margin = new System.Windows.Forms.Padding(0);
+            this.btnChoiceWorker.Name = "btnChoiceWorker";
+            this.btnChoiceWorker.Size = new System.Drawing.Size(125, 84);
+            this.btnChoiceWorker.TabIndex = 21;
+            this.btnChoiceWorker.Text = "작업자선택";
+            this.btnChoiceWorker.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnChoiceWorker.UseVisualStyleBackColor = false;
+            // 
+            // btnInsInspectAuto
+            // 
+            this.btnInsInspectAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
+            this.btnInsInspectAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInsInspectAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnInsInspectAuto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInsInspectAuto.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnInsInspectAuto.Image = ((System.Drawing.Image)(resources.GetObject("btnInsInspectAuto.Image")));
+            this.btnInsInspectAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnInsInspectAuto.Location = new System.Drawing.Point(249, 168);
+            this.btnInsInspectAuto.Margin = new System.Windows.Forms.Padding(0);
+            this.btnInsInspectAuto.Name = "btnInsInspectAuto";
+            this.btnInsInspectAuto.Size = new System.Drawing.Size(111, 84);
+            this.btnInsInspectAuto.TabIndex = 12;
+            this.btnInsInspectAuto.Text = "자주검사";
+            this.btnInsInspectAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnInsInspectAuto.UseVisualStyleBackColor = false;
+            this.btnInsInspectAuto.Visible = false;
+            // 
+            // btnWorkQ
+            // 
+            this.btnWorkQ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
+            this.btnWorkQ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnWorkQ.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnWorkQ.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnWorkQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnWorkQ.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnWorkQ.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkQ.Image")));
+            this.btnWorkQ.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnWorkQ.Location = new System.Drawing.Point(500, 0);
+            this.btnWorkQ.Margin = new System.Windows.Forms.Padding(0);
+            this.btnWorkQ.Name = "btnWorkQ";
+            this.btnWorkQ.Size = new System.Drawing.Size(125, 84);
+            this.btnWorkQ.TabIndex = 7;
+            this.btnWorkQ.Text = "\n조회화면";
+            this.btnWorkQ.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnWorkQ.UseVisualStyleBackColor = false;
+            // 
+            // btnRePrint
+            // 
+            this.btnRePrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(166)))), ((int)(((byte)(244)))));
+            this.btnRePrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRePrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRePrint.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnRePrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRePrint.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnRePrint.Image = global::WizWork.Properties.Resources.printer;
+            this.btnRePrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRePrint.Location = new System.Drawing.Point(375, 0);
+            this.btnRePrint.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRePrint.Name = "btnRePrint";
+            this.btnRePrint.Size = new System.Drawing.Size(125, 84);
+            this.btnRePrint.TabIndex = 7;
+            this.btnRePrint.Text = "공정라벨\r\n재발행";
+            this.btnRePrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRePrint.UseVisualStyleBackColor = false;
+            // 
+            // btnNoWork
+            // 
+            this.btnNoWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
+            this.btnNoWork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnNoWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNoWork.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnNoWork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNoWork.Font = new System.Drawing.Font("맑은 고딕", 8F, System.Drawing.FontStyle.Bold);
+            this.btnNoWork.Image = ((System.Drawing.Image)(resources.GetObject("btnNoWork.Image")));
+            this.btnNoWork.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNoWork.Location = new System.Drawing.Point(250, 0);
+            this.btnNoWork.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNoWork.Name = "btnNoWork";
+            this.btnNoWork.Size = new System.Drawing.Size(125, 84);
+            this.btnNoWork.TabIndex = 8;
+            this.btnNoWork.Text = "무작업\r\n";
+            this.btnNoWork.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNoWork.UseVisualStyleBackColor = false;
+            // 
+            // btnWork
+            // 
+            this.btnWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
+            this.btnWork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnWork.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnWork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnWork.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWork.Image = ((System.Drawing.Image)(resources.GetObject("btnWork.Image")));
+            this.btnWork.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnWork.Location = new System.Drawing.Point(125, 0);
+            this.btnWork.Margin = new System.Windows.Forms.Padding(0);
+            this.btnWork.Name = "btnWork";
+            this.btnWork.Size = new System.Drawing.Size(125, 84);
+            this.btnWork.TabIndex = 9;
+            this.btnWork.Text = "공정작업";
+            this.btnWork.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnWork.UseVisualStyleBackColor = false;
             // 
             // btnSO
             // 
@@ -372,25 +390,6 @@
             this.btnDailyCheck.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDailyCheck.UseVisualStyleBackColor = false;
             this.btnDailyCheck.Visible = false;
-            // 
-            // btnInsInspectAuto
-            // 
-            this.btnInsInspectAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(108)))), ((int)(((byte)(128)))));
-            this.btnInsInspectAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnInsInspectAuto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInsInspectAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnInsInspectAuto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInsInspectAuto.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnInsInspectAuto.Image = ((System.Drawing.Image)(resources.GetObject("btnInsInspectAuto.Image")));
-            this.btnInsInspectAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInsInspectAuto.Location = new System.Drawing.Point(111, 0);
-            this.btnInsInspectAuto.Margin = new System.Windows.Forms.Padding(0);
-            this.btnInsInspectAuto.Name = "btnInsInspectAuto";
-            this.btnInsInspectAuto.Size = new System.Drawing.Size(111, 84);
-            this.btnInsInspectAuto.TabIndex = 12;
-            this.btnInsInspectAuto.Text = "자주검사";
-            this.btnInsInspectAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnInsInspectAuto.UseVisualStyleBackColor = false;
             // 
             // btnMove
             // 
@@ -496,6 +495,7 @@
             this.Controls.Add(this.btnDailyMoldCheck);
             this.Controls.Add(this.btnMoldMove);
             this.Controls.Add(this.btnMove);
+            this.Controls.Add(this.btnInsInspectAuto);
             this.Controls.Add(this.btnDailyCheck);
             this.Controls.Add(this.tlpTop);
             this.Controls.Add(this.stsInfo);
