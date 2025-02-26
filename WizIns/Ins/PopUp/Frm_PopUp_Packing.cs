@@ -545,6 +545,13 @@ namespace WizIns
                     {
                         for (int i = 0; i < BoxQty; i++)
                         {
+                            //라벨이 여러개인 경우
+                            //15(10 + 5)인 경우 12개만 했을 경우 10개, 2개 이렇게 저장 되고 나머지 3개가 남아있어야 됨
+                            //검사수량과 라벨별 검사수량을 비교하여 처리해야 될꺼 같음
+
+                            //일단 하나씩만 되도록 나중에 필요시 여러개 처리
+                            //박스수도 무조건 하나로 나와야 됨(라벨이 하나로 계속가기 때문에)
+
                             // 마지막은 잔량만
                             if (totPassQty > 0
                                 && i == BoxQty - 1)
@@ -561,6 +568,7 @@ namespace WizIns
                             sqlParameter.Add("nseq", ++index);
                             sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
                             sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
+                            sqlParameter.Add("LabelID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
                             sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
                             sqlParameter.Add("nPackqty", PackQty);
                             sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
@@ -568,7 +576,7 @@ namespace WizIns
 
 
                             WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                            pro1.Name = "[xp_prdIns_iWkPacking]";
+                            pro1.Name = "[xp_prdIns_iWkPacking_Con]";
                             pro1.OutputUseYN = (i == 0 ? "Y" : "N");
                             pro1.OutputName = "PackID";
                             pro1.OutputLength = "10";
@@ -1523,906 +1531,321 @@ namespace WizIns
 
                 int RemainQty = Lib.ConvertInt(txtRemainQty.Text); // 잔량 수량 2023-03-13
 
-                //잔량이 있을 경우 없을 경우 나눠야 되서 조건 추가 2023-03-13
-                //잔량이 있을 경우 라벨 발행
-                //if (RemainQty > 0)
-                //{
-                    // wk_Packing 등록
-                    //2021-06-22 전량 불량인 경우가 있어 조건 추가
-                    if (BoxQty == 0)
+                // wk_Packing 등록
+                //2021-06-22 전량 불량인 경우가 있어 조건 추가
+                if (BoxQty == 0)
+                {
+                    for (int i = 0; i <= BoxQty; i++)
                     {
-                        for (int i = 0; i <= BoxQty; i++)
+                        //// 마지막은 잔량만
+                        //if (totPassQty > 0
+                        //    && i == BoxQty - 1)
+                        //{
+                        //    PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
+                        //}
+                        //else
+                        //{
+                        //    PackQty = QtyPerBox;
+                        //}
+
+                        sqlParameter = new Dictionary<string, object>();
+                        sqlParameter.Add("PackID", "");
+                        sqlParameter.Add("nseq", ++index);
+                        sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
+                        sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
+                        sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
+                        sqlParameter.Add("nPackqty", PackQty);
+                        sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
+                        sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
+
+                        WizCommon.Procedure pro1 = new WizCommon.Procedure();
+                        pro1.Name = "[xp_prdIns_iWkPacking]";
+                        pro1.OutputUseYN = (i == 0 ? "Y" : "N");
+                        pro1.OutputName = "PackID";
+                        pro1.OutputLength = "10";
+
+                        Prolist.Add(pro1);
+                        ListParameter.Add(sqlParameter);
+                    }
+                    index = 0;
+                    // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
+                    // wk_Inspect 에는 각 라벨이 들어가야 됨.
+                    for (int i = 0; i < dgdMain.Rows.Count; i++)
+                    {
+                        int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
+
+                        // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
+                        if (PassQty >= 0)
                         {
-                            //// 마지막은 잔량만
-                            //if (totPassQty > 0
-                            //    && i == BoxQty - 1)
-                            //{
-                            //    PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
-                            //}
-                            //else
-                            //{
-                            //    PackQty = QtyPerBox;
-                            //}
-
+                            // wk_PackingCardList
                             sqlParameter = new Dictionary<string, object>();
+
                             sqlParameter.Add("PackID", "");
-                            sqlParameter.Add("nseq", ++index);
-                            sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                            sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                            sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                            sqlParameter.Add("nPackqty", PackQty);
-                            sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                            sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("nCardSeq", ++index);
+                            sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
+                            sqlParameter.Add("nProdQty", PassQty);
+                            sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                            WizCommon.Procedure pro2 = new WizCommon.Procedure();
+                            pro2.Name = "[xp_prdIns_iWkPackingCardList]";
+                            pro2.OutputUseYN = "N";
+                            pro2.OutputName = "PackID";
+                            pro2.OutputLength = "20";
 
-                            WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                            pro1.Name = "[xp_prdIns_iWkPacking]";
-                            pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                            pro1.OutputName = "PackID";
-                            pro1.OutputLength = "10";
-
-                            Prolist.Add(pro1);
+                            Prolist.Add(pro2);
                             ListParameter.Add(sqlParameter);
                         }
-                        index = 0;
-                        // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                        // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                        for (int i = 0; i < dgdMain.Rows.Count; i++)
+
+                        // Inspect 넣기
+                        int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
+
+                        //index = 0;
+
+                        // 검사수량이 0 이상인 건들만 넣기
+                        if (InspectQty >= 0)
                         {
-                            int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
+                            sqlParameter = new Dictionary<string, object>();
 
-                            // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                            if (PassQty >= 0)
+                            sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
+                            sqlParameter.Add("RollSeq", 0);
+                            sqlParameter.Add("OrderSeq", 1);
+                            sqlParameter.Add("RollNo", 0);
+                            sqlParameter.Add("ExamNO", "00");
+                            sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
+
+                            sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
+                            sqlParameter.Add("TeamID", "");
+                            sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
+                            sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
+
+                            sqlParameter.Add("UnitClss", "");
+                            sqlParameter.Add("GradeID", "1");
+                            sqlParameter.Add("LotNo", "");
+                            sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
+                            sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
+
+                            sqlParameter.Add("DefectPoint", 0);
+                            sqlParameter.Add("DefectID", "");
+                            sqlParameter.Add("DefectClss", "");
+                            sqlParameter.Add("InstID", "");
+                            sqlParameter.Add("CardIDList", "");
+
+                            sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("PackID", "");
+
+                            WizCommon.Procedure pro3 = new WizCommon.Procedure();
+                            pro3.Name = "[xp_prdIns_iInspectFinal]";
+                            pro3.OutputUseYN = "Y";
+                            pro3.OutputName = "RollSeq";
+                            pro3.OutputLength = "20";
+
+                            Prolist.Add(pro3);
+                            ListParameter.Add(sqlParameter);
+
+                            var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
+                            if (lstDefect != null)
                             {
-                                // wk_PackingCardList
-                                sqlParameter = new Dictionary<string, object>();
-
-                                sqlParameter.Add("PackID", "");
-                                sqlParameter.Add("nCardSeq", ++index);
-                                sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                                sqlParameter.Add("nProdQty", PassQty);
-                                sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                                //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
-                                //sqlParameter.Add("UnitClss", ""); //2021-05-20
-                                //sqlParameter.Add("RollSeq", 0);  //2021-05-20
-                                //sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
-                                //sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
-                                //sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
-                                WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                                pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                                pro2.OutputUseYN = "N";
-                                pro2.OutputName = "PackID";
-                                pro2.OutputLength = "20";
-
-                                Prolist.Add(pro2);
-                                ListParameter.Add(sqlParameter);
-                            }
-
-                            // Inspect 넣기
-                            int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                            //index = 0;
-
-                            // 검사수량이 0 이상인 건들만 넣기
-                            if (InspectQty >= 0)
-                            {
-                                sqlParameter = new Dictionary<string, object>();
-
-                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                                sqlParameter.Add("RollSeq", 0);
-                                sqlParameter.Add("OrderSeq", 1);
-                                sqlParameter.Add("RollNo", 0);
-                                sqlParameter.Add("ExamNO", "00");
-                                sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                                sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                                sqlParameter.Add("TeamID", "");
-                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                                sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                                sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                                sqlParameter.Add("UnitClss", "");
-                                sqlParameter.Add("GradeID", "1");
-                                sqlParameter.Add("LotNo", "");
-                                sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                                sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                                sqlParameter.Add("DefectPoint", 0);
-                                sqlParameter.Add("DefectID", "");
-                                sqlParameter.Add("DefectClss", "");
-                                sqlParameter.Add("InstID", "");
-                                sqlParameter.Add("CardIDList", "");
-
-                                sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                                sqlParameter.Add("PackID", "");
-
-                                WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                                pro3.Name = "[xp_prdIns_iInspectFinal]";
-                                pro3.OutputUseYN = "Y";
-                                pro3.OutputName = "RollSeq";
-                                pro3.OutputLength = "20";
-
-                                Prolist.Add(pro3);
-                                ListParameter.Add(sqlParameter);
-
-                                var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                                if (lstDefect != null)
+                                int k = 0;
+                                foreach (string Key in lstDefect.Keys)
                                 {
-                                    int k = 0;
-                                    foreach (string Key in lstDefect.Keys)
+                                    var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
+                                    if (Defect != null
+                                        && Lib.ConvertInt(Defect.DefectQty) > 0)
                                     {
-                                        var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                                        if (Defect != null
-                                            && Lib.ConvertInt(Defect.DefectQty) > 0)
-                                        {
-                                            sqlParameter = new Dictionary<string, object>();
+                                        sqlParameter = new Dictionary<string, object>();
 
-                                            sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                                            sqlParameter.Add("RollSeq", 0);
-                                            sqlParameter.Add("DefectSeq", ++k);
-                                            sqlParameter.Add("DefectID", Key);
-                                            sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
+                                        sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
+                                        sqlParameter.Add("RollSeq", 0);
+                                        sqlParameter.Add("DefectSeq", ++k);
+                                        sqlParameter.Add("DefectID", Key);
+                                        sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
 
-                                            sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                                            sqlParameter.Add("PackID", "");
+                                        sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
+                                        sqlParameter.Add("PackID", "");
 
-                                            WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                                            pro4.Name = "[xp_prdIns_iInspectSub]";
-                                            pro4.OutputUseYN = "N";
-                                            pro4.OutputName = "OrderID";
-                                            pro4.OutputLength = "20";
+                                        WizCommon.Procedure pro4 = new WizCommon.Procedure();
+                                        pro4.Name = "[xp_prdIns_iInspectSub]";
+                                        pro4.OutputUseYN = "N";
+                                        pro4.OutputName = "OrderID";
+                                        pro4.OutputLength = "20";
 
-                                            Prolist.Add(pro4);
-                                            ListParameter.Add(sqlParameter);
-                                        }
+                                        Prolist.Add(pro4);
+                                        ListParameter.Add(sqlParameter);
                                     }
                                 }
-
-                                // 예외출고 구문
-                                //sqlParameter = new Dictionary<string, object>();
-
-                                //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                                //sqlParameter.Add("RollSeq", 0);
-
-                                //WizCommon.Procedure pro5 = new WizCommon.Procedure();
-                                //pro5.Name = "[xp_prdIns_iInspect_ExcptOut]";
-                                //pro5.OutputUseYN = "N";
-                                //pro5.OutputName = "JobID";
-                                //pro5.OutputLength = "20";
-
-                                //Prolist.Add(pro5);
-                                //ListParameter.Add(sqlParameter);
-
                             }
+
+                            // 예외출고 구문
+                            //sqlParameter = new Dictionary<string, object>();
+
+                            //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
+                            //sqlParameter.Add("RollSeq", 0);
+
+                            //WizCommon.Procedure pro5 = new WizCommon.Procedure();
+                            //pro5.Name = "[xp_prdIns_iInspect_ExcptOut]";
+                            //pro5.OutputUseYN = "N";
+                            //pro5.OutputName = "JobID";
+                            //pro5.OutputLength = "20";
+
+                            //Prolist.Add(pro5);
+                            //ListParameter.Add(sqlParameter);
+
                         }
                     }
-                    else
+                }
+                else
+                {
+                    for (int i = 0; i < BoxQty; i++)
                     {
-                        for (int i = 0; i < BoxQty; i++)
+                        // 마지막은 잔량만
+                        if (totPassQty > 0
+                            && i == BoxQty - 1)
                         {
-                            // 마지막은 잔량만
-                            if (totPassQty > 0
-                                && i == BoxQty - 1)
-                            {
-                                PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
-                            }
-                            else
-                            {
-                                PackQty = QtyPerBox;
-                            }
+                            PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
+                        }
+                        else
+                        {
+                            PackQty = QtyPerBox;
+                        }
 
+                        sqlParameter = new Dictionary<string, object>();
+                        sqlParameter.Add("PackID", "");
+                        sqlParameter.Add("nseq", ++index);
+                        sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
+                        sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
+                        sqlParameter.Add("LabelID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
+                        sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
+                        sqlParameter.Add("nPackqty", PackQty);
+                        sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
+                        sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
+
+
+                        WizCommon.Procedure pro1 = new WizCommon.Procedure();
+                        pro1.Name = "[xp_prdIns_iWkPacking_Con]";
+                        pro1.OutputUseYN = (i == 0 ? "Y" : "N");
+                        pro1.OutputName = "PackID";
+                        pro1.OutputLength = "10";
+
+                        Prolist.Add(pro1);
+                        ListParameter.Add(sqlParameter);
+                    }
+                    index = 0;
+                    // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
+                    // wk_Inspect 에는 각 라벨이 들어가야 됨.
+                    for (int i = 0; i < dgdMain.Rows.Count; i++)
+                    {
+                        int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
+
+                        // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
+                        if (PassQty > 0)
+                        {
+                            // wk_PackingCardList
                             sqlParameter = new Dictionary<string, object>();
+
                             sqlParameter.Add("PackID", "");
-                            sqlParameter.Add("nseq", ++index);
-                            sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                            sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                            sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                            sqlParameter.Add("nPackqty", PackQty);
-                            sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                            sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("nCardSeq", ++index);
+                            sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
+                            sqlParameter.Add("nProdQty", PassQty);
+                            sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                            //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
+                            //sqlParameter.Add("UnitClss", ""); //2021-05-20
+                            //sqlParameter.Add("RollSeq", 0);  //2021-05-20
+                            //sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
+                            //sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
+                            //sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
+                            WizCommon.Procedure pro2 = new WizCommon.Procedure();
+                            pro2.Name = "[xp_prdIns_iWkPackingCardList]";
+                            pro2.OutputUseYN = "N";
+                            pro2.OutputName = "PackID";
+                            pro2.OutputLength = "20";
 
-
-                            WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                            pro1.Name = "[xp_prdIns_iWkPacking]";
-                            pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                            pro1.OutputName = "PackID";
-                            pro1.OutputLength = "10";
-
-                            Prolist.Add(pro1);
+                            Prolist.Add(pro2);
                             ListParameter.Add(sqlParameter);
                         }
-                        index = 0;
-                        // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                        // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                        for (int i = 0; i < dgdMain.Rows.Count; i++)
+
+                        // Inspect 넣기
+                        int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
+
+                        //index = 0;
+
+                        // 검사수량이 0 이상인 건들만 넣기
+                        if (InspectQty > 0)
                         {
-                            int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
+                            sqlParameter = new Dictionary<string, object>();
 
-                            // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                            if (PassQty > 0)
+                            sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
+                            sqlParameter.Add("RollSeq", 0);
+                            sqlParameter.Add("OrderSeq", 1);
+                            sqlParameter.Add("RollNo", 0);
+                            sqlParameter.Add("ExamNO", "00");
+                            sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
+
+                            sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
+                            sqlParameter.Add("TeamID", "");
+                            sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
+                            sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
+
+                            sqlParameter.Add("UnitClss", "");
+                            sqlParameter.Add("GradeID", "1");
+                            sqlParameter.Add("LotNo", "");
+                            sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
+                            sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
+
+                            sqlParameter.Add("DefectPoint", 0);
+                            sqlParameter.Add("DefectID", "");
+                            sqlParameter.Add("DefectClss", "");
+                            sqlParameter.Add("InstID", "");
+                            sqlParameter.Add("CardIDList", "");
+
+                            sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                            sqlParameter.Add("PackID", "");
+
+                            WizCommon.Procedure pro3 = new WizCommon.Procedure();
+                            pro3.Name = "[xp_prdIns_iInspectFinal]";
+                            pro3.OutputUseYN = "Y";
+                            pro3.OutputName = "RollSeq";
+                            pro3.OutputLength = "20";
+
+                            Prolist.Add(pro3);
+                            ListParameter.Add(sqlParameter);
+
+                            var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
+                            if (lstDefect != null)
                             {
-                                // wk_PackingCardList
-                                sqlParameter = new Dictionary<string, object>();
-
-                                sqlParameter.Add("PackID", "");
-                                sqlParameter.Add("nCardSeq", ++index);
-                                sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                                sqlParameter.Add("nProdQty", PassQty);
-                                sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                                //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
-                                //sqlParameter.Add("UnitClss", ""); //2021-05-20
-                                //sqlParameter.Add("RollSeq", 0);  //2021-05-20
-                                //sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
-                                //sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
-                                //sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
-                                WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                                pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                                pro2.OutputUseYN = "N";
-                                pro2.OutputName = "PackID";
-                                pro2.OutputLength = "20";
-
-                                Prolist.Add(pro2);
-                                ListParameter.Add(sqlParameter);
-                            }
-
-                            // Inspect 넣기
-                            int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                            //index = 0;
-
-                            // 검사수량이 0 이상인 건들만 넣기
-                            if (InspectQty > 0)
-                            {
-                                sqlParameter = new Dictionary<string, object>();
-
-                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                                sqlParameter.Add("RollSeq", 0);
-                                sqlParameter.Add("OrderSeq", 1);
-                                sqlParameter.Add("RollNo", 0);
-                                sqlParameter.Add("ExamNO", "00");
-                                sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                                sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                                sqlParameter.Add("TeamID", "");
-                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                                sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                                sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                                sqlParameter.Add("UnitClss", "");
-                                sqlParameter.Add("GradeID", "1");
-                                sqlParameter.Add("LotNo", "");
-                                sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                                sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                                sqlParameter.Add("DefectPoint", 0);
-                                sqlParameter.Add("DefectID", "");
-                                sqlParameter.Add("DefectClss", "");
-                                sqlParameter.Add("InstID", "");
-                                sqlParameter.Add("CardIDList", "");
-
-                                sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                                sqlParameter.Add("PackID", "");
-
-                                WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                                pro3.Name = "[xp_prdIns_iInspectFinal]";
-                                pro3.OutputUseYN = "Y";
-                                pro3.OutputName = "RollSeq";
-                                pro3.OutputLength = "20";
-
-                                Prolist.Add(pro3);
-                                ListParameter.Add(sqlParameter);
-
-                                var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                                if (lstDefect != null)
+                                int k = 0;
+                                foreach (string Key in lstDefect.Keys)
                                 {
-                                    int k = 0;
-                                    foreach (string Key in lstDefect.Keys)
+                                    var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
+                                    if (Defect != null
+                                        && Lib.ConvertInt(Defect.DefectQty) > 0)
                                     {
-                                        var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                                        if (Defect != null
-                                            && Lib.ConvertInt(Defect.DefectQty) > 0)
-                                        {
-                                            sqlParameter = new Dictionary<string, object>();
+                                        sqlParameter = new Dictionary<string, object>();
 
-                                            sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                                            sqlParameter.Add("RollSeq", 0);
-                                            sqlParameter.Add("DefectSeq", ++k);
-                                            sqlParameter.Add("DefectID", Key);
-                                            sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
+                                        sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
+                                        sqlParameter.Add("RollSeq", 0);
+                                        sqlParameter.Add("DefectSeq", ++k);
+                                        sqlParameter.Add("DefectID", Key);
+                                        sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
 
-                                            sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                                            sqlParameter.Add("PackID", "");
+                                        sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
+                                        sqlParameter.Add("PackID", "");
 
-                                            WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                                            pro4.Name = "[xp_prdIns_iInspectSub]";
-                                            pro4.OutputUseYN = "N";
-                                            pro4.OutputName = "OrderID";
-                                            pro4.OutputLength = "20";
+                                        WizCommon.Procedure pro4 = new WizCommon.Procedure();
+                                        pro4.Name = "[xp_prdIns_iInspectSub]";
+                                        pro4.OutputUseYN = "N";
+                                        pro4.OutputName = "OrderID";
+                                        pro4.OutputLength = "20";
 
-                                            Prolist.Add(pro4);
-                                            ListParameter.Add(sqlParameter);
-                                        }
+                                        Prolist.Add(pro4);
+                                        ListParameter.Add(sqlParameter);
                                     }
                                 }
                             }
                         }
                     }
-                //}
-                //else
-                //{
-                //    //라벨 수와 박스 수가 같다면 라벨 발행 안 하고 해당라벨로 저장됨 
-                //    if (dgdMain.Rows.Count == BoxQty)
-                //    {
-                //        // wk_Packing 등록
-                //        //2021-06-22 전량 불량인 경우가 있어 조건 추가
-                //        if (BoxQty == 0)
-                //        {
-                //            for (int i = 0; i <= BoxQty; i++)
-                //            {
-
-                //                sqlParameter = new Dictionary<string, object>();
-                //                sqlParameter.Add("PackID", "");
-                //                sqlParameter.Add("nseq", ++index);
-                //                sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                //                sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                //                sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                //                sqlParameter.Add("nPackqty", PackQty);
-                //                sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                //                sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
-
-                //                WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                //                pro1.Name = "[xp_prdIns_iWkPacking]";
-                //                pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                //                pro1.OutputName = "PackID";
-                //                pro1.OutputLength = "10";
-
-                //                Prolist.Add(pro1);
-                //                ListParameter.Add(sqlParameter);
-                //            }
-                //            index = 0;
-                //            // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                //            // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                //            for (int i = 0; i < dgdMain.Rows.Count; i++)
-                //            {
-                //                int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
-
-                //                // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                //                if (PassQty >= 0)
-                //                {
-                //                    // wk_PackingCardList
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("PackID", "");
-                //                    sqlParameter.Add("nCardSeq", ++index);
-                //                    sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("nProdQty", PassQty);
-                //                    sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                //                    pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                //                    pro2.OutputUseYN = "N";
-                //                    pro2.OutputName = "PackID";
-                //                    pro2.OutputLength = "20";
-
-                //                    Prolist.Add(pro2);
-                //                    ListParameter.Add(sqlParameter);
-                //                }
-
-                //                // Inspect 넣기
-                //                int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                //                //index = 0;
-
-                //                // 검사수량이 0 이상인 건들만 넣기
-                //                if (InspectQty >= 0)
-                //                {
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                    sqlParameter.Add("RollSeq", 0);
-                //                    sqlParameter.Add("OrderSeq", 1);
-                //                    sqlParameter.Add("RollNo", 0);
-                //                    sqlParameter.Add("ExamNO", "00");
-                //                    sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                //                    sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                //                    sqlParameter.Add("TeamID", "");
-                //                    sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                //                    sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("UnitClss", "");
-                //                    sqlParameter.Add("GradeID", "1");
-                //                    sqlParameter.Add("LotNo", "");
-                //                    sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("DefectPoint", 0);
-                //                    sqlParameter.Add("DefectID", "");
-                //                    sqlParameter.Add("DefectClss", "");
-                //                    sqlParameter.Add("InstID", "");
-                //                    sqlParameter.Add("CardIDList", "");
-
-                //                    sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("PackID", "");
-
-                //                    WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                //                    pro3.Name = "[xp_prdIns_iInspectFinal]";
-                //                    pro3.OutputUseYN = "Y";
-                //                    pro3.OutputName = "RollSeq";
-                //                    pro3.OutputLength = "20";
-
-                //                    Prolist.Add(pro3);
-                //                    ListParameter.Add(sqlParameter);
-
-                //                    var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                //                    if (lstDefect != null)
-                //                    {
-                //                        int k = 0;
-                //                        foreach (string Key in lstDefect.Keys)
-                //                        {
-                //                            var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                //                            if (Defect != null
-                //                                && Lib.ConvertInt(Defect.DefectQty) > 0)
-                //                            {
-                //                                sqlParameter = new Dictionary<string, object>();
-
-                //                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                                sqlParameter.Add("RollSeq", 0);
-                //                                sqlParameter.Add("DefectSeq", ++k);
-                //                                sqlParameter.Add("DefectID", Key);
-                //                                sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
-
-                //                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                                sqlParameter.Add("PackID", "");
-
-                //                                WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                //                                pro4.Name = "[xp_prdIns_iInspectSub]";
-                //                                pro4.OutputUseYN = "N";
-                //                                pro4.OutputName = "OrderID";
-                //                                pro4.OutputLength = "20";
-
-                //                                Prolist.Add(pro4);
-                //                                ListParameter.Add(sqlParameter);
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //        else
-                //        {
-                //            for (int i = 0; i < BoxQty; i++)
-                //            {
-                //                // 마지막은 잔량만
-                //                //if (totPassQty > 0
-                //                //    && i == BoxQty - 1)
-                //                //{
-                //                //    PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
-                //                //}
-                //                //else
-                //                //{
-                //                //    PackQty = QtyPerBox;
-                //                //}
-
-                //                sqlParameter = new Dictionary<string, object>();
-                //                sqlParameter.Add("PackID", "");
-                //                sqlParameter.Add("nseq", ++index);
-                //                sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                //                sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                //                sqlParameter.Add("LabelID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                //                sqlParameter.Add("nPackqty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-                //                sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                //                sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
-
-
-                //                WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                //                pro1.Name = "[xp_prdIns_iWkPacking_Con]";
-                //                pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                //                pro1.OutputName = "PackID";
-                //                pro1.OutputLength = "10";
-
-                //                Prolist.Add(pro1);
-                //                ListParameter.Add(sqlParameter);
-                //            }
-                //            index = 0;
-                //            // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                //            // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                //            for (int i = 0; i < dgdMain.Rows.Count; i++)
-                //            {
-                //                int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
-
-                //                // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                //                if (PassQty > 0)
-                //                {
-                //                    // wk_PackingCardList
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("PackID", "");
-                //                    sqlParameter.Add("nCardSeq", ++index);
-                //                    sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("nProdQty", PassQty);
-                //                    sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                //                    pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                //                    pro2.OutputUseYN = "N";
-                //                    pro2.OutputName = "PackID";
-                //                    pro2.OutputLength = "20";
-
-                //                    Prolist.Add(pro2);
-                //                    ListParameter.Add(sqlParameter);
-                //                }
-
-                //                // Inspect 넣기
-                //                int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                //                //index = 0;
-
-                //                // 검사수량이 0 이상인 건들만 넣기
-                //                if (InspectQty > 0)
-                //                {
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                    sqlParameter.Add("RollSeq", 0);
-                //                    sqlParameter.Add("OrderSeq", 1);
-                //                    sqlParameter.Add("RollNo", 0);
-                //                    sqlParameter.Add("ExamNO", "00");
-                //                    sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                //                    sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                //                    sqlParameter.Add("TeamID", "");
-                //                    sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                //                    sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("UnitClss", "");
-                //                    sqlParameter.Add("GradeID", "1");
-                //                    sqlParameter.Add("LotNo", "");
-                //                    sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("DefectPoint", 0);
-                //                    sqlParameter.Add("DefectID", "");
-                //                    sqlParameter.Add("DefectClss", "");
-                //                    sqlParameter.Add("InstID", "");
-                //                    sqlParameter.Add("CardIDList", "");
-
-                //                    sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("PackID", "");
-
-                //                    WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                //                    pro3.Name = "[xp_prdIns_iInspectFinal]";
-                //                    pro3.OutputUseYN = "Y";
-                //                    pro3.OutputName = "RollSeq";
-                //                    pro3.OutputLength = "20";
-
-                //                    Prolist.Add(pro3);
-                //                    ListParameter.Add(sqlParameter);
-
-                //                    var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                //                    if (lstDefect != null)
-                //                    {
-                //                        int k = 0;
-                //                        foreach (string Key in lstDefect.Keys)
-                //                        {
-                //                            var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                //                            if (Defect != null
-                //                                && Lib.ConvertInt(Defect.DefectQty) > 0)
-                //                            {
-                //                                sqlParameter = new Dictionary<string, object>();
-
-                //                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                                sqlParameter.Add("RollSeq", 0);
-                //                                sqlParameter.Add("DefectSeq", ++k);
-                //                                sqlParameter.Add("DefectID", Key);
-                //                                sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
-
-                //                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                                sqlParameter.Add("PackID", "");
-
-                //                                WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                //                                pro4.Name = "[xp_prdIns_iInspectSub]";
-                //                                pro4.OutputUseYN = "N";
-                //                                pro4.OutputName = "OrderID";
-                //                                pro4.OutputLength = "20";
-
-                //                                Prolist.Add(pro4);
-                //                                ListParameter.Add(sqlParameter);
-                //                            }
-                //                        }
-                //                    }
-
-                //                }
-                //            }
-                //        }
-                //    }
-                //    else //라벨 수와 박스 수가 다르다면 라벨 발행
-                //    {
-                //        // wk_Packing 등록
-                //        //2021-06-22 전량 불량인 경우가 있어 조건 추가
-                //        if (BoxQty == 0)
-                //        {
-                //            for (int i = 0; i <= BoxQty; i++)
-                //            {
-
-                //                sqlParameter = new Dictionary<string, object>();
-                //                sqlParameter.Add("PackID", "");
-                //                sqlParameter.Add("nseq", ++index);
-                //                sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                //                sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                //                sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                //                sqlParameter.Add("nPackqty", PackQty);
-                //                sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                //                sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
-
-                //                WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                //                pro1.Name = "[xp_prdIns_iWkPacking]";
-                //                pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                //                pro1.OutputName = "PackID";
-                //                pro1.OutputLength = "10";
-
-                //                Prolist.Add(pro1);
-                //                ListParameter.Add(sqlParameter);
-                //            }
-                //            index = 0;
-                //            // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                //            // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                //            for (int i = 0; i < dgdMain.Rows.Count; i++)
-                //            {
-                //                int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
-
-                //                // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                //                if (PassQty >= 0)
-                //                {
-                //                    // wk_PackingCardList
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("PackID", "");
-                //                    sqlParameter.Add("nCardSeq", ++index);
-                //                    sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("nProdQty", PassQty);
-                //                    sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                //                    pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                //                    pro2.OutputUseYN = "N";
-                //                    pro2.OutputName = "PackID";
-                //                    pro2.OutputLength = "20";
-
-                //                    Prolist.Add(pro2);
-                //                    ListParameter.Add(sqlParameter);
-                //                }
-
-                //                // Inspect 넣기
-                //                int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                //                //index = 0;
-
-                //                // 검사수량이 0 이상인 건들만 넣기
-                //                if (InspectQty >= 0)
-                //                {
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                    sqlParameter.Add("RollSeq", 0);
-                //                    sqlParameter.Add("OrderSeq", 1);
-                //                    sqlParameter.Add("RollNo", 0);
-                //                    sqlParameter.Add("ExamNO", "00");
-                //                    sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                //                    sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                //                    sqlParameter.Add("TeamID", "");
-                //                    sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                //                    sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("UnitClss", "");
-                //                    sqlParameter.Add("GradeID", "1");
-                //                    sqlParameter.Add("LotNo", "");
-                //                    sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("DefectPoint", 0);
-                //                    sqlParameter.Add("DefectID", "");
-                //                    sqlParameter.Add("DefectClss", "");
-                //                    sqlParameter.Add("InstID", "");
-                //                    sqlParameter.Add("CardIDList", "");
-
-                //                    sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("PackID", "");
-
-                //                    WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                //                    pro3.Name = "[xp_prdIns_iInspectFinal]";
-                //                    pro3.OutputUseYN = "Y";
-                //                    pro3.OutputName = "RollSeq";
-                //                    pro3.OutputLength = "20";
-
-                //                    Prolist.Add(pro3);
-                //                    ListParameter.Add(sqlParameter);
-
-                //                    var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                //                    if (lstDefect != null)
-                //                    {
-                //                        int k = 0;
-                //                        foreach (string Key in lstDefect.Keys)
-                //                        {
-                //                            var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                //                            if (Defect != null
-                //                                && Lib.ConvertInt(Defect.DefectQty) > 0)
-                //                            {
-                //                                sqlParameter = new Dictionary<string, object>();
-
-                //                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                                sqlParameter.Add("RollSeq", 0);
-                //                                sqlParameter.Add("DefectSeq", ++k);
-                //                                sqlParameter.Add("DefectID", Key);
-                //                                sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
-
-                //                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                                sqlParameter.Add("PackID", "");
-
-                //                                WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                //                                pro4.Name = "[xp_prdIns_iInspectSub]";
-                //                                pro4.OutputUseYN = "N";
-                //                                pro4.OutputName = "OrderID";
-                //                                pro4.OutputLength = "20";
-
-                //                                Prolist.Add(pro4);
-                //                                ListParameter.Add(sqlParameter);
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //        else
-                //        {
-                //            for (int i = 0; i < BoxQty; i++)
-                //            {
-                //                // 마지막은 잔량만
-                //                if (totPassQty > 0
-                //                    && i == BoxQty - 1)
-                //                {
-                //                    PackQty = QtyPerBox == 0 ? totPassQty : (totPassQty % QtyPerBox == 0 ? QtyPerBox : totPassQty % QtyPerBox);
-                //                }
-                //                else
-                //                {
-                //                    PackQty = QtyPerBox;
-                //                }
-
-                //                sqlParameter = new Dictionary<string, object>();
-                //                sqlParameter.Add("PackID", "");
-                //                sqlParameter.Add("nseq", ++index);
-                //                sqlParameter.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim());
-                //                sqlParameter.Add("OrderID", dgdMain.Rows[0].Cells["OrderID"].Value.ToString()); //2021-06-09 포장품명을 새롭게 생성하여 마지막 공정의 후의 ArticleID가 필요해서 추가
-                //                sqlParameter.Add("sPackDate", mtb_Date.Text.Replace("-", ""));
-                //                sqlParameter.Add("nPackqty", PackQty);
-                //                sqlParameter.Add("PackCustomID", cboCustom.SelectedValue.ToString());
-                //                sqlParameter.Add("sPackPersonID", Frm_tins_Main.g_tBase.PersonID);
-
-
-                //                WizCommon.Procedure pro1 = new WizCommon.Procedure();
-                //                pro1.Name = "[xp_prdIns_iWkPacking]";
-                //                pro1.OutputUseYN = (i == 0 ? "Y" : "N");
-                //                pro1.OutputName = "PackID";
-                //                pro1.OutputLength = "10";
-
-                //                Prolist.Add(pro1);
-                //                ListParameter.Add(sqlParameter);
-                //            }
-                //            index = 0;
-                //            // wk_PackingCardList 에는 투입 라벨만 들어가면 되고.
-                //            // wk_Inspect 에는 각 라벨이 들어가야 됨.
-                //            for (int i = 0; i < dgdMain.Rows.Count; i++)
-                //            {
-                //                int PassQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString());
-
-                //                // 합격수량으로만 포장을 하니, 합격수량이 0 초과인 것들만 포장에 넣기.
-                //                if (PassQty > 0)
-                //                {
-                //                    // wk_PackingCardList
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("PackID", "");
-                //                    sqlParameter.Add("nCardSeq", ++index);
-                //                    sqlParameter.Add("sCardID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("nProdQty", PassQty);
-                //                    sqlParameter.Add("sCreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    WizCommon.Procedure pro2 = new WizCommon.Procedure();
-                //                    pro2.Name = "[xp_prdIns_iWkPackingCardList]";
-                //                    pro2.OutputUseYN = "N";
-                //                    pro2.OutputName = "PackID";
-                //                    pro2.OutputLength = "20";
-
-                //                    Prolist.Add(pro2);
-                //                    ListParameter.Add(sqlParameter);
-                //                }
-
-                //                // Inspect 넣기
-                //                int InspectQty = Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString());
-
-                //                //index = 0;
-
-                //                // 검사수량이 0 이상인 건들만 넣기
-                //                if (InspectQty > 0)
-                //                {
-                //                    sqlParameter = new Dictionary<string, object>();
-
-                //                    sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                    sqlParameter.Add("RollSeq", 0);
-                //                    sqlParameter.Add("OrderSeq", 1);
-                //                    sqlParameter.Add("RollNo", 0);
-                //                    sqlParameter.Add("ExamNO", "00");
-                //                    sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));
-
-                //                    sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));
-                //                    sqlParameter.Add("TeamID", "");
-                //                    sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("RealQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["InspectQty"].Value.ToString()));
-                //                    sqlParameter.Add("CtrlQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["PassQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("UnitClss", "");
-                //                    sqlParameter.Add("GradeID", "1");
-                //                    sqlParameter.Add("LotNo", "");
-                //                    sqlParameter.Add("BoxID", dgdMain.Rows[i].Cells["LabelID"].Value.ToString());
-                //                    sqlParameter.Add("DefectQty", Lib.ConvertInt(dgdMain.Rows[i].Cells["DefectQty"].Value.ToString()));
-
-                //                    sqlParameter.Add("DefectPoint", 0);
-                //                    sqlParameter.Add("DefectID", "");
-                //                    sqlParameter.Add("DefectClss", "");
-                //                    sqlParameter.Add("InstID", "");
-                //                    sqlParameter.Add("CardIDList", "");
-
-                //                    sqlParameter.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //                    sqlParameter.Add("PackID", "");
-
-                //                    WizCommon.Procedure pro3 = new WizCommon.Procedure();
-                //                    pro3.Name = "[xp_prdIns_iInspectFinal]";
-                //                    pro3.OutputUseYN = "Y";
-                //                    pro3.OutputName = "RollSeq";
-                //                    pro3.OutputLength = "20";
-
-                //                    Prolist.Add(pro3);
-                //                    ListParameter.Add(sqlParameter);
-
-                //                    var lstDefect = dgdMain.Rows[i].Cells["lstDefect"].Value as Dictionary<string, frm_tprc_Work_Defect_U_CodeView>;
-                //                    if (lstDefect != null)
-                //                    {
-                //                        int k = 0;
-                //                        foreach (string Key in lstDefect.Keys)
-                //                        {
-                //                            var Defect = lstDefect[Key] as frm_tprc_Work_Defect_U_CodeView;
-                //                            if (Defect != null
-                //                                && Lib.ConvertInt(Defect.DefectQty) > 0)
-                //                            {
-                //                                sqlParameter = new Dictionary<string, object>();
-
-                //                                sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString());
-                //                                sqlParameter.Add("RollSeq", 0);
-                //                                sqlParameter.Add("DefectSeq", ++k);
-                //                                sqlParameter.Add("DefectID", Key);
-                //                                sqlParameter.Add("DefectQty", Lib.ConvertInt(Defect.DefectQty));
-
-                //                                sqlParameter.Add("PersonID", Frm_tins_Main.g_tBase.PersonID);
-                //                                sqlParameter.Add("PackID", "");
-
-                //                                WizCommon.Procedure pro4 = new WizCommon.Procedure();
-                //                                pro4.Name = "[xp_prdIns_iInspectSub]";
-                //                                pro4.OutputUseYN = "N";
-                //                                pro4.OutputName = "OrderID";
-                //                                pro4.OutputLength = "20";
-
-                //                                Prolist.Add(pro4);
-                //                                ListParameter.Add(sqlParameter);
-                //                            }
-                //                        }
-                //                    }
-
-                //                }
-                //            }
-                //        }
-
-                //    }
-                //}
+                }
+            
                 //2021-05-22 검사포장 재고 생성
                 sqlParameter2 = new Dictionary<string, object>();
 

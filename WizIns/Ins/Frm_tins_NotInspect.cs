@@ -270,6 +270,15 @@ namespace WizIns
 
         private void dgdMain_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //2025-02-25 하나만 선택 되도록 추가
+            for (int x = 0; x < dgdMain.RowCount; x++)
+            {
+                if (x != e.RowIndex)
+                {
+                    dgdMain.Rows[x].Cells["Check"].Value = false;
+                }
+            }
+
             int y = 0;
             SumWorkQty2 = 0;
             SumNoInsQty2 = 0;

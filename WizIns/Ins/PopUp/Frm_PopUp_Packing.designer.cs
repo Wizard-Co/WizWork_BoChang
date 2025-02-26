@@ -806,6 +806,7 @@
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.tableLayoutPanel4);
+            this.panel6.Enabled = false;
             this.panel6.Location = new System.Drawing.Point(3, 119);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(84, 53);

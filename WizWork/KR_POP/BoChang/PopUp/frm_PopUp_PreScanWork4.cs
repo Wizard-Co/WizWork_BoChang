@@ -1046,6 +1046,7 @@ namespace WizWork
 
             catch (Exception)
             {
+                txtBarCodePreScan.Text = "";
                 WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 1);
                 return false;
             }
@@ -1068,6 +1069,11 @@ namespace WizWork
                 // 메시지 초기화
                 Message[0] = "";
                 Message[1] = "";
+
+                //초기화
+                m_ArticleID = "";
+                m_LabelGubun = "";
+                m_LocRemainQty = 0;
 
                 Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                 sqlParameter.Add("LotID", strBarCode);
