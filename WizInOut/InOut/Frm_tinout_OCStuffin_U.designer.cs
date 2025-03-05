@@ -672,7 +672,7 @@
             this.btnArticle.Name = "btnArticle";
             this.btnArticle.Size = new System.Drawing.Size(75, 35);
             this.btnArticle.TabIndex = 212;
-            this.btnArticle.Text = "품번";
+            this.btnArticle.Text = "품명";
             this.btnArticle.UseVisualStyleBackColor = true;
             this.btnArticle.Click += new System.EventHandler(this.btnArticle_Click);
             // 

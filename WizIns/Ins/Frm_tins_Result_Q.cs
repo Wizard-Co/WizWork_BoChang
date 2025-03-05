@@ -112,7 +112,7 @@ namespace WizIns
 
         private void Frm_tins_Result_Q_Load(object sender, EventArgs e)
         {
-            Ftm.LogSave(this.GetType().Name, "S"); //2022-06-23 사용시간(로드, 닫기)
+            Ftm.LogSave(this.GetType().Name, "S"); //2025-01-13 사용시간(로드, 닫기)
             SetScreen();
 
             // 데이터 그리드 초기 설정
@@ -125,7 +125,6 @@ namespace WizIns
             InitGrid();
 
             FillGrid();
-            Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
         }
 
         private void Frm_tins_Result_Q_Activated(object sender, EventArgs e)
@@ -410,7 +409,6 @@ namespace WizIns
             {
                 chkArticle.Checked = true;
                 FillGrid();
-                Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
             }
         }
 
@@ -419,7 +417,6 @@ namespace WizIns
         // 조회 버튼 클릭 이벤트
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
             btnSearch.Enabled = false;
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
             FillGrid();
@@ -473,13 +470,11 @@ namespace WizIns
 
                 if (DeleteData(dlstPackID))
                 {
-                    Ftm.LogSave(this.GetType().Name, "D"); //2022-06-23 삭제
                     lstMain.Clear();
                     dlstPackID.Clear();
                     dgdMain.Rows.Clear();
                     dgdSum.Rows.Clear();
                     FillGrid();
-                    Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
                 }
             }
 
@@ -523,7 +518,7 @@ namespace WizIns
                     Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                     sqlParameter.Add("PackID", lstPackID[j]);
                     string[] sConfirm = new string[2];
-                    sConfirm = DataStore.Instance.ExecuteProcedure("[xp_prdIns_dInspectAndPacking]", sqlParameter, true); //삭제
+                    sConfirm = DataStore.Instance.ExecuteProcedure_NewLog("[xp_prdIns_dInspectAndPacking]", sqlParameter, true, "D", Frm_tins_Main.g_tBase.PersonID); //삭제
                     if (sConfirm[0].ToUpper() == "SUCCESS")
                     { deleteCount++; }
 
@@ -862,7 +857,7 @@ namespace WizIns
                         Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                         sqlParameter.Add("LabelID", bLabel[k].Trim());//상위품ID
                         
-                        DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdIns_sBLabelInfo", sqlParameter, false);
+                        DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_prdIns_sBLabelInfo", sqlParameter, false, "P", Frm_tins_Main.g_tBase.PersonID);
 
                         DataRow dr = dt.Rows[0];
 
@@ -950,9 +945,7 @@ namespace WizIns
             {           
                 if (SaveData() == true)
                 {
-                    Ftm.LogSave(this.GetType().Name, "P"); //2022-06-23 인쇄, 재발행
                     FillGrid();
-                    Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
                 }             
             }
         }
@@ -1134,7 +1127,7 @@ namespace WizIns
                 sqlParameters.Add("Article", txtArticle.Text.Trim());
                 sqlParameters.Add("PersonCheck", personcheck.Checked == true ? 1 : 0); //2021-06-09 검색 조건 작업자 추가
                 sqlParameters.Add("Person", txtperson.Text.Trim()); //2021-06-09 검색 조건 작업자 추가
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("[xp_prdIns_sInspect]", sqlParameters, false);
+                DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("[xp_prdIns_sInspect]", sqlParameters, false, "R", Frm_tins_Main.g_tBase.PersonID);
 
                 if (dt != null
                     && dt.Rows.Count > 0)
@@ -1652,7 +1645,6 @@ namespace WizIns
             {
                 personcheck.Checked = true;
                 FillGrid();
-                Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
             }
         }
 

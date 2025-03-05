@@ -1860,7 +1860,6 @@ namespace WizWork
                 Success = AddNewWorkResult(iCnt, Frm_tprc_Main.g_tBase.DefectCnt, SumQty, LabelPaper_Count, LabelPaper_Qty, QtyperBox, UnderRealSumQty, UseChildQty.Count, UseRealChildQty); //
                 if (Success)
                 {
-                    LogData.LogSave(this.GetType().Name, "C"); //2022-06-22 저장
                     //첫 공정(DETSEQ가 1)   && MT_ARTICLE  LABELPRINTYN = Y && 1개 이상의 박스당 생산수 2022-09-14 라벨 밣행 선택화면을 수정하면서 조건 추가 Split_GBN == "YC"
                     if (((LabelPrintYN == "Y") && (Wh_Ar_LabelPrintYN == "Y") && (LabelPaper_Count > 0) && (Split_GBN == "YC"))) //첫번째면 무조건 라벨 발행 2023-06-21 || InstDetSeq == 1
                     {
@@ -1878,7 +1877,6 @@ namespace WizWork
                             //Message[1] = "저장이 완료되었습니다.";
                             //WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 3, 1);
                         }
-                        LogData.LogSave(this.GetType().Name, "P"); //2022-06-22 인쇄, 재발행
                     }
                     else
                     {
@@ -2293,7 +2291,7 @@ namespace WizWork
                 }
 
                 List<KeyValue> list_Result = new List<KeyValue>();
-                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", Frm_tprc_Main.g_tBase.PersonID);
 
                 if (list_Result[0].key.ToLower() == "success")
                 {
@@ -2780,9 +2778,8 @@ namespace WizWork
                 //2. 삭제 프로시저.
                 Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                 sqlParameter.Add("JobID", NowJobID);
-                DataStore.Instance.ProcedureToDataSet("[xp_WizWork_dWkResult_YellowIng]", sqlParameter, true);
+                DataStore.Instance.ProcedureToDataSet_NewLog("[xp_WizWork_dWkResult_YellowIng]", sqlParameter, true, "D", Frm_tprc_Main.g_tBase.PersonID);
                 DataStore.Instance.CloseConnection(); 
-                LogData.LogSave(this.GetType().Name, "D"); 
 
                 cmdExit_Click(null, null);
             }
@@ -3172,8 +3169,8 @@ namespace WizWork
                             sqlParameter2.Add("CardID", list_TWkResult[i - R].LabelID);
                         //}
                     }
-                    
-                    DataTable dt2 = DataStore.Instance.ProcedureToDataTable("[xp_WorkCard_sWorkCardPrint]", sqlParameter2, false);
+
+                    DataTable dt2 = DataStore.Instance.ProcedureToDataTable_NewLog("[xp_WorkCard_sWorkCardPrint]", sqlParameter2, false, "P", Frm_tprc_Main.g_tBase.PersonID);
                     lData = new List<string>();
                     string strProcessID = "";
                     int a = 0;
@@ -4510,9 +4507,8 @@ namespace WizWork
                     Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                     sqlParameter.Add("JobID", NowJobID);
                     //sqlParameter.Add("YLabelID", YLabelID);
-                    DataStore.Instance.ProcedureToDataSet("[xp_WizWork_dWkResult_YellowIng]", sqlParameter, true);
+                    DataStore.Instance.ProcedureToDataSet_NewLog("[xp_WizWork_dWkResult_YellowIng]", sqlParameter, true, "D", Frm_tprc_Main.g_tBase.PersonID);
                     DataStore.Instance.CloseConnection(); //2021-09-23 DB 커넥트 연결 해제
-                    LogData.LogSave(this.GetType().Name, "D"); //2022-06-22 삭제
                     //3. 다시 목록으로 복귀.
                     cmdExit_Click(null, null);
                 }

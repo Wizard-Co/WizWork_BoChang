@@ -231,7 +231,7 @@ namespace WizInOut
                 //sqlParameter.Add("nChkOrderID", chkOrderID.Checked == true ? 1 : 0);
                 //sqlParameter.Add("sOrderID", txtOrderID.Text.ToString());
 
-                DataSet ds = DataStore.Instance.ProcedureToDataSet("xp_WizWork_sOutware", sqlParameter, true);
+                DataSet ds = DataStore.Instance.ProcedureToDataSet_NewLog("xp_WizWork_sOutware", sqlParameter, true, "R", Frm_tinout_Main.g_tBase.PersonID);
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
@@ -268,9 +268,6 @@ namespace WizInOut
                         }
 
                     }
-
-                    LogData.LogSave(this.GetType().Name, "R"); //log 남기기(로드 S) 2022-10-24
-
                 }
             }
             catch (Exception ex)
@@ -286,8 +283,6 @@ namespace WizInOut
 
         private void UpdateSave()
         {
-            LogData.LogSave(this.GetType().Name, "U"); //log 남기기(로드 S) 2022-10-24
-
             Form form = null;//폼 초기화
 
             Frm_tinout_OutWareScan_U child1 = new Frm_tinout_OutWareScan_U(OutWareID);
@@ -327,7 +322,7 @@ namespace WizInOut
             Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
             sqlParameter.Add("OutwareID", OutwareID);
             string[] sConfirm = new string[2];
-            sConfirm = DataStore.Instance.ExecuteProcedure("xp_WizWork_dOutware", sqlParameter, true);
+            sConfirm = DataStore.Instance.ExecuteProcedure_NewLog("xp_WizWork_dOutware", sqlParameter, true, "D", Frm_tinout_Main.g_tBase.PersonID);
             //list_Confirm.Add(sConfirm[0]);
             //if (sConfirm[0].ToUpper() == "SUCCESS")
             //{ 
@@ -337,8 +332,6 @@ namespace WizInOut
             //{
 
             //}
-
-            LogData.LogSave(this.GetType().Name, "D"); //log 남기기(로드 S) 2022-10-24
         }
 
         #endregion

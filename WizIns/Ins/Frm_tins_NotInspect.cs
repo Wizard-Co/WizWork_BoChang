@@ -217,7 +217,6 @@ namespace WizIns
                 chkArticle.Checked = true;
                 FillGrid();
                 btnSearch.Enabled = true;
-                Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
             }
         }
 
@@ -231,7 +230,6 @@ namespace WizIns
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
             FillGrid();
             btnSearch.Enabled = true;
-            Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
         }
 
         // 닫기 버튼 클릭 이벤트
@@ -328,7 +326,7 @@ namespace WizIns
                 sqlParameters.Add("EDate", mtb_To.Text.Replace("-", ""));
                 sqlParameters.Add("ChkArticle", chkArticle.Checked == true ? 1 : 0);
                 sqlParameters.Add("Article", txtArticle.Text.Trim());
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("[xp_prdIns_sNoInspect]", sqlParameters, false); //xp_prdIns_sNoInspect_20210614
+                DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("[xp_prdIns_sNoInspect]", sqlParameters, false, "R", Frm_tins_Main.g_tBase.PersonID); //xp_prdIns_sNoInspect_20210614
 
                 if (dt != null
                     && dt.Rows.Count > 0)
@@ -520,7 +518,6 @@ namespace WizIns
                     btnSearch.Enabled = false;
                     FillGrid();
                     btnSearch.Enabled = true;
-                    Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 조회
                 }
                 #endregion
 

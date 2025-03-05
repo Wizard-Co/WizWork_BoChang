@@ -93,7 +93,6 @@ namespace WizWork
             chkComplete.Checked = true;
 
             procQuery();
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
 
             WorkingMachine_btnSetting(); //2023-03-28
 
@@ -238,14 +237,21 @@ namespace WizWork
             grdData.Columns[i].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             grdData.Columns[i].ReadOnly = true;
-            grdData.Columns[i].Visible = false;        
-            
+            grdData.Columns[i].Visible = false;
+
+            grdData.Columns[++i].Name = "Article";
+            grdData.Columns[i].HeaderText = "품명";
+            grdData.Columns[i].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            grdData.Columns[i].ReadOnly = true;
+            grdData.Columns[i].Visible = true;
+
             grdData.Columns[++i].Name = "BuyerArticleNo";
             grdData.Columns[i].HeaderText = "품번";
             grdData.Columns[i].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             grdData.Columns[i].ReadOnly = true;
-            grdData.Columns[i].Visible = true;
+            grdData.Columns[i].Visible = false;
 
             grdData.Columns[++i].Name = "InstID";
             grdData.Columns[i].HeaderText = "지시번호";
@@ -281,14 +287,6 @@ namespace WizWork
             grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             grdData.Columns[i].ReadOnly = true;
             grdData.Columns[i].Visible = false;
-
-            grdData.Columns[++i].Name = "Article";
-            grdData.Columns[i].HeaderText = "품명";
-            grdData.Columns[i].DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            grdData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            grdData.Columns[i].ReadOnly = true;
-            grdData.Columns[i].Visible = false;
-
 
             grdData.Columns[++i].Name = "ToTalWorkQty";
             grdData.Columns[i].HeaderText = "작업완료수량";
@@ -640,7 +638,7 @@ namespace WizWork
                 sqlParameter.Add("nChkMachineID", 1);
                 sqlParameter.Add("MachineID", strMachineID);
 
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_WizWork_splInputDet", sqlParameter, false);
+                DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_WizWork_splInputDet", sqlParameter, false, "R", Frm_tprc_Main.g_tBase.PersonID);
 
 
                 if (dt != null && dt.Rows.Count > 0)
@@ -675,14 +673,14 @@ namespace WizWork
                                                 Lib.CheckNull(dr["KCustom"].ToString()),
                                                 Lib.CheckNull(dr["BuyerModelID"].ToString()),
                                                 Lib.CheckNull(dr["Model"].ToString()),
-                                                Lib.CheckNull(dr["ArticleID"].ToString().Trim()),                                              
+                                                Lib.CheckNull(dr["ArticleID"].ToString().Trim()),
+                                                Lib.CheckNull(dr["Article"].ToString()),
                                                 Lib.CheckNull(dr["BuyerArticleNo"].ToString()),
                                                 Lib.CheckNull(dr["InstID"].ToString()),
                                                 Lib.CheckNull(dr["OrderID"].ToString()),
                                                 string.Format("{0:n0}", InstQty),          
                                                 Lib.CheckNull(dr["Process"].ToString()),
                                                 Lib.CheckNull(dr["MachineID"].ToString()),
-                                                Lib.CheckNull(dr["Article"].ToString()),
                                                 string.Format("{0:n0}", (int)TotalWorkQty),    // 작업완료수량
                                                 string.Format("{0:n0}", (int)WorkQty),         // 합격수량
                                                 string.Format("{0:n0}", (int)DefectQty),       // 불량수량
@@ -728,7 +726,6 @@ namespace WizWork
         {
             btnLookup.Enabled = false;
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             procQuery();
             WorkingMachine_btnSetting();
 
@@ -1074,7 +1071,6 @@ namespace WizWork
             if (e.KeyChar == (char)Keys.Enter)
             {
                 procQuery();
-                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             }
         }
 
@@ -1090,7 +1086,6 @@ namespace WizWork
                 {
                     txtPLotID.Text = keypad.tbInputText.Text;
                     procQuery();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
             }
             else
@@ -1111,7 +1106,6 @@ namespace WizWork
                 {
                     txtPLotID.Text = keypad.tbInputText.Text;
                     procQuery();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
             }
             else
@@ -1125,7 +1119,6 @@ namespace WizWork
                 {
                     txtPLotID.Text = keypad.tbInputText.Text;
                     procQuery();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
             }
         }
@@ -2098,7 +2091,6 @@ namespace WizWork
                 // re_search.
                 procQuery();
                 WorkingMachine_btnSetting();
-                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             }
         }
 
@@ -2649,7 +2641,6 @@ namespace WizWork
             if (e.KeyChar == (char)Keys.Enter)
             {
                 procQuery();
-                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             }
         }
     }

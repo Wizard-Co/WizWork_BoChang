@@ -67,7 +67,7 @@ namespace WizInOut
                                        new SqlParameter("SDATE", DateTime.Now.ToString("yyyyMMdd")),
                                        new SqlParameter("EDATE", DateTime.Now.ToString("yyyyMMdd"))
                                     };
-            DataSet ds = DataStore.Instance.ExecuteDataSet("xp_Info_sInfoByDate", param, false);
+            DataSet ds = DataStore.Instance.ExecuteDataSet_NewLog("xp_Info_sInfoByDate", param, false, "R", Frm_tinout_Main.g_tBase.PersonID);
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {

@@ -87,10 +87,6 @@ namespace WizIns
             this.txtLabelID = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgdMain = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnWorkOrderJPG = new System.Windows.Forms.Button();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.LabelID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +104,10 @@ namespace WizIns
             this.WorkDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JobID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnWorkOrderJPG = new System.Windows.Forms.Button();
             this.pnlForm.SuspendLayout();
             this.tlpForm.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -654,57 +654,6 @@ namespace WizIns
             this.dgdMain.TabStop = false;
             this.dgdMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdData_CellClick);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(3, 583);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(825, 13);
-            this.panel2.TabIndex = 224;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(0, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(321, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "※ 검사수량은 최종공정의 생산수량 만큼 자동 저장됩니다.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(96)))), ((int)(((byte)(156)))));
-            this.button2.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Bold);
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(816, 719);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 71);
-            this.button2.TabIndex = 220;
-            this.button2.Text = "도면확인";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
-            // 
-            // btnWorkOrderJPG
-            // 
-            this.btnWorkOrderJPG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(96)))), ((int)(((byte)(156)))));
-            this.btnWorkOrderJPG.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Bold);
-            this.btnWorkOrderJPG.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkOrderJPG.Image")));
-            this.btnWorkOrderJPG.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorkOrderJPG.Location = new System.Drawing.Point(814, 632);
-            this.btnWorkOrderJPG.Margin = new System.Windows.Forms.Padding(2);
-            this.btnWorkOrderJPG.Name = "btnWorkOrderJPG";
-            this.btnWorkOrderJPG.Size = new System.Drawing.Size(138, 71);
-            this.btnWorkOrderJPG.TabIndex = 220;
-            this.btnWorkOrderJPG.Text = "오더 상세";
-            this.btnWorkOrderJPG.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnWorkOrderJPG.UseVisualStyleBackColor = false;
-            this.btnWorkOrderJPG.Visible = false;
-            // 
             // No
             // 
             this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -772,7 +721,6 @@ namespace WizIns
             this.BuyerArticleNo.Name = "BuyerArticleNo";
             this.BuyerArticleNo.ReadOnly = true;
             this.BuyerArticleNo.Visible = false;
-            this.BuyerArticleNo.Width = 67;
             // 
             // OrderQty
             // 
@@ -785,7 +733,6 @@ namespace WizIns
             this.OrderQty.Name = "OrderQty";
             this.OrderQty.ReadOnly = true;
             this.OrderQty.Visible = false;
-            this.OrderQty.Width = 83;
             // 
             // WorkQty
             // 
@@ -871,7 +818,6 @@ namespace WizIns
             this.Model.Name = "Model";
             this.Model.ReadOnly = true;
             this.Model.Visible = false;
-            this.Model.Width = 67;
             // 
             // JobID
             // 
@@ -880,6 +826,57 @@ namespace WizIns
             this.JobID.Name = "JobID";
             this.JobID.ReadOnly = true;
             this.JobID.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(3, 583);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(825, 13);
+            this.panel2.TabIndex = 224;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label1.Location = new System.Drawing.Point(0, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(321, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "※ 검사수량은 최종공정의 생산수량 만큼 자동 저장됩니다.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(96)))), ((int)(((byte)(156)))));
+            this.button2.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Bold);
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(816, 719);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(138, 71);
+            this.button2.TabIndex = 220;
+            this.button2.Text = "도면확인";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
+            // 
+            // btnWorkOrderJPG
+            // 
+            this.btnWorkOrderJPG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(96)))), ((int)(((byte)(156)))));
+            this.btnWorkOrderJPG.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Bold);
+            this.btnWorkOrderJPG.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkOrderJPG.Image")));
+            this.btnWorkOrderJPG.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWorkOrderJPG.Location = new System.Drawing.Point(814, 632);
+            this.btnWorkOrderJPG.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWorkOrderJPG.Name = "btnWorkOrderJPG";
+            this.btnWorkOrderJPG.Size = new System.Drawing.Size(138, 71);
+            this.btnWorkOrderJPG.TabIndex = 220;
+            this.btnWorkOrderJPG.Text = "오더 상세";
+            this.btnWorkOrderJPG.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnWorkOrderJPG.UseVisualStyleBackColor = false;
+            this.btnWorkOrderJPG.Visible = false;
             // 
             // Frm_tins_Order_Q
             // 

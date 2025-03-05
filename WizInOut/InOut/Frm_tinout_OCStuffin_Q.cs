@@ -291,8 +291,7 @@ namespace WizInOut
                     bool isChecked = (bool)Cell.EditedFormattedValue;
                     if (isChecked)
                     {
-                        Reprint(dgvsr);
-                        LogData.LogSave(this.GetType().Name, "P"); //log 남기기(로드 S) 2022-10-24        
+                        Reprint(dgvsr);    
                     }
                 }
 
@@ -838,7 +837,7 @@ namespace WizInOut
                 //sqlParameter.Add("nChkArticleGrp", chkArticleGbn.Checked == true ? 1 : 0);
                 //sqlParameter.Add("ArticleGrpID", txtArticleGbnTag.Text.ToString());
 
-                DataSet ds = DataStore.Instance.ProcedureToDataSet("xp_WizWork_sStuffIN", sqlParameter, true);
+                DataSet ds = DataStore.Instance.ProcedureToDataSet_NewLog("xp_WizWork_sStuffIN", sqlParameter, true, "R", Frm_tinout_Main.g_tBase.PersonID);
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
@@ -888,8 +887,6 @@ namespace WizInOut
                             SumQty += Lib.ConvertDouble(dr["StuffQty"].ToString());
                             SumMarkingCount++;
                         }
-
-                        LogData.LogSave(this.GetType().Name, "R"); //log 남기기(로드 S) 2022-10-24
 
                     }
                 }
@@ -978,7 +975,6 @@ namespace WizInOut
         //수정
         private void UpdateSave()
         {
-            LogData.LogSave(this.GetType().Name, "U"); //log 남기기(로드 S) 2022-10-24
             Form form = null;//폼 초기화
 
             Frm_tinout_OCStuffin_U child1 = new Frm_tinout_OCStuffin_U(StuffinID, LotID, ArticleID, InspectID);
@@ -1019,7 +1015,7 @@ namespace WizInOut
             Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
             sqlParameter.Add("StuffinID", StuffinID);
             string[] sConfirm = new string[2];
-            sConfirm = DataStore.Instance.ExecuteProcedure("xp_WizWork_dStuffin", sqlParameter, true);
+            sConfirm = DataStore.Instance.ExecuteProcedure_NewLog("xp_WizWork_dStuffin", sqlParameter, true, "D", Frm_tinout_Main.g_tBase.PersonID);
             //list_Confirm.Add(sConfirm[0]);
             //if (sConfirm[0].ToUpper() == "SUCCESS")
             //{ 
@@ -1029,8 +1025,6 @@ namespace WizInOut
             //{
 
             //}
-
-            LogData.LogSave(this.GetType().Name, "D"); //log 남기기(로드 S) 2022-10-24
         }
 
         //삭제 전 사용이력 확인

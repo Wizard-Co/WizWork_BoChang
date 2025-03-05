@@ -261,73 +261,12 @@ namespace WizIns
         #region 확인, 취소 버튼 클릭 이벤트
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
-            //sqlParameter.Clear();
-
-            //sqlParameter.Add("LabelID", lstMain[0].LabelID);
-
-            //DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_Packing_OrderArticleID", sqlParameter, false);
-
-            //if (dt != null
-            //    && dt.Rows.Count > 0)
-            //{
-            //    DataRow dr = dt.Rows[0];
-
-            //    OrderArticleID = dr["OrderArticleID"].ToString();
-
-            //}
-
-            //DataStore.Instance.CloseConnection(); //2021-10-07 DB 커넥트 연결 해제
-
-
-            ////OrderArticleID = "21";
-
-            //if (OrderArticleID.IndexOf("21", 0, 2) != -1) 
-            //{
-            //    Frm_PopUp_PackingPrintMode packPM = new Frm_PopUp_PackingPrintMode();
-            //    packPM.ShowDialog();
-
-            //    if (packPM.DialogResult == DialogResult.No)
-            //    {
-                   
-            //    }
-            //    else
-            //    {
-            //        ArticleTagID = packPM.TagID; //013, 014 슬라이드 라벨 양식
-            //        if (SaveData())
-            //        {
-            //            Ftm.LogSave(this.GetType().Name, "C"); //2022-06-23 저장
-            //            Ftm.LogSave(this.GetType().Name, "P"); //2022-06-23 인쇄, 재발행
-            //            this.DialogResult = DialogResult.OK;
-            //            this.Close();
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    ArticleTagID = "011"; //011은 리니어모터 라벨 양식
-            //    if (SaveData())
-            //    {
-            //        Ftm.LogSave(this.GetType().Name, "C"); //2022-06-23 저장
-            //        Ftm.LogSave(this.GetType().Name, "P"); //2022-06-23 인쇄, 재발행
-            //        this.DialogResult = DialogResult.OK;
-            //        this.Close();
-            //    }
-            //}
-
             if (SaveData())
             {
-                Ftm.LogSave(this.GetType().Name, "C"); //2022-06-23 저장
-                Ftm.LogSave(this.GetType().Name, "P"); //2022-06-23 인쇄, 재발행
+                Ftm.LogSave(this.GetType().Name, "S"); //2025-01-13 사용시간(로드, 닫기)
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-
-            //if (SaveNotPrintData())
-            //{
-            //    this.DialogResult = DialogResult.OK;
-            //    this.Close();
-            //}
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -1300,7 +1239,7 @@ namespace WizIns
                 ListParameter.Add(sqlParameter2);
 
                 List<KeyValue> list_Result = new List<KeyValue>();
-                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", Frm_tins_Main.g_tBase.PersonID);
 
                 if (list_Result[0].key.ToLower() == "success")
                 {
@@ -1354,7 +1293,7 @@ namespace WizIns
                 Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                 sqlParameter.Add("PackID", PackID);//상위품ID
 
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdIns_sBLabelInfo_ByPackID", sqlParameter, false);
+                DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_prdIns_sBLabelInfo_ByPackID", sqlParameter, false, "P", Frm_tins_Main.g_tBase.PersonID);
                 //string g_sPrinterName = Lib.GetDefaultPrinter();
                 //WizWork.TSCLIB_DLL.openport(g_sPrinterName);
                 foreach (DataRow dr in dt.Rows)
@@ -1868,7 +1807,7 @@ namespace WizIns
                 ListParameter.Add(sqlParameter2);
 
                 List<KeyValue> list_Result = new List<KeyValue>();
-                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", Frm_tins_Main.g_tBase.PersonID);
 
                 if (list_Result[0].key.ToLower() == "success")
                 {
@@ -2177,14 +2116,11 @@ namespace WizIns
             frm_tprc_Work_Defect_U defect = new frm_tprc_Work_Defect_U("", dicDefect, Lib.ConvertDouble(txtInspectQty.Text));
             defect.Owner = this;
             defect.ShowDialog();
-            Ftm.LogSave(this.GetType().Name, "S"); //2022-06-23 사용시간(로드, 닫기)
             if (defect.DialogResult == DialogResult.OK)
             {
-                Ftm.LogSave(this.GetType().Name, "C"); //2022-06-23 저장
                 this.dicDefect = defect.dicDefect;
                 this.txtDefectQty.Text = defect.returnTotalQty;
             }
-            Ftm.LogSave(this.GetType().Name, "S"); //2022-06-23 사용시간(로드, 닫기)
             CalQty();
         }
         public bool SendWindowDllCommand(List<string> vData, string sTagID, int nPrintCount, int nDefectCnt)
@@ -2522,7 +2458,6 @@ namespace WizIns
         {
             if (SaveNotPrintData())
             {
-                Ftm.LogSave(this.GetType().Name, "C"); //2022-06-23 저장
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

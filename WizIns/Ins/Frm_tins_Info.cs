@@ -68,7 +68,7 @@ namespace WizIns
                                        new SqlParameter("SDATE", DateTime.Now.ToString("yyyyMMdd")),
                                        new SqlParameter("EDATE", DateTime.Now.ToString("yyyyMMdd"))
                                     };
-            DataSet ds = DataStore.Instance.ExecuteDataSet("xp_Info_sInfoByDate", param, false);
+            DataSet ds = DataStore.Instance.ExecuteDataSet_NewLog("xp_Info_sInfoByDate", param, false, "R", Frm_tins_Main.g_tBase.PersonID);
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
@@ -76,8 +76,6 @@ namespace WizIns
             }
             lblComTel.Select();
             lblComTel.Focus();
-            Ftm.LogSave(this.GetType().Name, "R"); //2022-06-23 R
-
         }
 
         private void button1_Click(object sender, EventArgs e)

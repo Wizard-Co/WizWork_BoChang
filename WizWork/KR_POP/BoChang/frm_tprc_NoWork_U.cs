@@ -621,7 +621,7 @@ namespace WizWork
                 //}
 
                 List<KeyValue> list_Result = new List<KeyValue>();
-                list_Result = DataStore.Instance.ExecuteAllProcedureOutputGetCS(Prolist, ListParameter);
+                list_Result = DataStore.Instance.ExecuteAllProcedureOutputGetCS_NewLog(Prolist, ListParameter, "C", Frm_tprc_Main.g_tBase.PersonID);
 
                 if (list_Result[0].key.ToLower() == "success")                
                 {
@@ -649,7 +649,6 @@ namespace WizWork
             if (CheckData())
             {
                 SaveData();
-                LogData.LogSave(this.GetType().Name, "C"); //2022-06-22 저장
             }
         }
 

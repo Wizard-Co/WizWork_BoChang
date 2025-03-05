@@ -754,7 +754,6 @@ namespace WizInOut
                 {
                     if (SaveData())
                     {
-                        LogData.LogSave(this.GetType().Name, "C"); //log 남기기(로드 S) 2022-10-24
                         chkID.Enabled = true;
                         chkQty.Enabled = true;
 
@@ -1544,7 +1543,7 @@ namespace WizInOut
                     }
 
                     List<KeyValue> list_Result = new List<KeyValue>();
-                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", cboPerson.SelectedValue.ToString());
 
                     if (list_Result[0].key.ToLower() == "success")
                     {
@@ -1672,7 +1671,7 @@ namespace WizInOut
                     }
 
                     List<KeyValue> list_Result = new List<KeyValue>();
-                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "U", cboPerson.SelectedValue.ToString());
 
                     if (list_Result[0].key.ToLower() == "success")
                     {
@@ -1771,12 +1770,13 @@ namespace WizInOut
                 WizCommon.Popup.MyMessageBox.ShowBox("품번을 입력해주세요.", "[확인]", 0, 1);
                 return false;
             }
+            //보창프레스 2025-02-27 품명은 빈칸이라 주석처리함 KDH
             //품명
-            if (txtBuyerArticle.Text == "")
-            {
-                WizCommon.Popup.MyMessageBox.ShowBox("품명을 입력해주세요.", "[확인]", 0, 1);
-                return false;
-            }
+            //if (txtBuyerArticle.Text == "")
+            //{
+            //    WizCommon.Popup.MyMessageBox.ShowBox("품명을 입력해주세요.", "[확인]", 0, 1);
+            //    return false;
+            //}
 
             ////박스
             //if (txtBoxQty.Text == "")

@@ -208,7 +208,6 @@ namespace WizWork
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             btnNew.Enabled = false;
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
 
@@ -262,8 +261,8 @@ namespace WizWork
                 sqlParameter.Add("nBuyerArticleNo", nChkBuyerArticleNo);//상위품ID
                 sqlParameter.Add("BuyerArticleNo", txtBuyerArticleNo.Text.Trim());//상위품ID
 
-                
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdWork_sCardLabelPrint", sqlParameter, false);
+
+                DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_prdWork_sCardLabelPrint", sqlParameter, false, "R", Frm_tprc_Main.g_tBase.PersonID);
                 DataRow dr = null;
                 int QtyPerBox = 0;
                 int ReprintQty = 0;
@@ -337,9 +336,7 @@ namespace WizWork
             {
                 if (SaveData() == true)
                 {
-                    LogData.LogSave(this.GetType().Name, "P"); //2022-06-22 인쇄, 재발행
                     FillGridData();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
 
             }
@@ -443,7 +440,7 @@ namespace WizWork
                         sqlParameter.Add("ReprintDate", list_TWkLabelPrint[i].sReprintDate);//상위품ID
                         sqlParameter.Add("UpdateUserID", list_TWkLabelPrint[i].sCreateuserID);//상위품ID
 
-                        DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_WizWork_uCardLabelPrint", sqlParameter, false);
+                        DataTable dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_WizWork_uCardLabelPrint", sqlParameter, false, "P", Frm_tprc_Main.g_tBase.PersonID);
 
 
                         //string g_sPrinterName = Lib.GetDefaultPrinter();
@@ -552,7 +549,6 @@ namespace WizWork
 
             rbnProcessLabel.Checked = true; //<-- 이 부분은 자동으로 체크 해놓아서 일단은 풀어서 사용함 (21.02.15 Khs)            
             FillGridData();
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
         }
 
         private void SetDateTime()

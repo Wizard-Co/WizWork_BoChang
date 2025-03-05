@@ -1567,11 +1567,9 @@ namespace WizInOut
             {
                 if (SaveData())
                 {
-                    LogData.LogSave(this.GetType().Name, "C"); //log 남기기 2022-10-24
                     PrintWorkCard();
                     clearAllValue();
                     clearDgvTab();
-                    LogData.LogSave(this.GetType().Name, "P"); //log 남기기 2022-10-24
 
                     if (u_LotID != "") 
                     {
@@ -1594,8 +1592,6 @@ namespace WizInOut
                     clearAllValue();
                     clearDgvTab();
                     WizCommon.Popup.MyMessageBox.ShowBox("저장이 완료되었습니다.", "[확인]", 0, 1);
-
-                    LogData.LogSave(this.GetType().Name, "C"); //log 남기기(로드 S) 2022-10-24
 
                     if (u_LotID != "")
                     {
@@ -2314,7 +2310,7 @@ namespace WizInOut
                     }
 
                     List<KeyValue> list_Result = new List<KeyValue>();
-                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", cboStuffinPerson.SelectedValue.ToString());
 
                     if (list_Result[0].key.ToLower() == "success")
                     {
@@ -2512,7 +2508,7 @@ namespace WizInOut
                     }
 
                     List<KeyValue> list_Result = new List<KeyValue>();
-                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS(Prolist, ListParameter);
+                    list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "U", cboStuffinPerson.SelectedValue.ToString());
 
                     if (list_Result[0].key.ToLower() == "success")
                     {
@@ -2719,8 +2715,8 @@ namespace WizInOut
                 Dictionary<string, object> sqlParameter2 = new Dictionary<string, object>();
                 sqlParameter2.Add("StuffinID", m_StuffinID);
                 sqlParameter2.Add("LabelID", m_LabelID);
-   
-                DataTable dt2 = DataStore.Instance.ProcedureToDataTable("xp_WizWork_sPrintCard_i", sqlParameter2, false);
+
+                DataTable dt2 = DataStore.Instance.ProcedureToDataTable_NewLog("xp_WizWork_sPrintCard_i", sqlParameter2, false, "P", cboStuffinPerson.SelectedValue.ToString());
                 lData = new List<string>();
                
                 double douworkqty = 0;

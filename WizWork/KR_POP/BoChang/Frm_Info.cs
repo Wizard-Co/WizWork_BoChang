@@ -69,7 +69,7 @@ namespace WizWork
                                        new SqlParameter("SDATE", DateTime.Now.ToString("yyyyMMdd")),
                                        new SqlParameter("EDATE", DateTime.Now.ToString("yyyyMMdd"))
                                     };
-            DataSet ds = DataStore.Instance.ExecuteDataSet("xp_Info_sInfoByDate", param, false);
+            DataSet ds = DataStore.Instance.ExecuteDataSet_NewLog("xp_Info_sInfoByDate", param, false, "R", Frm_tprc_Main.g_tBase.PersonID);
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
@@ -77,7 +77,6 @@ namespace WizWork
             }
             lblComTel.Select();
             lblComTel.Focus();
-            LogData.LogSave(this.GetType().Name, "R"); //log 남기기(조회 R) 2022-06-22
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -52,8 +52,6 @@ namespace WizWork
                 chkPLotID.Checked = false;
                 FillGridList();
             }
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
-
         }
        
         private void SetScreen()
@@ -428,7 +426,6 @@ namespace WizWork
 
         private void cmdSearch_Click(object sender, EventArgs e)
         {
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             cmdSearch.Enabled = false;
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
             FillGridList();
@@ -505,7 +502,7 @@ namespace WizWork
                 sqlParameter.Add(WizWork.TableData.Ins_InspectAutoSub.INSPECTPOINT, strInspectPoint);
                 sqlParameter.Add("nChkPLotID", intnChkPLotID);
                 sqlParameter.Add("sPLotID", strsPLotID);
-                dt = DataStore.Instance.ProcedureToDataTable("xp_WizWork_sInspectAuto", sqlParameter, false);
+                dt = DataStore.Instance.ProcedureToDataTable_NewLog("xp_WizWork_sInspectAuto", sqlParameter, false, "R", Frm_tprc_Main.g_tBase.PersonID);
                 grdList.Rows.Clear();
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -723,7 +720,7 @@ namespace WizWork
                                             Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
                                             sqlParameter.Add("InspectID", strInspectID);
                                             string[] sConfirm = new string[2];
-                                            sConfirm = DataStore.Instance.ExecuteProcedure("xp_WizWork_dInspectAuto", sqlParameter, true);
+                                            sConfirm = DataStore.Instance.ExecuteProcedure_NewLog("xp_WizWork_dInspectAuto", sqlParameter, true, "D", Frm_tprc_Main.g_tBase.PersonID);
                                             list_Confirm.Add(sConfirm[0]);
                                             if (sConfirm[0].ToUpper() == "SUCCESS")
                                             { deleteCount++; }
@@ -736,9 +733,7 @@ namespace WizWork
                                 }
                                 if (list_Confirm.Count > 0)//삭제결과 리스트
                                 {
-                                    LogData.LogSave(this.GetType().Name, "D"); //2022-06-22 삭제
                                     FillGridList();
-                                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                                     if (c > 0)
                                     {
                                         WizCommon.Popup.MyMessageBox.ShowBox("현재 날짜와 동일한 작업일자" + deleteCount.ToString() + "건 삭제완료됬습니다." +
@@ -877,7 +872,6 @@ namespace WizWork
                 {
                     chkPLotID.Checked = true;
                     FillGridList();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
                 else
                 {
@@ -901,7 +895,6 @@ namespace WizWork
                     chkArticle.Checked = false;
                     chkDate.Checked = false;
                     procQuery();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
             }
             else
@@ -937,7 +930,6 @@ namespace WizWork
                     txtBuyerArticle.Tag = sArticleID;
                     chkArticle.Checked = true;
                     FillGridList();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
             }
             else
@@ -952,7 +944,6 @@ namespace WizWork
             {
                 cmdDelete.Visible = false;
                 procQuery();
-                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 Frm_tprc_Main.gv.queryCount = string.Format("{0:n0}", grdData.RowCount);
                 Frm_tprc_Main.gv.SetStbInfo();
             }

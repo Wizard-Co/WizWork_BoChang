@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WizCommon.dll" size="367616">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WizCommon.dll" size="382464">
       <assemblyIdentity name="WizCommon" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Qr1YwzAemg8WjOEo8+A/qzXt73g=</dsig:DigestValue>
+        <dsig:DigestValue>yiDM4SFqIuKYjIK9bnzjPBO4xwc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,14 +92,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WizMes_Work.exe" size="2217472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WizMes_Work.exe" size="2216960">
       <assemblyIdentity name="WizMes_Work" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>nofxCkGSUyr9pjdbWpE6CpgXY68=</dsig:DigestValue>
+        <dsig:DigestValue>W3AHfUn/nB/tl0aibMGfN2OQvdY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

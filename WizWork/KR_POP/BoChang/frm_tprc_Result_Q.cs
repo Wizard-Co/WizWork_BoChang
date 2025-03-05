@@ -35,7 +35,6 @@ namespace WizWork
 
         private void btnLookup_Click(object sender, EventArgs e)
         {
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             btnLookup.Enabled = false;
 
             Lib.Delay(3000); //2021-11-10 버튼을 여러번 클릭해도 한번만 클릭되게 딜레이 추가
@@ -179,7 +178,7 @@ namespace WizWork
                                         Dictionary<string, int> outputParam = new Dictionary<string, int>();
                                         outputParam.Add("sRtnMsg", 500);
 
-                                        Dictionary<string, string> dicResult = DataStore.Instance.ExecuteProcedureOutputNoTran("xp_prdWork_dWkResult", sqlParameter, outputParam, true);
+                                        Dictionary<string, string> dicResult = DataStore.Instance.ExecuteProcedureOutputNoTran_NewLog("xp_prdWork_dWkResult", sqlParameter, outputParam, true, "D", Frm_tprc_Main.g_tBase.PersonID);
                                         string result = dicResult["sRtnMsg"];
                                         if ((result != string.Empty || result != "9999")
                                             && result.Equals(""))
@@ -200,9 +199,8 @@ namespace WizWork
                         }
                         if (deleteCount > 0)//삭제결과 리스트
                         {
-                            LogData.LogSave(this.GetType().Name, "D"); //2022-06-22 삭제
                             procQuery();
-                            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
+
                             if (c > 0)
                             {
                                 WizCommon.Popup.MyMessageBox.ShowBox("현재 날짜와 동일한 작업일자" + deleteCount.ToString() + "건 삭제완료됬습니다." +
@@ -449,7 +447,7 @@ namespace WizWork
             sqlParameter.Add("nBuyerArticleNo", chkBuyerArticleNo.Checked == true ? 1: 0);
             sqlParameter.Add("BuyerArticleNo", chkBuyerArticleNo.Checked == true && txtBuyerArticleNo.Text.Trim().Length > 0 ? txtBuyerArticleNo.Text : "");
 
-            ds = DataStore.Instance.ProcedureToDataSet("xp_prdWork_sWkResult", sqlParameter, false);
+            ds = DataStore.Instance.ProcedureToDataSet_NewLog("xp_prdWork_sWkResult", sqlParameter, false, "R", Frm_tprc_Main.g_tBase.PersonID);
             IFormatProvider KR_Format = new System.Globalization.CultureInfo("ko-KR", true);
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -773,7 +771,6 @@ namespace WizWork
                 //chkPLotID.Checked = false;
                 procQuery();
             }
-            LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
         }
 
         #region Default Grid Setting
@@ -994,7 +991,6 @@ namespace WizWork
                 {
                     chkPLotID.Checked = true;
                     procQuery();
-                    LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
                 }
                 else
                 {
@@ -1059,7 +1055,6 @@ namespace WizWork
             {
                 chkBuyerArticleNo.Checked = true;
                 procQuery();
-                LogData.LogSave(this.GetType().Name, "R"); //2022-06-22 조회
             }
         }
 

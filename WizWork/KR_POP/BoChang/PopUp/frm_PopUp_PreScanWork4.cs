@@ -1046,7 +1046,7 @@ namespace WizWork
 
             catch (Exception)
             {
-                txtBarCodePreScan.Text = "";
+                
                 WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 0, 1);
                 return false;
             }

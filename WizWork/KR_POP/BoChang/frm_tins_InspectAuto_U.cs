@@ -1019,7 +1019,6 @@ namespace WizWork
                     //{
                         if (SaveData())
                         {
-                            LogData.LogSave(this.GetType().Name, "C"); //2022-06-22 저장
                                                                        //EnabledTrue();
                             WizCommon.Popup.MyMessageBox.ShowBox("검사 등록을 완료하였습니다.", "[검사등록완료]", 1, 1);
                             txtLotNo.Focus();
@@ -1256,7 +1255,7 @@ namespace WizWork
                     }
                 }
                 string[] Confirm = new string[2];
-                Confirm = DataStore.Instance.ExecuteAllProcedureOutput(ListProcedureName, ListParameter);
+                Confirm = DataStore.Instance.ExecuteAllProcedureOutput_NewLog(ListProcedureName, ListParameter, "C", Frm_tprc_Main.g_tBase.PersonID);
                 if (Confirm[0].ToLower() == "success")
                 {
                     blResult = true;                   
