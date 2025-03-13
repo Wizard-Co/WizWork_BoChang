@@ -208,7 +208,7 @@ namespace WizWork
                             }
                             else
                             {
-                                WizCommon.Popup.MyMessageBox.ShowBox(deleteCount.ToString() + "건 삭제완료됬습니다.", "[삭제 완료]", 0, 1);
+                                WizCommon.Popup.MyMessageBox.ShowBox(deleteCount.ToString() + "건 삭제완료되었습니다.", "[삭제 완료]", 0, 1);
                             }
 
                             DataStore.Instance.CloseConnection(); //2021-10-07 DB 커넥트 연결 해제

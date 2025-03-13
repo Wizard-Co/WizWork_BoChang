@@ -61,6 +61,8 @@
             this.tlpChildMtr = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.GridData2 = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Article = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,10 +71,8 @@
             this.Cancel = new System.Windows.Forms.DataGridViewButtonColumn();
             this.BuyerArticleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitClss = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewProductYN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScanExceptYN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PLLOTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.tlpMain.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -414,7 +414,7 @@
             this.Cancel,
             this.BuyerArticleNo,
             this.UnitClss,
-            this.NewProductYN,
+            this.ScanExceptYN,
             this.PLLOTID});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -446,6 +446,28 @@
             this.GridData2.TabIndex = 197;
             this.GridData2.TabStop = false;
             this.GridData2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridData2_CellContentClick);
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(728, 14);
+            this.panel5.TabIndex = 240;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(73)))));
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("맑은 고딕", 16F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(45, -4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(655, 35);
+            this.label3.TabIndex = 241;
+            this.label3.Text = "일괄 스캔 목록";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -522,13 +544,13 @@
             this.UnitClss.Visible = false;
             this.UnitClss.Width = 67;
             // 
-            // NewProductYN
+            // ScanExceptYN
             // 
-            this.NewProductYN.HeaderText = "신제품";
-            this.NewProductYN.Name = "NewProductYN";
-            this.NewProductYN.ReadOnly = true;
-            this.NewProductYN.Visible = false;
-            this.NewProductYN.Width = 83;
+            this.ScanExceptYN.HeaderText = "하위품관리여부";
+            this.ScanExceptYN.Name = "ScanExceptYN";
+            this.ScanExceptYN.ReadOnly = true;
+            this.ScanExceptYN.Visible = false;
+            this.ScanExceptYN.Width = 147;
             // 
             // PLLOTID
             // 
@@ -537,28 +559,6 @@
             this.PLLOTID.ReadOnly = true;
             this.PLLOTID.Visible = false;
             this.PLLOTID.Width = 99;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(728, 14);
-            this.panel5.TabIndex = 240;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(73)))));
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Font = new System.Drawing.Font("맑은 고딕", 16F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(45, -4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(655, 35);
-            this.label3.TabIndex = 241;
-            this.label3.Text = "일괄 스캔 목록";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frm_PopUp_PreScanWork_Grid4
             // 
@@ -631,7 +631,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Cancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyerArticleNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitClss;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NewProductYN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ScanExceptYN;
         private System.Windows.Forms.DataGridViewTextBoxColumn PLLOTID;
     }
 }

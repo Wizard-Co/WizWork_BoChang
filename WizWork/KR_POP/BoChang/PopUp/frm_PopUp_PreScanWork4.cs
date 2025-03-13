@@ -145,7 +145,7 @@ namespace WizWork
 
                 sqlParameter.Add("InstID", Frm_tprc_Main.g_tBase.sInstID);
                 sqlParameter.Add("InstDetSeq", ConvertInt(Frm_tprc_Main.g_tBase.sInstDetSeq));
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdWork_sChildArticleForScan_GLS", sqlParameter, false); //xp_prdWork_sChildArticleForScan_GLS_20210412
+                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdWork_sChildArticleForScan_GLS", sqlParameter, false);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -226,7 +226,7 @@ namespace WizWork
                 Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
 
                 sqlParameter.Add("PlateInstID", Frm_tprc_Main.g_tBase.sInstID);
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdWork_sChildArticleForScan_By_Cutting", sqlParameter, false); //xp_prdWork_sChildArticleForScan_GLS_20210412
+                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_prdWork_sChildArticleForScan_By_Cutting", sqlParameter, false);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -313,7 +313,7 @@ namespace WizWork
                 sqlParameter.Add("InstID", Frm_tprc_Main.g_tBase.sInstID);
                 sqlParameter.Add("InstDetSeq", ConvertInt(Frm_tprc_Main.g_tBase.sInstDetSeq));
 
-                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_PlanInput_sPlanInputDetArticle_ChildMtrExceptYN", sqlParameter, false); //xp_prdWork_sChildArticleForScan_GLS_20210412
+                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_PlanInput_sPlanInputDetArticle_ChildMtrExceptYN", sqlParameter, false); 
 
                 if (dt != null && dt.Rows.Count > 0)
                 {

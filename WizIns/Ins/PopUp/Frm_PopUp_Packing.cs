@@ -1218,25 +1218,25 @@ namespace WizIns
                 //}
                
                 //2021-05-22 검사포장 재고 생성
-                sqlParameter2 = new Dictionary<string, object>();
+                //sqlParameter2 = new Dictionary<string, object>();
 
-                sqlParameter2.Add("PackID", "");
-                sqlParameter2.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim()); //2021-06-08 포장재고를 생성하고 하위품을 재고 소진 하기 위해 추가
-                sqlParameter2.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
-                //sqlParameter.Add("UnitClss", ""); //2021-05-20
-                //sqlParameter.Add("RollSeq", 0);  //2021-05-20
-                //sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
-                //sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
-                //sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
-                WizCommon.Procedure pro5 = new WizCommon.Procedure();
-                pro5.Name = "[xp_prdIns_iStuffinOutware]";
-                pro5.OutputUseYN = "N";
-                pro5.OutputName = "PackID";
-                pro5.OutputLength = "20";
+                //sqlParameter2.Add("PackID", "");
+                //sqlParameter2.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim()); //2021-06-08 포장재고를 생성하고 하위품을 재고 소진 하기 위해 추가
+                //sqlParameter2.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                ////sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
+                ////sqlParameter.Add("UnitClss", ""); //2021-05-20
+                ////sqlParameter.Add("RollSeq", 0);  //2021-05-20
+                ////sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
+                ////sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
+                ////sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
+                //WizCommon.Procedure pro5 = new WizCommon.Procedure();
+                //pro5.Name = "[xp_prdIns_iStuffinOutware]";
+                //pro5.OutputUseYN = "N";
+                //pro5.OutputName = "PackID";
+                //pro5.OutputLength = "20";
 
-                Prolist.Add(pro5);
-                ListParameter.Add(sqlParameter2);
+                //Prolist.Add(pro5);
+                //ListParameter.Add(sqlParameter2);
 
                 List<KeyValue> list_Result = new List<KeyValue>();
                 list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", Frm_tins_Main.g_tBase.PersonID);
@@ -1786,25 +1786,25 @@ namespace WizIns
                 }
             
                 //2021-05-22 검사포장 재고 생성
-                sqlParameter2 = new Dictionary<string, object>();
+                //sqlParameter2 = new Dictionary<string, object>();
 
-                sqlParameter2.Add("PackID", "");
-                sqlParameter2.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim()); //2021-06-08 포장재고를 생성하고 하위품을 재고 소진 하기 위해 추가
-                sqlParameter2.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
-                //sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
-                //sqlParameter.Add("UnitClss", ""); //2021-05-20
-                //sqlParameter.Add("RollSeq", 0);  //2021-05-20
-                //sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
-                //sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
-                //sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
-                WizCommon.Procedure pro5 = new WizCommon.Procedure();
-                pro5.Name = "[xp_prdIns_iStuffinOutware]";
-                pro5.OutputUseYN = "N";
-                pro5.OutputName = "PackID";
-                pro5.OutputLength = "20";
+                //sqlParameter2.Add("PackID", "");
+                //sqlParameter2.Add("ArticleID", dgdMain.Rows[0].Cells["ArticleID"].Value.ToString().Trim()); //2021-06-08 포장재고를 생성하고 하위품을 재고 소진 하기 위해 추가
+                //sqlParameter2.Add("CreateUserID", Frm_tins_Main.g_tBase.PersonID);
+                ////sqlParameter.Add("OrderID", dgdMain.Rows[i].Cells["OrderID"].Value.ToString()); //2021-05-20
+                ////sqlParameter.Add("UnitClss", ""); //2021-05-20
+                ////sqlParameter.Add("RollSeq", 0);  //2021-05-20
+                ////sqlParameter.Add("ExamDate", mtb_Date.Text.Replace("-", ""));       //2021-05-20
+                ////sqlParameter.Add("ExamTime", dtInspectTime.Value.ToString("HHmmss"));   //2021-05-20
+                ////sqlParameter.Add("DefectQty", txtDefectQty.Text);   //2021-05-20
+                //WizCommon.Procedure pro5 = new WizCommon.Procedure();
+                //pro5.Name = "[xp_prdIns_iStuffinOutware]";
+                //pro5.OutputUseYN = "N";
+                //pro5.OutputName = "PackID";
+                //pro5.OutputLength = "20";
 
-                Prolist.Add(pro5);
-                ListParameter.Add(sqlParameter2);
+                //Prolist.Add(pro5);
+                //ListParameter.Add(sqlParameter2);
 
                 List<KeyValue> list_Result = new List<KeyValue>();
                 list_Result = DataStore.Instance.ExecuteAllProcedureOutputToCS_NewLog(Prolist, ListParameter, "C", Frm_tins_Main.g_tBase.PersonID);

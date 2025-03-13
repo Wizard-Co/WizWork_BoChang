@@ -924,6 +924,7 @@ namespace WizWork
             this.btnToolChange.Text = "Tool";
             this.btnToolChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnToolChange.UseVisualStyleBackColor = false;
+            this.btnToolChange.Visible = false;
             this.btnToolChange.Click += new System.EventHandler(this.btnToolChange_Click);
             // 
             // cmdClose
@@ -991,6 +992,7 @@ namespace WizWork
             this.btnInspectAuto.Text = "자주검사";
             this.btnInspectAuto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnInspectAuto.UseVisualStyleBackColor = false;
+            this.btnInspectAuto.Visible = false;
             this.btnInspectAuto.Click += new System.EventHandler(this.btnInspectAuto_Click);
             // 
             // btnKPI

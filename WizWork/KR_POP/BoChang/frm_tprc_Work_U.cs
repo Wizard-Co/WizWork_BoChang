@@ -1013,16 +1013,16 @@ namespace WizWork
                                                                                             //2021-12-01 생산가능량을 하위품이 여러개인 경우 최소값을 가져가게 수정함 m_douProdCapa -> m_MindouProdCapa
                 if (m_MindouProdCapa != 0 || m_MindouProdCapa == 0)   // 생산가능량 : m_douProdCapa 
                 {
-                    //2022-12-29
+                    //2025-03-12 무조건 1개 되도록 수정
                     if ((m_MtrExceptYN.Equals("N") && m_PCMtrExceptYN.Equals("")) || m_PCMtrExceptYN.Equals("N"))
                     {
                         if (txtMindouProdCapa.Text != "")
                         {
-                            if (Lib.GetDouble(txtWorkQty.Text) > Lib.GetDouble(txtMindouProdCapa.Text))
+                            if(Lib.GetDouble(txtWorkQty.Text) > 1) //(Lib.GetDouble(txtWorkQty.Text) > Lib.GetDouble(txtMindouProdCapa.Text))
                             {
                                 // 내 순수 작업물량이 생산가능량 보다 크다면, 막아야 한다.
                                 Message[0] = "[작업수량]";
-                                Message[1] = "작업수량이 생산가능 수량보다 더 큽니다." +
+                                Message[1] = "작업수량이 1보다 더 큽니다." +
                                                 "생산실적 저장을 중단합니다.";
                                 WizCommon.Popup.MyMessageBox.ShowBox(Message[1], Message[0], 3, 1);
                                 return;
@@ -1793,7 +1793,9 @@ namespace WizWork
 
                 //잔량 불러오기 라벨 건이 있다면, 그 라벨도 인쇄 될 수 있도록.
                 //하위라벨이 C로 시작하는 경우 라벨 발행 안 함
-                if (!(txtPreInsertLabelBarCode.Text.ToString().Contains("C"))) 
+                //첫공정인 경우(재관/용접)인 경우 라벨 발행 2025-03-10 KDH
+                //!(txtPreInsertLabelBarCode.Text.ToString().Contains("C")) || Frm_tprc_Main.g_tBase.ProcessID == "2010"
+                if (InstDetSeq == 1) 
                 {
                     for (int i = 0; i < TWkRCon; i++)
                     {
@@ -3336,6 +3338,9 @@ namespace WizWork
                         lstArticleIDList.Add(GridData2.Rows[i].Cells["ChildArticleID"].Value.ToString());
                     }
 
+                    //재관/용접 이후는 무조건 1로 처리해야 되어 1 미리 입력함 2025-03-12 KDH
+                    txtWorkQty.Text = "1";
+
                 }
                 else
                 {
@@ -3984,8 +3989,8 @@ namespace WizWork
                                     GridData2.Rows[i].Cells["BarCode"].Value = ListChildLabelID[listcount]; //2021-11-30 old : this.txtPreInsertLabelBarCode.Text.Trim();
                                     GridData2.Rows[i].Cells["LabelGubun"].Value = m_LabelGubun;
                                     GridData2["BuyerArticle", i].Selected = true;
-                                    GridData2.Rows[i].Cells["RemainQty"].Value = string.Format("{0:n5}", m_RemainQty);//전체잔량
-                                    GridData2.Rows[i].Cells["LocRemainQty"].Value = string.Format("{0:n5}", m_LocRemainQty);//창고잔량
+                                    GridData2.Rows[i].Cells["RemainQty"].Value = string.Format("{0:n0}", m_RemainQty);//전체잔량
+                                    GridData2.Rows[i].Cells["LocRemainQty"].Value = string.Format("{0:n0}", m_LocRemainQty);//창고잔량
                                     double.TryParse(GridData2.Rows[i].Cells["ReqQty"].Value.ToString(), out m_douReqQty);
                                     GridData2.Rows[i].Cells["EffectDate"].Value = m_EffectDate;
                                     GridData2.Rows[i].Cells["UnitClssName"].Value = m_UnitClssName;         // 하위품의 재고단위
@@ -4075,8 +4080,8 @@ namespace WizWork
                                                         , m_LabelGubun
                                                         , GridData2.Rows[i].Cells["Flag"].Value
                                                         , m_ScanExceptYN
-                                                        , string.Format("{0:n5}", m_RemainQty)      //m_RemainQty.ToString()
-                                                        , string.Format("{0:n5}", m_LocRemainQty)   //m_LocRemainQty.ToString()
+                                                        , string.Format("{0:n0}", m_RemainQty)      //m_RemainQty.ToString()
+                                                        , string.Format("{0:n0}", m_LocRemainQty)   //m_LocRemainQty.ToString()
                                                         , GridData2.Rows[i].Cells["UnitClss"].Value
                                                         , m_UnitClssName
                                                         , m_douReqQty.ToString()

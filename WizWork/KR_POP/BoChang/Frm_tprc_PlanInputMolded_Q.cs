@@ -2080,17 +2080,38 @@ namespace WizWork
 
         public void SetPreScanPopUpLoad(string processid, string machindid, string moldid)
         {
-            frm_PopUp_PreScanWork4 FPPSW = new frm_PopUp_PreScanWork4(processid, machindid, moldid);
-            FPPSW.StartPosition = FormStartPosition.CenterScreen;
-            FPPSW.BringToFront();
-            FPPSW.TopMost = true;
-
-            if (FPPSW.ShowDialog() == DialogResult.OK)
+            //절단은 자재가 있어야 됨
+            if (processid == "0401")
             {
-                // ok라는건, 새로운 시작처리가 하나 있다는 것.
-                // re_search.
-                procQuery();
-                WorkingMachine_btnSetting();
+                //절단
+                frm_PopUp_PreScanWork4 FPPSW = new frm_PopUp_PreScanWork4(processid, machindid, moldid);
+                FPPSW.StartPosition = FormStartPosition.CenterScreen;
+                FPPSW.BringToFront();
+                FPPSW.TopMost = true;
+
+                if (FPPSW.ShowDialog() == DialogResult.OK)
+                {
+                    // ok라는건, 새로운 시작처리가 하나 있다는 것.
+                    // re_search.
+                    procQuery();
+                    WorkingMachine_btnSetting();
+                }
+            }
+            else 
+            {
+                //절단 이외
+                frm_PopUp_PreScanWork_Grid4 FPPSW4 = new frm_PopUp_PreScanWork_Grid4(processid, machindid, moldid);
+                FPPSW4.StartPosition = FormStartPosition.CenterScreen;
+                FPPSW4.BringToFront();
+                FPPSW4.TopMost = true;
+
+                if (FPPSW4.ShowDialog() == DialogResult.OK)
+                {
+                    // ok라는건, 새로운 시작처리가 하나 있다는 것.
+                    // re_search.
+                    procQuery();
+                    WorkingMachine_btnSetting();
+                }
             }
         }
 

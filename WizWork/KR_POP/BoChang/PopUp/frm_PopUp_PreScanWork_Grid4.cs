@@ -59,11 +59,6 @@ namespace WizWork
         private string Wh_Ar_InstID = "";       // PL_Input 작지의 해당 대상 InstID.
         private string Wh_Ar_InstID_Seq = "";   // PL_Input 작지의 해당 대상 InstID_Seq.
 
-        private double m_douReqQty = 0;         //현재품목 소요량
-        private double m_douProdCapa = 0;
-
-        private string m_NewProductYN = ""; //2022-02-14 신제품, 재연마 구분
-
         int SumQty = 0; //2021-11-16 합계용 변수 추가
 
         string FIFOLOTID = ""; //2022-05-10 선입선출용 LOTID
@@ -172,7 +167,7 @@ namespace WizWork
             {
                 // 선 스캔 항목 정보 등록
                 setPreScanLabel();
-                //반제품(03), 제품(05)이 아닌 경우 여기에서 선입선출로 하나의 라벨만 보이게 (ArticleGrpID) 2024-04-02
+                //하위품 재고 있는 경우 그리드에 보여주는 함수
                 CheckMtrArticleID();
                 setBtnOKEnabled(); //2021-12-11 라벨 없을 경우 ok 비활성화
             }
@@ -184,101 +179,35 @@ namespace WizWork
         {
             try
             {
-                //if (Frm_tprc_Main.g_tBase.Process.Contains("외주")) 
-                //{ 
-                //    //2021-05-12
-                //    int index = 1;
-                //    Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
-                //    sqlParameter.Add("PLotID", Frm_tprc_Main.g_tBase.sLotID);
+                //2021-05-12
+                int index = 1;
+                Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
+                sqlParameter.Add("PLotID", Frm_tprc_Main.g_tBase.sLotID);
 
-                //    DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_PlanInput_sPlanInputDetArticle_ChildPrdMove", sqlParameter, false);
+                DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_PlanInput_sPlanInputDetArticle_Child", sqlParameter, false);
 
-                //    foreach (DataRow dr in dt.Rows)
-                //    {
-                //        m_ChildArticle = dr["BuyerArticleNo"].ToString();
-                //        m_ChildArticleID = dr["ChildArticleID"].ToString().Trim();
-                //        m_ChildUnitClss = dr["UnitClss"].ToString();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    m_ChildArticle = dr["BuyerArticleNo"].ToString();
+                    m_ChildArticleID = dr["ChildArticleID"].ToString();
+                    m_ChildUnitClss = dr["UnitClss"].ToString();
 
-                //        if (dr["ScanExceptYN"].ToString() == "N")
-                //        {
-                //            GridData2.Rows.Add(index.ToString() // 순번
-                //                                        , ""
-                //                                        , m_ChildArticle
-                //                                        , ""
-                //                                        , "선스캔라벨"
-                //                                        , ""
-                //                                        , m_ChildArticleID
-                //                                        , m_ChildUnitClss
-                //                                        , dr["ScanExceptYN"].ToString() //2022-02-14
-                //                                        );
-                //            index++;
-                //        }
-                //        else
-                //        {
-                //            GridData2.Rows.Add(index.ToString() // 순번
-                //                                        , ""
-                //                                        , m_ChildArticle
-                //                                        , stringFormatN0(dr["NowLoc"].ToString())
-                //                                        , "선스캔라벨"
-                //                                        , ""
-                //                                        , m_ChildArticleID
-                //                                        , m_ChildUnitClss
-                //                                        , dr["ScanExceptYN"].ToString() //2022-02-14
-                //                                        );
-                //            index++;
-                //        }
-
-                //    }
-                //    //InsertX++; //2021-05-12 articlechild 에 임시 임서트 하기 위해 추가
+                    //if (dr["ScanExceptYN"].ToString() == "N")
+                    //{
+                        GridData2.Rows.Add(index.ToString() // 순번
+                                                    , ""
+                                                    , m_ChildArticle
+                                                    , ""
+                                                    , "선스캔라벨"
+                                                    , ""
+                                                    , m_ChildArticleID
+                                                    , m_ChildUnitClss
+                                                    , dr["ScanExceptYN"].ToString() //2022-02-14
+                                                    );
+                        index++;
 
 
-                //}
-                //else
-                //{
-                    //2021-05-12
-                    int index = 1;
-                    Dictionary<string, object> sqlParameter = new Dictionary<string, object>();
-                    sqlParameter.Add("PLotID", Frm_tprc_Main.g_tBase.sLotID);
-
-                    DataTable dt = DataStore.Instance.ProcedureToDataTable("xp_PlanInput_sPlanInputDetArticle_Child", sqlParameter, false);
-
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        m_ChildArticle = dr["BuyerArticleNo"].ToString();
-                        m_ChildArticleID = dr["ChildArticleID"].ToString();
-                        m_ChildUnitClss = dr["UnitClss"].ToString();
-
-                        //if (dr["ScanExceptYN"].ToString() == "N")
-                        //{
-                            GridData2.Rows.Add(index.ToString() // 순번
-                                                        , ""
-                                                        , m_ChildArticle
-                                                        , ""
-                                                        , "선스캔라벨"
-                                                        , ""
-                                                        , m_ChildArticleID
-                                                        , m_ChildUnitClss
-                                                        , dr["ScanExceptYN"].ToString() //2022-02-14
-                                                        );
-                            index++;
-                        //}
-                        //else
-                        //{
-                        //    GridData2.Rows.Add(index.ToString() // 순번
-                        //                                , ""
-                        //                                , m_ChildArticle
-                        //                                , stringFormatN0(dr["NowLoc"].ToString())
-                        //                                , "선스캔라벨"
-                        //                                , ""
-                        //                                , m_ChildArticleID
-                        //                                , m_ChildUnitClss
-                        //                                , dr["ScanExceptYN"].ToString() //2022-02-14
-                        //                                );
-                        //    index++;
-                        //}
-
-                    }
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -315,11 +244,9 @@ namespace WizWork
         }
         #endregion
 
-        //ArticleID로 ArticleGrpID 찾기 2024-04-02
+        //하위품 재고 여부 있는 경우 그리드에 보여주기
         private void CheckMtrArticleID()
         {
-            int cntmtr = 0; //재고가 없는 원자재 갯수
-
             for (int i = 0; i < GridData2.Rows.Count; i++)
             {
                 //ArticleID로 선입선출 LOTID, ArticleGrpID 찾기
@@ -331,28 +258,15 @@ namespace WizWork
                 {
                     DataRow dr = dt.Rows[0];
                     
-                    //반제품(03), 제품(05)이 아닌 경우
-                    if(dr["ArticleGrpID"].ToString() != "03" && dr["ArticleGrpID"].ToString() != "05")
-                    {
-                        //LOTID 입력
-                        GridData2.Rows[i].Cells["Label"].Value = dr["LOTID"].ToString();
-                        GridData2.Rows[i].Cells["Qty"].Value = stringFormatN5(dr["remainqty"].ToString());
-                    }
-                }
-                else
-                {
-                    //없는 경우는 제품, 반제품이 아니면서 재고 없는 경우
-                    cntmtr++;
+                    //LOTID 입력
+                    GridData2.Rows[i].Cells["Label"].Value = dr["LOTID"].ToString();
+                    GridData2.Rows[i].Cells["Qty"].Value = stringFormatN0(dr["remainqty"]);
+                    
                 }
 
                 DataStore.Instance.CloseConnection(); //2021-10-07 DB 커넥트 연결 해제
             }
-
-            //없는 경우는 제품, 반제품이 아니면서 재고가 없는 품명이 하나라도 있으면 메세지창
-            if (cntmtr > 0)
-            {
-                WizCommon.Popup.MyMessageBox.ShowBox("재고가 없는 자재가 있습니다. \r\n 자재를 입고해 주세요.", "[진행 불가]", 0, 1);
-            }      
+  
         }
 
         // After Load
@@ -454,7 +368,9 @@ namespace WizWork
                     if ((m_MtrExceptYN.Equals("Y") && m_PCMtrExceptYN.Equals("")) || m_PCMtrExceptYN.Equals("Y"))
                     {
                         setPreScanLabel(); //2021-05-07 Grid 생성 없이 바로 넘어가면 checkdata 에서 오류 생겨서 Y도 Grid생성 되게 추가
-                        btnOK_Click(null, null);
+                        CheckMtrArticleID();//하위품 재고 있는 경우 그리드에 보여주는 함수
+
+                        //btnOK_Click(null, null);
                     }
 
                 }
@@ -506,7 +422,7 @@ namespace WizWork
                                 GridData2.Rows[i].SetValues((i + 1).ToString()
                                            , txtBarCodePreScan.Text
                                            , m_Article
-                                           , stringFormatN5(m_LocRemainQty)
+                                           , stringFormatN0(m_LocRemainQty)
                                            , "선스캔라벨"
                                            , ""
                                            , m_ArticleID
@@ -625,7 +541,7 @@ namespace WizWork
                         {
                             SumQty += Convert.ToInt32(GridData2.Rows[i].Cells["Qty"].Value.ToString());
                         }
-                        stringFormatN5(SumQty);
+                        stringFormatN0(SumQty);
 
                         GridData2.Rows.Add("", "", "합계", SumQty.ToString(), "", "", "", "");
 
@@ -644,81 +560,64 @@ namespace WizWork
 
         private void setBtnOKEnabled()
         {
-            //if (GridData2.Rows[0].Cells["Label"].Value.ToString() == "")
-            //{
-            //    btnOK.Enabled = false;
-            //}
-            //else
-            //{
-            //    btnOK.Enabled = true;
-            //}
-
-            //if (GridData2.Rows.Count > 1)
-            //{
-            //    btnOK.Enabled = true;
-            //}
-            //else
-            //{
-            //    btnOK.Enabled = false;
-            //}
-
-            //라벨 스캔하는 품번과 아닌 품번 구분하여 확인 버튼 활성화 유무 판단 2022-12-29
-            int OkEnable = 0;
-
-            for (int i = 0; i < GridData2.Rows.Count; i++)
+            if ((m_MtrExceptYN.Equals("Y") && m_PCMtrExceptYN.Equals("")) || m_PCMtrExceptYN.Equals("Y"))
             {
-                if (GridData2.Rows.Count == 1)
-                {
-                    if ((GridData2.Rows[i].Cells["Label"].Value.ToString() == "" && GridData2.Rows[i].Cells["NewProductYN"].Value.ToString() == "N")
-                        || (GridData2.Rows[i].Cells["Label"].Value.ToString() == "" && GridData2.Rows[i].Cells["NewProductYN"].Value.ToString() == "Y" && Convert.ToDouble(GridData2.Rows[i].Cells["Qty"].Value.ToString()) <= 0))
-                    {
-                        
-                        //btnOK.Enabled = false;
-                        //return;
-                    }
-                    else
-                    {
-                        OkEnable++;
-                        //btnOK.Enabled = true;
-                    }
-                }
-                else
-                {
-                    if ((GridData2.Rows[i].Cells["Label"].Value.ToString() != "" && GridData2.Rows[i].Cells["NewProductYN"].Value.ToString() == "N") 
-                        || (GridData2.Rows[i].Cells["Label"].Value.ToString() == "" && GridData2.Rows[i].Cells["NewProductYN"].Value.ToString() == "Y" && Convert.ToDouble(GridData2.Rows[i].Cells["Qty"].Value.ToString()) > 0)
-                        )
-                    {
-                        OkEnable++;
-                        //btnOK.Enabled = false;
-                        //return;
-                    }
-                    else
-                    {
-                        //btnOK.Enabled = true;
-                    }
-
-                }
-            }
-            if (GridData2.Rows.Count == 1)
-            {
-                if (OkEnable > 0)
-                {
-                    btnOK.Enabled = true;
-                }
-                else
-                {
-                    btnOK.Enabled = false;
-                }
+                btnOK.Enabled = true;
             }
             else
             {
-                if (OkEnable == GridData2.Rows.Count)
+                //ScanExceptYN Y인 경우 재고 없어도 됨, N인 경우 재고 있어야 됨
+                int OkEnable = 0;
+
+                for (int i = 0; i < GridData2.Rows.Count; i++)
                 {
-                    btnOK.Enabled = true;
+                    if (GridData2.Rows.Count == 1)
+                    {
+                        if (GridData2.Rows[i].Cells["Label"].Value.ToString() == "" && GridData2.Rows[i].Cells["ScanExceptYN"].Value.ToString() == "N")
+                        {
+
+                        }
+                        else
+                        {
+                            OkEnable++;
+                        }
+                    }
+                    else
+                    {
+                        if ((GridData2.Rows[i].Cells["Label"].Value.ToString() != "" && GridData2.Rows[i].Cells["ScanExceptYN"].Value.ToString() == "N")
+                            || (GridData2.Rows[i].Cells["ScanExceptYN"].Value.ToString() == "Y")
+                            )
+                        {
+                            OkEnable++;
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                }
+                if (GridData2.Rows.Count == 1)
+                {
+                    if (OkEnable > 0)
+                    {
+                        btnOK.Enabled = true;
+                    }
+                    else
+                    {
+                        btnOK.Enabled = false;
+                    }
                 }
                 else
                 {
-                    btnOK.Enabled = false;
+                    if (OkEnable == GridData2.Rows.Count)
+                    {
+                        btnOK.Enabled = true;
+                    }
+                    else
+                    {
+                        btnOK.Enabled = false;
+                    }
                 }
             }
 
@@ -1414,6 +1313,21 @@ namespace WizWork
                 }
                 else
                 {
+                    //초기화 2025-03-12
+                    m_StartSaveLabelID = "";
+
+                    //2025-03-12
+                    //Startlabel에 C라벨이 입력되어야 되는데 그리드에서 첫번째가 C라벨인데
+                    //다른 라벨이 나올 가능성이 있어 여기서 C라벨 찾아서 하나 입력하도록 함
+                    for (int i = 0; i < GridData2.Rows.Count; i++)
+                    {
+                        if (GridData2.Rows[i].Cells["Label"].Value.ToString().Contains("C"))
+                        {
+                            m_StartSaveLabelID = GridData2.Rows[i].Cells["Label"].Value.ToString();
+                            break;
+                        }
+                    }
+                    
                     if (StartHandleWorking_Click() == true)
                     {
                         DialogResult = DialogResult.OK;
@@ -1472,7 +1386,7 @@ namespace WizWork
                 sqlParameter1.Add("InstID", Frm_tprc_Main.g_tBase.sInstID);
                 sqlParameter1.Add("InstDetSeq", Frm_tprc_Main.g_tBase.sInstDetSeq);
                 sqlParameter1.Add("LabelID", Frm_tprc_Main.g_tBase.sLotID);
-                sqlParameter1.Add("StartSaveLabelID", GridData2.Rows[0].Cells["Label"].Value.ToString());
+                sqlParameter1.Add("StartSaveLabelID", m_StartSaveLabelID);
                                  
                 sqlParameter1.Add("LabelGubun", m_LabelGubun);
                 sqlParameter1.Add("ProcessID", m_ProcessID);
